@@ -21,27 +21,27 @@ const Dashboard: React.FC = () => {
 
   const currentScreen = useSelector((store: ApplicationStore) => store.dashboard.current_screen);
 
-  const [modalIsOpen,setIsOpen] = useState(false);
-  const [ isExiting, setIsExiting ] = useState(false);
+  const [modalIsOpen, setIsOpen] = useState(false);
+  const [isExiting, setIsExiting] = useState(false);
 
   //Setting data accounts;
   const changeComponent = useCallback((title: Screen) => {
     setIsOpen(false);
-    dispatch( change_screen(title) );
+    dispatch(change_screen(title));
   }, [dispatch]);
 
   const handleLogOut = useCallback((accepted: boolean) => {
-    if ( accepted ) {
+    if (accepted) {
       dispatch(remove_user());
-  
+
       history.push('/');
     } else {
       setIsExiting(false);
     }
-  }, [ dispatch, history ]);
+  }, [dispatch, history]);
 
-  function setModal() { 
-    if(modalIsOpen === true)
+  function setModal() {
+    if (modalIsOpen === true)
       setIsOpen(false);
     else
       setIsOpen(true);
@@ -49,31 +49,31 @@ const Dashboard: React.FC = () => {
 
   return (
     <>
-        { isExiting && <ExitModal setResponse={ handleLogOut } /> }
+      { isExiting && <ExitModal setResponse={handleLogOut} />}
 
-        {modalIsOpen && (
-          <div onClick={setModal}>
+      {modalIsOpen && (
+        <div onClick={setModal}>
 
-            <CardMenuMobile title = 'Depósitos' func={changeComponent} />
-            <CardMenuMobile title = 'Planos' func={changeComponent} />
-            <CardMenuMobile title = 'Pagamentos' func={changeComponent}  />
-            <CardMenuMobile title = 'Transações' func={changeComponent} />
-            <div onClick={ () => {
-              setIsExiting(true);
-              setIsOpen(false);
-            }}>
-              <FiLogOut size={16} color="#fff" style={{ marginRight: 8 }} />
+          <CardMenuMobile title='Depósitos' func={changeComponent} />
+          <CardMenuMobile title='Planos' func={changeComponent} />
+          <CardMenuMobile title='Pagamentos' func={changeComponent} />
+          <CardMenuMobile title='Transações' func={changeComponent} />
+          <div onClick={() => {
+            setIsExiting(true);
+            setIsOpen(false);
+          }}>
+            <FiLogOut size={16} color="#fff" style={{ marginRight: 8 }} />
               Sair
             </div>
-          </div>
-        )}
+        </div>
+      )}
       <div>
-        <img className="logo" src={gamaIcon} alt="Gama icon"/>
+        <img className="logo" src={gamaIcon} alt="Gama icon" />
         <div>
-        <FiAlignRight color="#fff" size={ 60 } onClick={() => setModal()} ></FiAlignRight>
+          <FiAlignRight color="#fff" size={60} onClick={() => setModal()} ></FiAlignRight>
         </div>
 
-      </div> 
+      </div>
       <div>
         <nav>
           <img className="logo" src={gamaIcon} alt="Gama icon" />
@@ -82,8 +82,8 @@ const Dashboard: React.FC = () => {
           <CardMenu title='Pagamentos' onClick={() => changeComponent('Pagamentos')} selected={currentScreen === 'Pagamentos'} />
           <CardMenu title='Transações' onClick={() => changeComponent('Transações')} selected={currentScreen === 'Transações'} />
 
-          <button onClick={ () => setIsExiting(true) } >
-            <FiLogOut color="#fff" size={ 20 } />
+          <button onClick={() => setIsExiting(true)} >
+            <FiLogOut color="#fff" size={20} />
           </button>
 
         </nav>

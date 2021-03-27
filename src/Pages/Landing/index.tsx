@@ -66,7 +66,6 @@ const Landing: React.FC = () => {
       filteredData[key] = data[key].trim();
     });
 
-    console.log("filtered data", filteredData)
 
     setLoading(true);
 
@@ -86,7 +85,8 @@ const Landing: React.FC = () => {
       });
 
       if (password !== confirmPassword) {
-        return;
+        toast.error("Senhas diferentes, por favor insira duas senhas iguais");
+        return
       }
 
       const { status } = await api.post('/usuarios', {
