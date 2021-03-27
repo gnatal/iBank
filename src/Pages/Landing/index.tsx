@@ -32,7 +32,7 @@ const Landing: React.FC = () => {
   const history = useHistory();
   const formRef = useRef<FormHandles>(null);
 
-  const [ isFilled, setIsFilled ] = useState(false);
+  const [isFilled, setIsFilled] = useState(false);
 
   // Atualiza a mascara do CPF
   useEffect(() => {
@@ -41,22 +41,23 @@ const Landing: React.FC = () => {
 
   // Atualiza se todos os campos estão preenchidos para deixar o botão de confirmar verde
   useEffect(() => {
-    if ( name.length > 3 && 
-      password && 
-      confirmPassword && 
-      cpf.length === 11 && 
-      username ) setIsFilled(true);
+    if (name.length > 3 &&
+      password &&
+      confirmPassword &&
+      cpf.length === 11 &&
+      username) setIsFilled(true);
     else setIsFilled(false);
   }, [
-    
+
     // devemos informar os elementos utilizados
   ]);
 
   // Lidar com o registro
   const handleSubmit = useCallback(async (data: AnyObject) => {
+    console.log("data", data);
     const filteredData: AnyObject = {}
 
-    Object.keys(data).forEach( key => {
+    Object.keys(data).forEach(key => {
       filteredData[key] = data[key].trim();
     });
 
