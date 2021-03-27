@@ -36,18 +36,18 @@ const Input: React.FC<InputProps> = ({ name, ...props }) => {
 
   return (
     <>
-        <input
-          onFocus={handleInputFocus}
-          onBlur={handleInputBlur}
-          defaultValue={defaultValue}
-          ref={inputRef} {...props}
-        />
+      <input
+        onFocus={handleInputFocus}
+        onBlur={handleInputBlur}
+        defaultValue={defaultValue}
+        ref={inputRef} {...props}
+      />
 
-        {error && (
-          <Tooltip message={error}>
-            <FiAlertCircle color="#f42121" size={20} />
-          </Tooltip>
-        )}
+      {error && (
+        <Tooltip message={error}>
+          <FiAlertCircle color="#f42121" size={20} />
+        </Tooltip>
+      )}
     </>
   );
 }
