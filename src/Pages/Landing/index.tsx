@@ -9,8 +9,6 @@ import getIsAuth from '../../services/getIsAuth';
 import getValidationErrors from '../../utils/getValidationErrors';
 import { maskCPF, removeMaskCPF } from '../../utils/mask';
 
-
-
 import Header from '../../components/Header';
 import Input from '../../components/Input';
 import Loader from '../../components/Loader';

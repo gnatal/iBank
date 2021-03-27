@@ -8,6 +8,9 @@ import * as yup from 'yup';
 import Button from '../../components/Button';
 import Header from '../../components/Header';
 
+import BackgroundVideo from '../../components/BackgroundVideo';
+import LoginArea from '../../styles/componentes/LoginArea';
+
 import api from '../../services/api';
 import { UserResponse } from '../../types/user';
 import updateReduxState from '../../services/updateReduxState';
@@ -71,24 +74,24 @@ const Login: React.FC = () => {
 
   return (
     <>
-      <Header />
-      <Form ref={formRef} onSubmit={handleSubmit}>
-        Faça o login
-
+      <BackgroundVideo />
+      <LoginArea>
+        <Form ref={formRef} onSubmit={handleSubmit}>
+          Faça o login
           <Input name="username" value={username} onChange={e => setUsername(e.target.value)} placeholder="Digite seu usuário" autoFocus />
-        <Input name="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Digite sua senha" type="password" />
+          <Input name="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Digite sua senha" type="password" />
 
-        {loading ? <Loader /> : <Button
-          type="submit"
-          text="Continuar"
-          Icon={FaArrowRight}
-          className="form-button"
-        />
-        }
-
-        <Link to="/recover">Esqueci minha senha</Link>
-        <Link to="/">Ainda não sou cliente</Link>
-      </Form>
+          {loading ? <Loader /> : <Button
+            type="submit"
+            text="Continuar"
+            Icon={FaArrowRight}
+            className="form-button"
+          />
+          }
+          <Link to="/recover">Esqueci minha senha</Link>
+          <Link to="/">Ainda não sou cliente</Link>
+        </Form>
+      </LoginArea>
     </>
   );
 }
