@@ -31,6 +31,7 @@ const BgVideo = styled.div`
     }
 
     .h1__login{
+        font-family: Geomanist, Arial;
         color: #000;
         font-size: 2.5rem;
         line-height: .93em;
@@ -39,21 +40,18 @@ const BgVideo = styled.div`
     }
 
     .h1-color1{
-        color: #d8d4cb;
+        color: var(--primary-bg-color);
     }
 
     .h1-color2{
-        color: #a6c0c9;
+        color: var(--secondary-bg-color);
     }
 
-    .h1-color3{
-        color:#cfced8;
+    @media (max-width: 260px){
+        .wrapper__h1{
+            margin: 1rem;
+        }
     }
-
-    .h1-color4{
-        color: #d8b3b2;
-    }
-
 `;
 
 export default BgVideo;

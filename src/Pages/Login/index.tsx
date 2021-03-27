@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import { FaArrowRight } from 'react-icons/fa';
 import { Form } from '@unform/web';
 import * as yup from 'yup';
+import { motion } from 'framer-motion';
 
 import Button from '../../components/Button';
 import Header from '../../components/Header';
@@ -76,21 +77,39 @@ const Login: React.FC = () => {
     <>
       <BackgroundVideo />
       <LoginArea>
-        <Form ref={formRef} onSubmit={handleSubmit}>
-          Faça o login
-          <Input name="username" value={username} onChange={e => setUsername(e.target.value)} placeholder="Digite seu usuário" autoFocus />
-          <Input name="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Digite sua senha" type="password" />
+        <motion.div
+          transition={{ delay: 0.2, duration: 1 }}
+          variants={{
+            show: { opacity: 1, y: '0' },
+            hidden: { opacity: 0, y: '80%' },
+          }}
+          initial="hidden"
+          animate="show"
+          text-align="center"
+          >
 
-          {loading ? <Loader /> : <Button
-            type="submit"
-            text="Continuar"
-            Icon={FaArrowRight}
-            className="form-button"
-          />
-          }
-          <Link to="/recover">Esqueci minha senha</Link>
-          <Link to="/">Ainda não sou cliente</Link>
-        </Form>
+          <Header />
+          <Form className="form-login-display" ref={formRef} onSubmit={handleSubmit}>
+            <label>
+              Usuário:
+            <Input name="username" value={username} onChange={e => setUsername(e.target.value)} placeholder="Digite seu usuário" autoFocus />
+            </label>
+            <label>
+              Senha:
+            <Input name="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Digite sua senha" type="password" />
+            </label>
+
+            {loading ? <Loader /> : <Button
+              type="submit"
+              text="Continuar"
+              Icon={FaArrowRight}
+              className="form-button"
+            />
+            }
+            <Link className="login-link" to="/recover">Esqueci minha senha</Link>
+            <Link className="login-link" to="/">Ainda não sou cliente</Link>
+          </Form>
+        </motion.div>
       </LoginArea>
     </>
   );
