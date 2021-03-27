@@ -65,7 +65,7 @@ const Transactions: React.FC = () => {
         setContas(result.data);
         setLoaded(true);
        
-      }catch (err) {
+      } catch (err) {
         console.log(err);
       }
     };

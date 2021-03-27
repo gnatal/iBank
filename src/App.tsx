@@ -5,7 +5,10 @@ import { checkIsAuth } from './services/getIsAuth';
 import updateReduxState from './services/updateReduxState';
 
 import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.min.css'; 
+import 'react-toastify/dist/ReactToastify.min.css';
+
+import GlobalStyle from '../src/styles/GlobalStyle';
+
 // import './customToast.css'
 
 const App: React.FC = () => {
@@ -18,6 +21,7 @@ const App: React.FC = () => {
     <>
       <Routes />
       <ToastContainer />
+      <GlobalStyle />
     </>
   );
 }
