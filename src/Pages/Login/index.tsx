@@ -57,22 +57,18 @@ const Login: React.FC = () => {
       history.push('/dashboard');
     } catch (err) {
       const errors = getValidationErrors(err);
-      console.log('err', err.message);
-      console.log('err keys', Object.entries(err));
-      console.log('errors', errors);
       formRef.current?.setErrors(errors);
       if (Object.keys(err).includes('isAxiosError')) {
-        toast.error('Usuario ou senha incorretos!');
-        // toast.error('Ocorreu algum erro!');
-        return // history.push('/error');
+        if (err.response.data.status === 409) {
+          toast.error('Usuario ou senha incorretos!');
+          return
+        }
+        toast.error('Ocorreu algum erro!');
+        return history.push('/error');
       }
-      console.log(err.errors)
       err.errors.forEach((error: string) => {
         toast.error(error);
       })
-      // toast.error(err.message === '2 errors occurred' ? 
-      //   'Nome de usuário e senha obrigatórios' : err.message);
-      // setLoading(false); // parece redundante.
     } finally {
       setLoading(false);
     }

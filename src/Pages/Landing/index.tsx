@@ -9,17 +9,19 @@ import getIsAuth from '../../services/getIsAuth';
 import getValidationErrors from '../../utils/getValidationErrors';
 import { maskCPF, removeMaskCPF } from '../../utils/mask';
 
-
-
 import Header from '../../components/Header';
 import Input from '../../components/Input';
 import Loader from '../../components/Loader';
 
-import ImgCellPhone from '../../assets/landing-3.png';
 import { toast } from 'react-toastify';
 import { AnyObject } from '../../types/utils';
 import { UserResponse } from '../../types/user';
 import updateReduxState from '../../services/updateReduxState';
+
+import SectionCard from './SectionCard';
+import SectionCosts from './SectionCosts';
+import SectionInvite from './SectionInvite';
+import SectionBenefits from './SectionBenefits';
 
 const Landing: React.FC = () => {
   const [username, setUsername] = useState('');
@@ -36,7 +38,7 @@ const Landing: React.FC = () => {
 
   // Atualiza a mascara do CPF
   useEffect(() => {
-    // devemos setar o estado
+    setCpf(removeMaskCPF(cpfMask))
   }, [cpfMask]);
 
   // Atualiza se todos os campos estão preenchidos para deixar o botão de confirmar verde
@@ -48,18 +50,23 @@ const Landing: React.FC = () => {
       username) setIsFilled(true);
     else setIsFilled(false);
   }, [
-
-    // devemos informar os elementos utilizados
+    name,
+    password,
+    confirmPassword,
+    cpf,
+    username
   ]);
+  // devemos informar os elementos utilizados
 
   // Lidar com o registro
   const handleSubmit = useCallback(async (data: AnyObject) => {
-    console.log("data", data);
     const filteredData: AnyObject = {}
 
     Object.keys(data).forEach(key => {
       filteredData[key] = data[key].trim();
     });
+
+    console.log("filtered data", filteredData)
 
     setLoading(true);
 
@@ -106,6 +113,13 @@ const Landing: React.FC = () => {
         history.push('/error');
       }
     } catch (err) {
+      if (err.response) {
+        console.log("error:", err.response)
+        if (err.response.data.codigo == "001") {
+          toast.error("Nome de usuário indisponível utilize outro")
+          return;
+        }
+      }
       const errors = getValidationErrors(err);
       formRef.current?.setErrors(errors);
       toast.error('O formulário está incorreto!');
@@ -153,70 +167,18 @@ const Landing: React.FC = () => {
                 <Input name="name" value={name} onChange={e => setName(e.target.value)} placeholder="Nome completo" />
                 <Input name="password" value={password} type="password" onChange={e => setPassword(e.target.value)} placeholder="Digite sua senha" />
                 <Input name="confirmPassword" value={confirmPassword} type="password" onChange={e => setConfirmPassword(e.target.value)} placeholder="Confirme sua senha" />
-                {loading ? <Loader /> : <button type="submit">Continuar<FaArrowRight className="ArrowRight" /></button>}
+                {loading ? <Loader /> : <button type="submit" disabled={!isFilled}>Continuar<FaArrowRight className="ArrowRight" /></button>}
               </Form>
             </div>
           </div>
         </div>
       </div>
 
-      <section>
-        <div>
-          <div>
-            <div>
-              <span>Conta digital do Gama Academy</span>
-              <p>Rende mais que a poupança, sem taxa de manutenção nem tarifas escondidas.</p>
-            </div>
-            <div>
-              <span>Cartão de Crédito</span>
-              <p>Rende mais que a poupança, sem taxa de manutenção nem tarifas escondidas.</p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <SectionCard />
+      <SectionCosts />
+      <SectionBenefits />
+      <SectionInvite />
 
-      <section>
-        <div>
-          <div>
-            <div>
-              <span>Zero anuidade</span>
-              <p>Burocracia custa caro. Somos eficientes para você não ter que pagar tarifas.</p>
-            </div>
-            <div>
-              <span>0,00</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-
-      <section>
-        <div>
-          <div>
-            <div>
-              <span>O fim da complexibilidade</span>
-              <p>Para quem sabe que tecnologia e design são melhores do que agências e papelada.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <div>
-        <div>
-          <div>
-            <div>
-              <span>Simplifique a sua vida. Peça seu convite.</span>
-              <p>GamaAcademy Bank Line S.A. - CNPJ 00.000.000/0000-00</p>
-
-              <p>Rua Fictícia, 999 - 00000-000 - São Paulo, SP</p>
-              <p>Este é um projeto de avaliação | GamaAcademy | Accenture | 2021</p>
-            </div>
-            <div>
-              <img src={ImgCellPhone} alt="Imagem de um celular" />
-            </div>
-          </div>
-        </div>
-      </div>
     </>
   );
 }
