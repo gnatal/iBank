@@ -30,7 +30,7 @@ const Login: React.FC = () => {
     Object.keys(data).forEach(key => {
       filteredData[key] = data[key].trim();
     });
-ç
+
     setLoading(true);
     try {
       formRef.current?.setErrors({});
@@ -72,23 +72,23 @@ const Login: React.FC = () => {
   return (
     <>
       <Header />
-        <Form ref={formRef} onSubmit={handleSubmit}>
-          Faça o login
+      <Form ref={formRef} onSubmit={handleSubmit}>
+        Faça o login
 
           <Input name="username" value={username} onChange={e => setUsername(e.target.value)} placeholder="Digite seu usuário" autoFocus />
-          <Input name="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Digite sua senha" type="password" />
+        <Input name="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Digite sua senha" type="password" />
 
-          {loading ? <Loader /> : <Button
-            type="submit"
-            text="Continuar"
-            Icon={FaArrowRight}
-            className="form-button"
-          />
-          }
+        {loading ? <Loader /> : <Button
+          type="submit"
+          text="Continuar"
+          Icon={FaArrowRight}
+          className="form-button"
+        />
+        }
 
-          <Link to="/recover">Esqueci minha senha</Link>
-          <Link to="/">Ainda não sou cliente</Link>
-        </Form>
+        <Link to="/recover">Esqueci minha senha</Link>
+        <Link to="/">Ainda não sou cliente</Link>
+      </Form>
     </>
   );
 }
