@@ -26,17 +26,12 @@ const Login: React.FC = () => {
   const history = useHistory();
 
   const handleSubmit = useCallback(async (data: AnyObject) => {
+    setLoading(true);
+
     const filteredData: AnyObject = {}
-
-    console.log('data', data);
-
     Object.keys(data).forEach(key => {
       filteredData[key] = data[key].trim();
     });
-
-    console.log('filteredData', filteredData);
-
-    setLoading(true);
 
     try {
       formRef.current?.setErrors({});
@@ -45,7 +40,6 @@ const Login: React.FC = () => {
         username: yup.string().required('Nome de usuário obrigatório'),
         password: yup.string().required('Senha obrigatória'),
       });
-
       await schema.validate(filteredData, {
         abortEarly: false
       });
@@ -55,8 +49,6 @@ const Login: React.FC = () => {
         "senha": password
       });
 
-      console.log('response', response);
-
       localStorage.setItem('@token_user', response.token);
       localStorage.setItem('@user_name', response.usuario.nome);
       updateReduxState();
@@ -64,16 +56,23 @@ const Login: React.FC = () => {
 
       history.push('/dashboard');
     } catch (err) {
-      console.log('err', err);
       const errors = getValidationErrors(err);
+      console.log('err', err.message);
+      console.log('err keys', Object.entries(err));
       console.log('errors', errors);
       formRef.current?.setErrors(errors);
       if (Object.keys(err).includes('isAxiosError')) {
-        toast.error('Ocorreu algum erro!');
-        return history.push('/error');
+        toast.error('Usuario ou senha incorretos!');
+        // toast.error('Ocorreu algum erro!');
+        return // history.push('/error');
       }
-      setLoading(false);
-      toast.error('Usuario ou senha incorretos!');
+      console.log(err.errors)
+      err.errors.forEach((error: string) => {
+        toast.error(error);
+      })
+      // toast.error(err.message === '2 errors occurred' ? 
+      //   'Nome de usuário e senha obrigatórios' : err.message);
+      // setLoading(false); // parece redundante.
     } finally {
       setLoading(false);
     }
