@@ -54,8 +54,10 @@ const Login: React.FC = () => {
       updateReduxState();
       toast.success('Seja bem-vindo(a)');
 
+      setLoading(false);
       history.push('/dashboard');
     } catch (err) {
+      setLoading(false);
       const errors = getValidationErrors(err);
       formRef.current?.setErrors(errors);
       if (Object.keys(err).includes('isAxiosError')) {
@@ -69,9 +71,7 @@ const Login: React.FC = () => {
       err.errors.forEach((error: string) => {
         toast.error(error);
       })
-    } finally {
-      setLoading(false);
-    }
+    } 
 
   }, [username, password, history]);
 
