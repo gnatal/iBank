@@ -1,7 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { FaArrowRight } from 'react-icons/fa';
-import gamaIcon from '../../assets/svgs/gama-icon.svg';
 import CardMenu from '../../components/Dashboard/CardMenu';
 import CardMenuMobile from '../../components/Dashboard/CardMenuMobile';
 import Deposit from '../../components/Dashboard/Deposit';
@@ -20,9 +19,13 @@ import {
   TabsContainer,
   Tab,
   TabName,
-  IconImage
+  IconImage,
+  StyleNavbar
 } from '../../styles/componentes/Dashboard'
 
+import Navbar from 'react-bootstrap/Navbar'
+import Nav from 'react-bootstrap/Nav'
+import NavDropdown from 'react-bootstrap/NavDropdown'
 import Sidemenu from '../../components/Sidemenu'
 
 const Dashboard: React.FC = () => {
@@ -65,6 +68,21 @@ const Dashboard: React.FC = () => {
   return (
     <>
       { isExiting && <ExitModal setResponse={handleLogOut} />}
+      <StyleNavbar bg="light" expand="lg">
+        <Navbar.Brand href="#home">IBank</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="mr-auto">
+            <Nav.Link onClick={() => changeComponent('Depósitos')} href="">Depósitos</Nav.Link>
+            <Nav.Link onClick={() => changeComponent('Pagamentos')} href=""> Pagamentos</Nav.Link>
+            <Nav.Link onClick={() => changeComponent('Planos')} href="" > Planos</Nav.Link>
+            <Nav.Link onClick={() => changeComponent('Transações')} href=""> Transações</Nav.Link>
+            <Nav.Link style={{ position: "absolute", right: "20px" }} onClick={() => setIsExiting(true)} href=""> Sair<FaArrowRight size={21} onClick={() => setIsExiting(true)} /> </Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </StyleNavbar>
+
+
       <BottomNavigationBox>
         <Sidemenu isOpen={isSideMenuOpen} close={close} changeComponent={changeComponent} />
         <TabsContainer>
@@ -89,5 +107,12 @@ const Dashboard: React.FC = () => {
     </>
   );
 }
+
+
+
+const NavBarWeb = () => {
+
+}
+
 
 export default Dashboard;

@@ -46,7 +46,7 @@ const Balance: React.FC<AccountProps> = (props) => {
         contaBanco.lancamentos.reduce((acc, lancamento) => {
           acc += lancamento.valor;
           return acc;
-        },0)
+        }, 0)
       )
     }
     if (contaCredito) {
@@ -54,7 +54,7 @@ const Balance: React.FC<AccountProps> = (props) => {
         contaCredito.lancamentos.reduce((acc, lancamento) => {
           acc += lancamento.valor;
           return acc;
-        },0)
+        }, 0)
       )
     }
 
@@ -89,8 +89,8 @@ const Balance: React.FC<AccountProps> = (props) => {
         <div>
           <p>Olá <strong>{user.split(' ')[0]}</strong>, seja bem-vindo(a)!</p>
           <div>
-            {!hide ? 
-              <FiEye size={35} onClick={() => hideOrShowInformations()} /> : 
+            {!hide ?
+              <FiEye size={35} onClick={() => hideOrShowInformations()} /> :
               <FiEyeOff size={35} onClick={() => hideOrShowInformations()} />}
           </div>
         </div>

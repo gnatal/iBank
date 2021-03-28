@@ -13,7 +13,8 @@ import Input from '../../Input'
 import { change_screen, set_transaction_data } from '../../../store/dashboard/actions';
 import getValidationErrors from '../../../utils/getValidationErrors';
 import Loader from '../../Loader';
-import { DepositBox } from '../../../styles/componentes/Deposit'
+import { DepositBox, DepositTitle } from '../../../styles/componentes/Deposit'
+import Button from '../../Button';
 
 const Deposit: React.FC = () => {
 
@@ -97,7 +98,7 @@ const Deposit: React.FC = () => {
       toast.error(`Ocorreu algum erro ao tentar realizar o ${invoicePayment ? 'pagamento' : 'depósito'}`);
       const errors = getValidationErrors(err);
       formRef.current?.setErrors(errors);
-    } 
+    }
     // finally {
     //   setLoading(false);
     // }
@@ -119,14 +120,11 @@ const Deposit: React.FC = () => {
   return (
     <DepositBox>
       <div className="header-form">
-        <p>
+        <DepositTitle>
           {invoicePayment ? 'Realize o pagamento da sua fatura' : 'Realize o seu depósito'}
-        </p>
-        <button onClick={() => setInvoicePayment(!invoicePayment)}>
-          <span>
-            {invoicePayment ? 'Realizar depósito' : 'Realizar pagamento de fatura'}
-          </span>
-        </button>
+        </DepositTitle>
+        <Button onClick={() => setInvoicePayment(!invoicePayment)} type='submit' text={invoicePayment ? 'Realizar depósito' : 'Realizar pagamento de fatura'} Icon={FaArrowRight} />
+
       </div>
       <Form ref={formRef} onSubmit={handleSubmit}>
         <Input name="date" value={data} onChange={e => setData(e.target.value)} type="date" />
@@ -136,12 +134,7 @@ const Deposit: React.FC = () => {
         {loading ? (
           <Loader style={{ marginTop: 48 }} />
         ) : (
-          <button type='submit'>
-            <span>
-              {invoicePayment ? 'Pagar agora' : 'Depositar agora'}
-            </span>
-            <FaArrowRight color="#8c52e5" />
-          </button>
+          <Button type='submit' text={invoicePayment ? 'Pagar agora' : 'Depositar agora'} Icon={FaArrowRight} />
         )}
       </Form>
     </DepositBox>
