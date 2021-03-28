@@ -1,7 +1,7 @@
 import React from 'react';
 
 import VideoBg from '../../assets/video/ibank.mp4';
-import BgVideo from '../../styles/componentes/BackgroudVideo';
+import BgVideo from '../../styles/componentes/BackgroundVideo';
 
 const BackgroundVideo: React.FC = () => {
     return (

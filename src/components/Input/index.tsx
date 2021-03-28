@@ -3,6 +3,8 @@ import { useField } from '@unform/core';
 import { FiAlertCircle } from 'react-icons/fi';
 import Tooltip from '../Tooltip';
 
+import InputStandard from '../../styles/componentes/Input';
+
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
 }
@@ -36,7 +38,7 @@ const Input: React.FC<InputProps> = ({ name, ...props }) => {
 
   return (
     <>
-        <input
+        <InputStandard
           onFocus={handleInputFocus}
           onBlur={handleInputBlur}
           defaultValue={defaultValue}
