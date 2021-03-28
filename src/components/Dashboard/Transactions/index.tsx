@@ -1,13 +1,15 @@
 import React, { useState, useEffect, ChangeEvent, useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import api from '../../../services/api';
+import { ApplicationStore } from '../../../store';
+import { set_transaction_data } from '../../../store/dashboard/actions';
+
+import Loader from '../../Loader';
+import Extract from '../Extract';
+import Balance from '../Balance';
 
 import { Contas } from '../../../types/dash-board';
-import Balance from '../Balance';
-import Extract from '../Extract';
-import api from '../../../services/api';
-import { useDispatch, useSelector } from 'react-redux';
-import { ApplicationStore } from '../../../store';
-import Loader from '../../Loader';
-import { set_transaction_data } from '../../../store/dashboard/actions';
 
 const Transactions: React.FC = () => {
 
@@ -79,7 +81,7 @@ const Transactions: React.FC = () => {
       setReferenceDate(value);
   } 
 
-  if ( loaded )return (
+  if ( loaded ) return (
     <div>
       {/* Componente para página principal */}      
 
