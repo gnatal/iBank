@@ -11,7 +11,7 @@ export const BottomNavigationBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+  background: var(--primary-bg-color);
   padding: 5px 0;
   z-index: 100;
   /* border-top: 1vh solid #573b61; */
@@ -30,13 +30,13 @@ export const Tab = styled.div`
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  color: #222;
+  color: #fff;
 `
 
 export const TabName = styled.span`
   font-size: 0.8em;
   text-align: center;
-  color: #222;
+  color: #fff;
   text-transform: capitalize;
 `
 

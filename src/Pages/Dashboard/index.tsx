@@ -23,11 +23,14 @@ import {
   IconImage
 } from '../../styles/componentes/Dashboard'
 
+import Sidemenu from '../../components/Sidemenu'
+
 const Dashboard: React.FC = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
   const currentScreen = useSelector((store: ApplicationStore) => store.dashboard.current_screen);
+  const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
 
   const [modalIsOpen, setIsOpen] = useState(false);
   const [isExiting, setIsExiting] = useState(false);
@@ -55,13 +58,18 @@ const Dashboard: React.FC = () => {
       setIsOpen(true);
   }
 
+  function close() {
+    setIsSideMenuOpen(false);
+  }
+
   return (
     <>
       { isExiting && <ExitModal setResponse={handleLogOut} />}
       <BottomNavigationBox>
+        <Sidemenu isOpen={isSideMenuOpen} close={close} changeComponent={changeComponent} />
         <TabsContainer>
-          <Tab >
-            <IconImage src="/menu-mobile.png" style={{ filter: "invert(1)" }} alt="Menu" />
+          <Tab  >
+            <IconImage onClick={() => { setIsSideMenuOpen(!isSideMenuOpen) }} src="/menu-mobile.png" alt="Menu" />
             <TabName >Operações</TabName>
           </Tab>
           <Tab >
@@ -70,6 +78,14 @@ const Dashboard: React.FC = () => {
           </Tab>
         </TabsContainer>
       </BottomNavigationBox>
+      <main>
+        {/* Render component by currentScreen */}
+        {currentScreen === 'Depósitos' && <Deposit />}
+        {currentScreen === 'Pagamentos' && <Payments func={changeComponent}></Payments>}
+        {currentScreen === 'Planos' && <Plans />}
+        {currentScreen === 'Transações' && <Transactions></Transactions>}
+      </main>
+
     </>
   );
 }

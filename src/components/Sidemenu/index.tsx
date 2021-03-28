@@ -1,18 +1,27 @@
 import React, { useState } from 'react'
+import { SidemenuBox, SidemenuButton } from '../../styles/componentes/Sidemenu'
 
+interface IProps {
+  isOpen: boolean
+  close: Function
+  changeComponent: Function
+}
 
-import { SidemenuBox } from '../../styles/componentes/Sidemenu'
+const Sidemenu: React.FC<IProps> = ({ isOpen, close, changeComponent }: IProps) => {
 
-const Sidemenu: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  function toggleIsOpen() {
-    setIsOpen(!isOpen)
+  function handleClick(e: any) {
+    changeComponent(e.target.value)
+    close()
   }
 
   return (
     <>
-      <SidemenuBox isOpen={isOpen} />
+      <SidemenuBox isOpen={isOpen} >
+        <SidemenuButton onClick={handleClick} value={"Depósitos"}>Depósitos</SidemenuButton >
+        <SidemenuButton onClick={handleClick} value={"Planos"}>Planos</SidemenuButton >
+        <SidemenuButton onClick={handleClick} value={"Pagamentos"}>Pagamentos</SidemenuButton >
+        <SidemenuButton onClick={handleClick} value={"Transações"}>Transações</SidemenuButton >
+      </SidemenuBox>
     </>
   )
 }
