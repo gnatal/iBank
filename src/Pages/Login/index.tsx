@@ -92,7 +92,7 @@ const Login: React.FC = () => {
           initial="hidden"
           animate="show"
           text-align="center"
-          >
+        >
 
           <Header />
           <Form className="form-login-display" ref={formRef} onSubmit={handleSubmit}>
