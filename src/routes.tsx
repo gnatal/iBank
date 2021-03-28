@@ -31,7 +31,7 @@ const Routes: React.FC = () => {
                 <Route path="/recover" exact component={RecoverPassword} />
                 <PrivateRoute path="/dashboard" exact component={Dashboard} />
                 <Route path="/error" exact component={Error} />
-                <Route path="/error-recovery" exact component={ErrorRecover} />
+                <Route path="/error-recover" exact component={ErrorRecover} />
                 <Route path="/" exact component={Landing} />
                 <UnauthRoute path="/login" component={Login} />
             </Switch>

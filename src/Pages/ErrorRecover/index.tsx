@@ -1,23 +1,31 @@
-import React from 'react';
+import { useCallback } from 'react';
 import { FaArrowLeft } from 'react-icons/fa';
 import { FaRegSadTear } from 'react-icons/fa';
-import Button from '../../components/Button/';
-import Header from '../../components/Header';
+import { useHistory } from 'react-router';
 
+import Button from '../../components/Button/';
+
+import { Container } from '../../styles/pages/ErrorRecover';
 
 const ErrorRecover: React.FC = () => {
+  const history = useHistory();
+
+  const handleClick = useCallback(() => {
+    history.goBack();
+  },[history]);
+
   return (
-    <>
-      <Header />
-          <FaRegSadTear className="icon" size={102} />
-          <h3>Oops, algo deu errado! Confime seus dados e tente novamente!</h3>
-          <Button
-            onSubmit={() => { }}
-            text="Voltar"
-            Icon={FaArrowLeft}
-            className="form-button"
-          />
-    </>
+    <Container>
+      <div>
+        <FaRegSadTear className="icon" size={102} />
+        <h3>Oops, algo deu errado! Confime seus dados e tente novamente!</h3>
+        <Button
+          onClick={handleClick}
+          text="Voltar"
+          Icon={FaArrowLeft}
+        />
+      </div>
+    </Container>
   );
 }
 

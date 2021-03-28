@@ -90,14 +90,17 @@ const Deposit: React.FC = () => {
 
       toast.success(invoicePayment ? 'Pagamento realizado' : 'Depósito realizado');
       clearForm();
+      setLoading(false);
     }
     catch (err) {
+      setLoading(false);
       toast.error(`Ocorreu algum erro ao tentar realizar o ${invoicePayment ? 'pagamento' : 'depósito'}`);
       const errors = getValidationErrors(err);
       formRef.current?.setErrors(errors);
-    } finally {
-      setLoading(false);
-    }
+    } 
+    // finally {
+    //   setLoading(false);
+    // }
   }, [data, descricao, valor, store?.login, store?.token, dispatch, invoicePayment]);
 
   function clearForm() {

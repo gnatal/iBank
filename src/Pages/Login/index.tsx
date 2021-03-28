@@ -8,7 +8,6 @@ import * as yup from 'yup';
 import { motion } from 'framer-motion';
 
 import Button from '../../components/Button';
-import Header from '../../components/Header';
 import Loader from '../../components/Loader';
 import Input from '../../components/Input';
 
@@ -21,6 +20,7 @@ import getValidationErrors from '../../utils/getValidationErrors';
 
 import { UserResponse } from '../../types/user';
 import { AnyObject } from '../../types/utils';
+import Header from '../../components/Header';
 
 const Login: React.FC = () => {
   const [username, setUsername] = useState('');
@@ -58,8 +58,10 @@ const Login: React.FC = () => {
       updateReduxState();
       toast.success('Seja bem-vindo(a)');
 
+      setLoading(false);
       history.push('/dashboard');
     } catch (err) {
+      setLoading(false);
       const errors = getValidationErrors(err);
       formRef.current?.setErrors(errors);
       if (Object.keys(err).includes('isAxiosError')) {
@@ -73,9 +75,7 @@ const Login: React.FC = () => {
       err.errors.forEach((error: string) => {
         toast.error(error);
       })
-    } finally {
-      setLoading(false);
-    }
+    } 
 
   }, [username, password, history]);
 

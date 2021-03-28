@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react';
+import { FiEye, FiEyeOff } from 'react-icons/fi';
+import { useSelector } from 'react-redux';
+
 import currentIcon from '../../../assets/svgs/current-icon.svg';
 import creditIcon from '../../../assets/svgs/credit-card-icon.svg';
 import { Conta } from '../../../types/dash-board';
-import { FiEye, FiEyeOff } from 'react-icons/fi';
 import { ApplicationStore } from '../../../store';
-import { useSelector } from 'react-redux';
+import { formatMoney } from '../../../utils/formatMoney';
 
 
-interface Total {
-  banco: number,
-  credito: number,
-}
+// interface Total {
+//   banco: number,
+//   credito: number,
+// }
 
 interface AccountProps {
   contaBanco?: Conta,
@@ -20,13 +22,15 @@ interface AccountProps {
 const Balance: React.FC<AccountProps> = (props) => {
   const [contaBanco, setContaBanco] = useState<Conta>();
   const [contaCredito, setContaCredito] = useState<Conta>();
-  const [totalTransactions, setTotalTransactions] = useState<Total>({
-    banco: 0,
-    credito: 0,
-  });
+  const [totalBanco, setTotalBanco] = useState(0);
+  const [totalCredito, setTotalCredito] = useState(0);
   const [user, setUser] = useState('');
   const [hide, setHide] = useState(false);
   const store = useSelector((state: ApplicationStore) => state.user);
+  // const [totalTransactions, setTotalTransactions] = useState<Total>({
+  //   banco: 0,
+  //   credito: 0,
+  // });
 
   useEffect(() => {
     if (store)
@@ -36,25 +40,44 @@ const Balance: React.FC<AccountProps> = (props) => {
   useEffect(() => {
     setContaBanco(props.contaBanco);
     setContaCredito(props.contaCredito);
-    setTotalTransactions({
-      banco: 0,
-      credito: 0,
-    });
-    contaBanco?.lancamentos.forEach(lancamento => {
-      setTotalTransactions((previewState) => ({
-        ...previewState,
-        banco: previewState.banco += lancamento.valor
-      }))
-    });
 
-    contaCredito?.lancamentos.forEach(lancamento => {
-      setTotalTransactions((previewState) => ({
-        ...previewState,
-        credito: previewState.credito += lancamento.valor
-      })
-      );
-    })
-  }, [contaBanco?.lancamentos, contaCredito?.lancamentos, props.contaBanco, props.contaCredito])
+    if (contaBanco) {
+      setTotalBanco(
+        contaBanco.lancamentos.reduce((acc, lancamento) => {
+          acc += lancamento.valor;
+          return acc;
+        },0)
+      )
+    }
+    if (contaCredito) {
+      setTotalCredito(
+        contaCredito.lancamentos.reduce((acc, lancamento) => {
+          acc += lancamento.valor;
+          return acc;
+        },0)
+      )
+    }
+
+    // setTotalTransactions({
+    //   banco: 0,
+    //   credito: 0,
+    // });
+    // contaBanco?.lancamentos.forEach(lancamento => {
+    //   setTotalTransactions((previewState) => ({
+    //     ...previewState,
+    //     banco: previewState.banco += lancamento.valor
+    //   }))
+    // });
+
+
+    // contaCredito?.lancamentos.forEach(lancamento => {
+    //   setTotalTransactions((previewState) => ({
+    //     ...previewState,
+    //     credito: previewState.credito += lancamento.valor
+    //   })
+    //   );
+    // })
+  }, [contaBanco, contaCredito, props.contaBanco, props.contaCredito])
 
   const hideOrShowInformations = () => {
     setHide(!hide);
@@ -66,7 +89,9 @@ const Balance: React.FC<AccountProps> = (props) => {
         <div>
           <p>Olá <strong>{user.split(' ')[0]}</strong>, seja bem-vindo(a)!</p>
           <div>
-            {!hide ? <FiEye size={35} onClick={() => hideOrShowInformations()} /> : <FiEyeOff size={35} onClick={() => hideOrShowInformations()} />}
+            {!hide ? 
+              <FiEye size={35} onClick={() => hideOrShowInformations()} /> : 
+              <FiEyeOff size={35} onClick={() => hideOrShowInformations()} />}
           </div>
         </div>
       </div>
@@ -77,10 +102,14 @@ const Balance: React.FC<AccountProps> = (props) => {
             <p>Conta</p>
           </div>
           <p>Saldo disponivel</p>
-          <h3 className={`value acccount ${hide ? 'hide' : ''}`} title={contaBanco?.saldo.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}>{contaBanco?.saldo.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</h3>
+          <h3 className={`value acccount ${hide ? 'hide' : ''}`} title={contaBanco && formatMoney(contaBanco.saldo)}>
+            {contaBanco && formatMoney(contaBanco.saldo)}
+          </h3>
           <div>
             <p>Transações</p>
-            <h3 className={hide ? 'hide' : ''} title={totalTransactions.banco.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}>{totalTransactions.banco.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</h3>
+            <h3 className={hide ? 'hide' : ''} title={formatMoney(totalBanco)}>
+              {formatMoney(totalBanco)}
+            </h3>
           </div>
 
         </div>
@@ -91,11 +120,14 @@ const Balance: React.FC<AccountProps> = (props) => {
             <p>Conta Crédito</p>
           </div>
           <p>Fatura atual</p>
-          <h3 className={`value credit ${hide ? 'hide' : ''}`} title={contaCredito?.saldo.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}>{contaCredito?.saldo.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</h3>
+          <h3 className={`value credit ${hide ? 'hide' : ''}`} title={contaCredito && formatMoney(contaCredito.saldo)}>
+            {contaCredito && formatMoney(contaCredito.saldo)}
+          </h3>
           <div>
             <p>Limite Disponivel</p>
-            <h3 className={hide ? 'hide' : ''} title={totalTransactions.credito.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
-            }>{totalTransactions.credito.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</h3>
+            <h3 className={hide ? 'hide' : ''} title={formatMoney(totalCredito)}>
+              {formatMoney(totalCredito)}
+            </h3>
           </div>
         </div>
       </div>
