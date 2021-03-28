@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { FiLogOut, FiAlignRight } from 'react-icons/fi';
+import { FaArrowRight } from 'react-icons/fa';
 import gamaIcon from '../../assets/svgs/gama-icon.svg';
 import CardMenu from '../../components/Dashboard/CardMenu';
 import CardMenuMobile from '../../components/Dashboard/CardMenuMobile';
@@ -14,6 +14,14 @@ import { ApplicationStore } from '../../store';
 import { change_screen } from '../../store/dashboard/actions';
 import { Screen } from '../../store/dashboard/types';
 import ExitModal from '../../components/Dashboard/ExitModal';
+
+import {
+  BottomNavigationBox,
+  TabsContainer,
+  Tab,
+  TabName,
+  IconImage
+} from '../../styles/componentes/Dashboard'
 
 const Dashboard: React.FC = () => {
   const history = useHistory();
@@ -50,51 +58,18 @@ const Dashboard: React.FC = () => {
   return (
     <>
       { isExiting && <ExitModal setResponse={handleLogOut} />}
-
-      {modalIsOpen && (
-        <div onClick={setModal}>
-
-          <CardMenuMobile title='Depósitos' func={changeComponent} />
-          <CardMenuMobile title='Planos' func={changeComponent} />
-          <CardMenuMobile title='Pagamentos' func={changeComponent} />
-          <CardMenuMobile title='Transações' func={changeComponent} />
-          <div onClick={() => {
-            setIsExiting(true);
-            setIsOpen(false);
-          }}>
-            <FiLogOut size={16} color="#fff" style={{ marginRight: 8 }} />
-              Sair
-            </div>
-        </div>
-      )}
-      <div>
-        <img className="logo" src={gamaIcon} alt="Gama icon" />
-        <div>
-          <FiAlignRight color="#fff" size={60} onClick={() => setModal()} ></FiAlignRight>
-        </div>
-
-      </div>
-      <div>
-        <nav>
-          <img className="logo" src={gamaIcon} alt="Gama icon" />
-          <CardMenu title='Depósitos' onClick={() => changeComponent('Depósitos')} selected={currentScreen === 'Depósitos'} />
-          <CardMenu title='Planos' onClick={() => changeComponent('Planos')} selected={currentScreen === 'Planos'} />
-          <CardMenu title='Pagamentos' onClick={() => changeComponent('Pagamentos')} selected={currentScreen === 'Pagamentos'} />
-          <CardMenu title='Transações' onClick={() => changeComponent('Transações')} selected={currentScreen === 'Transações'} />
-
-          <button onClick={() => setIsExiting(true)} >
-            <FiLogOut color="#fff" size={20} />
-          </button>
-
-        </nav>
-        <main>
-          {/* Render component by currentScreen */}
-          {currentScreen === 'Depósitos' && <Deposit />}
-          {currentScreen === 'Pagamentos' && <Payments func={changeComponent}></Payments>}
-          {currentScreen === 'Planos' && <Plans />}
-          {currentScreen === 'Transações' && <Transactions></Transactions>}
-        </main>
-      </div>
+      <BottomNavigationBox>
+        <TabsContainer>
+          <Tab >
+            <IconImage src="/menu-mobile.png" style={{ filter: "invert(1)" }} alt="Menu" />
+            <TabName >Operações</TabName>
+          </Tab>
+          <Tab >
+            <FaArrowRight size={28} />
+            <TabName>Sair</TabName>
+          </Tab>
+        </TabsContainer>
+      </BottomNavigationBox>
     </>
   );
 }

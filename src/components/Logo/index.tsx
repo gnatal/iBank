@@ -7,7 +7,7 @@ const Logo: React.FC = () => {
     const history = useHistory();
 
     return (
-        <img onClick={ () => history.push('/') } src={ LogoSRC } alt="Logo principal" />
+        <img onClick={() => history.push('/')} src={LogoSRC} alt="Logo principal" />
     );
 }
 
