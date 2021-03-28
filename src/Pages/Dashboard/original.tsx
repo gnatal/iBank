@@ -15,6 +15,14 @@ import { change_screen } from '../../store/dashboard/actions';
 import { Screen } from '../../store/dashboard/types';
 import ExitModal from '../../components/Dashboard/ExitModal';
 
+
+/**
+ * 
+ *  THIS FILE IS HERE JUST FOR CONSULTING DELETE BEFORE FINISH THE PROJECT 
+ *  THIS FILE IS HERE JUST FOR CONSULTING DELETE BEFORE FINISH THE PROJECT 
+ *  THIS FILE IS HERE JUST FOR CONSULTING DELETE BEFORE FINISH THE PROJECT 
+ */
+
 const Dashboard: React.FC = () => {
     const history = useHistory();
     const dispatch = useDispatch();

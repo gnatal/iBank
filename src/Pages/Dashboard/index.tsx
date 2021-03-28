@@ -73,7 +73,7 @@ const Dashboard: React.FC = () => {
             <TabName >Operações</TabName>
           </Tab>
           <Tab >
-            <FaArrowRight size={28} />
+            <FaArrowRight size={28} onClick={() => setIsExiting(true)} />
             <TabName>Sair</TabName>
           </Tab>
         </TabsContainer>
