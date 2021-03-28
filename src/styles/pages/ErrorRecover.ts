@@ -38,18 +38,12 @@ export const Container = styled.div`
     }
 
     button {
-      height: 2rem;
-
       display: flex;
       align-items: center;
       justify-content: space-between;
 
-      padding: 0 2rem;
-
-      border-radius: 0.25rem;
-
-      color: #fff;
-      background: var(--primary-bg-color);
+      padding-left: 2rem;
+      padding-right: 2rem;
     }
   }
 `;
