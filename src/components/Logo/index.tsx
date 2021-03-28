@@ -1,13 +1,14 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+import ImgLogo from '../../styles/componentes/Logo';
 
-import LogoSRC from '../../assets/main-logo.png';
+import LogoSRC from '../../assets/ibank-logo-green.png';
 
 const Logo: React.FC = () => {
     const history = useHistory();
 
     return (
-        <img onClick={() => history.push('/')} src={LogoSRC} alt="Logo principal" />
+        <ImgLogo onClick={() => history.push('/')} src={LogoSRC} alt="Logo principal" />
     );
 }
 

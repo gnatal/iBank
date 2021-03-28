@@ -1,5 +1,6 @@
 import React, { ButtonHTMLAttributes } from 'react';
 import { IconType } from 'react-icons';
+import ButtonStandard from '../../styles/componentes/Button';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     text: string;
@@ -8,10 +9,10 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const Button: React.FC<ButtonProps> = ({ text, Icon, ...props }) => {
     return (
-        <button {...props} >
+        <ButtonStandard {...props} >
             <span>{ text }</span>
-            <Icon size={ 21 } color="#fff" />
-        </button>
+            <Icon size={ 21 } color="#fff" className="button-icon-posisiton" />
+        </ButtonStandard>
     );
 }
 

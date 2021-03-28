@@ -16,6 +16,7 @@
     "@unform/web": "^2.1.6",
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
+    "framer-motion": "^4.0.3",
     "jsonwebtoken": "^8.5.1",
     "react": "^17.0.1",
     "react-bootstrap": "^1.5.2",
