@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { FiLogOut, FiAlignRight } from 'react-icons/fi';
+import { FaArrowRight } from 'react-icons/fa';
 import gamaIcon from '../../assets/svgs/gama-icon.svg';
 import CardMenu from '../../components/Dashboard/CardMenu';
 import CardMenuMobile from '../../components/Dashboard/CardMenuMobile';
@@ -15,11 +15,22 @@ import { change_screen } from '../../store/dashboard/actions';
 import { Screen } from '../../store/dashboard/types';
 import ExitModal from '../../components/Dashboard/ExitModal';
 
+import {
+  BottomNavigationBox,
+  TabsContainer,
+  Tab,
+  TabName,
+  IconImage
+} from '../../styles/componentes/Dashboard'
+
+import Sidemenu from '../../components/Sidemenu'
+
 const Dashboard: React.FC = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
   const currentScreen = useSelector((store: ApplicationStore) => store.dashboard.current_screen);
+  const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
 
   const [modalIsOpen, setIsOpen] = useState(false);
   const [isExiting, setIsExiting] = useState(false);
@@ -47,54 +58,34 @@ const Dashboard: React.FC = () => {
       setIsOpen(true);
   }
 
+  function close() {
+    setIsSideMenuOpen(false);
+  }
+
   return (
     <>
       { isExiting && <ExitModal setResponse={handleLogOut} />}
+      <BottomNavigationBox>
+        <Sidemenu isOpen={isSideMenuOpen} close={close} changeComponent={changeComponent} />
+        <TabsContainer>
+          <Tab  >
+            <IconImage onClick={() => { setIsSideMenuOpen(!isSideMenuOpen) }} src="/menu-mobile.png" alt="Menu" />
+            <TabName >Operações</TabName>
+          </Tab>
+          <Tab >
+            <FaArrowRight size={28} onClick={() => setIsExiting(true)} />
+            <TabName>Sair</TabName>
+          </Tab>
+        </TabsContainer>
+      </BottomNavigationBox>
+      <main>
+        {/* Render component by currentScreen */}
+        {currentScreen === 'Depósitos' && <Deposit />}
+        {currentScreen === 'Pagamentos' && <Payments func={changeComponent}></Payments>}
+        {currentScreen === 'Planos' && <Plans />}
+        {currentScreen === 'Transações' && <Transactions></Transactions>}
+      </main>
 
-      {modalIsOpen && (
-        <div onClick={setModal}>
-
-          <CardMenuMobile title='Depósitos' func={changeComponent} />
-          <CardMenuMobile title='Planos' func={changeComponent} />
-          <CardMenuMobile title='Pagamentos' func={changeComponent} />
-          <CardMenuMobile title='Transações' func={changeComponent} />
-          <div onClick={() => {
-            setIsExiting(true);
-            setIsOpen(false);
-          }}>
-            <FiLogOut size={16} color="#fff" style={{ marginRight: 8 }} />
-              Sair
-            </div>
-        </div>
-      )}
-      <div>
-        <img className="logo" src={gamaIcon} alt="Gama icon" />
-        <div>
-          <FiAlignRight color="#fff" size={60} onClick={() => setModal()} ></FiAlignRight>
-        </div>
-
-      </div>
-      <div>
-        <nav>
-          <img className="logo" src={gamaIcon} alt="Gama icon" />
-          <CardMenu title='Depósitos' onClick={() => changeComponent('Depósitos')} selected={currentScreen === 'Depósitos'} />
-          <CardMenu title='Planos' onClick={() => changeComponent('Planos')} selected={currentScreen === 'Planos'} />
-          <CardMenu title='Pagamentos' onClick={() => changeComponent('Pagamentos')} selected={currentScreen === 'Pagamentos'} />
-          <CardMenu title='Transações' onClick={() => changeComponent('Transações')} selected={currentScreen === 'Transações'} />
-
-          <button onClick={() => setIsExiting(true)} >
-            <FiLogOut color="#fff" size={20} />
-          </button>
-
-        </nav>
-        <main>
-          {/* Render component by currentScreen */}
-          {currentScreen === 'Depósitos' && <Deposit />}
-          {currentScreen === 'Pagamentos' && <Payments func={changeComponent}></Payments>}
-          {currentScreen === 'Planos' && <Plans />}
-          {currentScreen === 'Transações' && <Transactions></Transactions>}
-        </main>
-      </div>
     </>
   );
 }

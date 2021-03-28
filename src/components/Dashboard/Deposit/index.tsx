@@ -13,6 +13,7 @@ import Input from '../../Input'
 import { change_screen, set_transaction_data } from '../../../store/dashboard/actions';
 import getValidationErrors from '../../../utils/getValidationErrors';
 import Loader from '../../Loader';
+import { DepositBox } from '../../../styles/componentes/Deposit'
 
 const Deposit: React.FC = () => {
 
@@ -116,7 +117,7 @@ const Deposit: React.FC = () => {
   }, []);
 
   return (
-    <div>
+    <DepositBox>
       <div className="header-form">
         <p>
           {invoicePayment ? 'Realize o pagamento da sua fatura' : 'Realize o seu depósito'}
@@ -135,15 +136,15 @@ const Deposit: React.FC = () => {
         {loading ? (
           <Loader style={{ marginTop: 48 }} />
         ) : (
-            <button type='submit'>
-              <span>
-                {invoicePayment ? 'Pagar agora' : 'Depositar agora'}
-              </span>
-              <FaArrowRight color="#8c52e5" />
-            </button>
-          )}
+          <button type='submit'>
+            <span>
+              {invoicePayment ? 'Pagar agora' : 'Depositar agora'}
+            </span>
+            <FaArrowRight color="#8c52e5" />
+          </button>
+        )}
       </Form>
-    </div>
+    </DepositBox>
   )
 }
 
