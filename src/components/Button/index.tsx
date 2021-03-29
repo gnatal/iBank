@@ -10,8 +10,8 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 const Button: React.FC<ButtonProps> = ({ text, Icon, ...props }) => {
     return (
         <ButtonStandard {...props} >
-            <span>{ text }</span>
-            <Icon size={ 21 } color="#fff" className="button-icon-posisiton" />
+            <span>{text}</span>
+            <Icon size={21} color="#fff" className="button-icon-posisiton" />
         </ButtonStandard>
     );
 }
