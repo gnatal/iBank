@@ -94,7 +94,7 @@ export default createGlobalStyle`
     border-radius: 0.25rem;
   }
 
-  @media(max-width: 720px) {
+  /* @media(max-width: 720px) {
     .react-modal-content {
       width: 100%;
       max-width: 576px;
@@ -103,5 +103,5 @@ export default createGlobalStyle`
 
       border-radius: 0.25rem;
     }
-  }
+  } */
 `;

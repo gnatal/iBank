@@ -34,7 +34,7 @@ const Dashboard: React.FC = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const currentScreen = useSelector((store: ApplicationStore) => store.dashboard.current_screen);
-
+  
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
   const [isExitModalOpen, setIsExitModalOpen] = useState(false);
 
