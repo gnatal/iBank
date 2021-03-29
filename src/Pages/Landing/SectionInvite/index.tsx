@@ -1,11 +1,13 @@
 import React from 'react';
 import ImgCellPhone from '../../../assets/landing-3.png';
+import { Container, Section, SectionInviteStyle } from '../../../styles/pages/Lading';
+import { ISectionProps } from '../../../types/style';
 
-const SectionInvite: React.FC = () => {
+const SectionInvite: React.FC<ISectionProps> = ({background}) => {
     return (
-        <div>
-            <div>
-                <div>
+        <Section background={background}>
+            <Container>
+                <SectionInviteStyle>
                     <div>
                         <span>Simplifique a sua vida. Peça seu convite.</span>
                         <p>GamaAcademy Bank Line S.A. - CNPJ 00.000.000/0000-00</p>
@@ -16,9 +18,9 @@ const SectionInvite: React.FC = () => {
                     <div>
                         <img src={ImgCellPhone} alt="Imagem de um celular" />
                     </div>
-                </div>
-            </div>
-        </div>
+                </SectionInviteStyle>
+            </Container>
+        </Section>
     )
 }
 

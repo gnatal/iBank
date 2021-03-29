@@ -12,7 +12,7 @@ import Header from '../../components/Header';
 import Loader from '../../components/Loader';
 import Input from '../../components/Input';
 
-import BackgroundVideo from '../../components/BackgroundVideo';
+import BackgroundLogin from '../../components/BackgroundLogin';
 import LoginArea from '../../styles/componentes/LoginArea';
 
 import api from '../../services/api';
@@ -81,7 +81,7 @@ const Login: React.FC = () => {
 
   return (
     <>
-      <BackgroundVideo />
+      <BackgroundLogin />
       <LoginArea>
         <motion.div
           transition={{ delay: 0.2, duration: 1 }}

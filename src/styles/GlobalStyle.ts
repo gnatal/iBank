@@ -56,6 +56,10 @@ export default createGlobalStyle`
         border-spacing: 0;
     }
 
+    img{
+        width: 100%;
+    }
+
     :root{
         --primary-bg-color: #50c878;
         --secondary-bg-color: #83EEA7;
