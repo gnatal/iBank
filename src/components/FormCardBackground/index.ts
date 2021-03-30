@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const FormCard = styled.div`
-  max-width: 400px;
+  max-width: 600px;
   width: 80vw;
   margin: 10px auto;
   position: relative;
@@ -10,4 +10,12 @@ export const FormCard = styled.div`
   border-radius: 20px;
 
   color: #222;
+
+  .buttonform {
+    width: 100%;
+    :hover {
+      padding-left: 5px !important;
+      width: 100%;
+    }
+  }
 `
