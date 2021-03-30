@@ -10,6 +10,8 @@ import Extract from '../Extract';
 import Balance from '../Balance';
 
 import { Contas } from '../../../types/dash-board';
+import FilterForm from './FilterForm';
+import { Background } from '../../../styles/componentes/Dashboard/Background';
 
 const Transactions: React.FC = () => {
   const [contas, setContas] = useState<Contas>();
@@ -74,17 +76,13 @@ const Transactions: React.FC = () => {
   }
 
   if (loaded) return (
-    <div>
+    <Background>
       <Balance contaBanco={contas?.contaBanco} contaCredito={contas?.contaCredito} />
-
-      <div>
-        <p>Escolhe a quantidade de <strong>meses</strong> para o filtro: </p>
-        <input type="number" min={1} max={12} value={referenceDate} onChange={updateReference} />
-      </div>
+      <FilterForm referenceDate={referenceDate} updateReference={updateReference} />
 
       <Extract contaBanco={contas?.contaBanco} contaCredito={contas?.contaCredito} />
       {/* <FiArrowLeft onClick={() => {props.func('')}}/> */}
-    </div>
+    </Background>
   );
   else return <Loader />
 }

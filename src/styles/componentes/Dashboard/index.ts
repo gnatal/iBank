@@ -6,7 +6,7 @@ export const StyleNavbar = styled(Navbar)`
     display: none;
   }
   background: var(--primary-bg-color) !important;
-  margin-bottom: 10px;
+  margin-bottom: 0px;
 
   a {
     color: #fff !important;

@@ -7,7 +7,7 @@ export const FormCard = styled.div`
   position: relative;
   background: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
   padding: 20px;
-  border-radius: 20px;
+  border-radius: 5px;
 
   color: #222;
 
