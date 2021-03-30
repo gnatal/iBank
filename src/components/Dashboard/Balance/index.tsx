@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
 
@@ -16,13 +16,14 @@ interface AccountProps {
 }
 
 const Balance: React.FC<AccountProps> = (props) => {
+  const store = useSelector((state: ApplicationStore) => state.user);
+
   const [contaBanco, setContaBanco] = useState<Conta>();
   const [contaCredito, setContaCredito] = useState<Conta>();
   const [totalBanco, setTotalBanco] = useState(0);
   const [totalCredito, setTotalCredito] = useState(0);
   const [user, setUser] = useState('');
   const [hide, setHide] = useState(false);
-  const store = useSelector((state: ApplicationStore) => state.user);
 
   useEffect(() => {
     if (store)
@@ -114,7 +115,6 @@ const Balance: React.FC<AccountProps> = (props) => {
 
       </div>
     </Container>
-
   );
 }
 

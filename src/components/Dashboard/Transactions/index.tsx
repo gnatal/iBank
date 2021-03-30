@@ -1,4 +1,4 @@
-import React, { useState, useEffect, ChangeEvent, useCallback } from 'react';
+import { useState, useEffect, ChangeEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import api from '../../../services/api';
@@ -21,13 +21,13 @@ const Transactions: React.FC = () => {
 
   const dispatch = useDispatch();
 
-  const formatDate = useCallback((date: Date) => {
+  const formatDate = (date: Date) => {
     const year = date.getFullYear(),
           month = ('0' + (date.getMonth() + 1)).slice(-2),
           day = ('0' + date.getDate()).slice(-2);
 
     return [year, month, day].join('-');
-  },[]);
+  };
 
   useEffect(() => {
     if ( contas )
@@ -35,11 +35,11 @@ const Transactions: React.FC = () => {
   }, [dispatch, contas]);
 
   useEffect( ()=> {
-    if ( dashboard.transactions_data) {
+    if (dashboard.transactions_data) {
       setContas(dashboard.transactions_data.accounts);
       return;
     }
-    console.log('api fetch')
+
     const getDashboardValues = async() => {
       try {
         setLoaded(false);
@@ -63,7 +63,7 @@ const Transactions: React.FC = () => {
     };
 
     getDashboardValues();
-  }, [user?.login, user?.token, dashboard, formatDate, referenceDate]);
+  }, [user?.login, user?.token, dashboard, referenceDate]);
 
   const updateReference = (event:ChangeEvent<HTMLInputElement>) => {
     const value = Number(event.target.value);
@@ -71,7 +71,7 @@ const Transactions: React.FC = () => {
       setReferenceDate(value);
 
     dispatch(set_transaction_data(undefined));
-  } 
+  };
 
   if ( loaded ) return (
     <div>   
