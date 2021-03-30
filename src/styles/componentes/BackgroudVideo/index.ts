@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
-const BgVideo = styled.div`
+const BackgroudVideo = styled.div`
 
-        position: relative;
-        overflow: hidden;
-        width: 100%;
-        height: 100vh;
-        background: url('x.jpg') no-repeat center center/cover;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 100vh;
+    background: url('x.jpg') no-repeat center center/cover;
 
 
     .wrapper__login {
@@ -54,4 +54,4 @@ const BgVideo = styled.div`
     }
 `;
 
-export default BgVideo;
+export default BackgroudVideo;

@@ -1,12 +1,11 @@
 import React from 'react';
-
 import VideoBg from '../../assets/video/ibank.mp4';
-import BgVideo from '../../styles/componentes/BackgroundVideo';
+import BackgroudVideo from '../../styles/componentes/BackgroudVideo';
 
-const BackgroundVideo: React.FC = () => {
+const BackgroundLogin: React.FC = () => {
     return (
         <>
-            <BgVideo>
+            <BackgroudVideo>
                 <div className="wrapper__login">
                     <video autoPlay muted loop className="wrapper__video" id="wrapper__video">
                         <source src={VideoBg} type="video/mp4" />
@@ -16,9 +15,9 @@ const BackgroundVideo: React.FC = () => {
                         <h1 className="h1__login">Peo<span className="h1-color1">p</span>le fi<span className="h1-color2">r</span>st.</h1>
                     </div>
                 </div>
-            </BgVideo>
+            </BackgroudVideo>
         </>
     );
 }
 
-export default BackgroundVideo;
+export default BackgroundLogin;
