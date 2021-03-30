@@ -71,9 +71,6 @@ export default createGlobalStyle`
     --secondary-bg-color: #83EEA7;
   }
 
-<<<<<<< HEAD
-`
-=======
   .react-modal-overlay {
     background: rgba(0, 0, 0, 0.5);
 
@@ -109,4 +106,3 @@ export default createGlobalStyle`
     }
   } */
 `;
->>>>>>> 1f8d9abd69a879b49d86c1b3a1f5c23c630c9187
