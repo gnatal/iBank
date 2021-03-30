@@ -1,18 +1,21 @@
-import React, { useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { FaArrowRight } from 'react-icons/fa';
+
+import { remove_user } from '../../store/user/actions';
+import { ApplicationStore } from '../../store';
+import { change_screen } from '../../store/dashboard/actions';
+import { Screen } from '../../store/dashboard/types';
+
 import CardMenu from '../../components/Dashboard/CardMenu';
 import CardMenuMobile from '../../components/Dashboard/CardMenuMobile';
 import Deposit from '../../components/Dashboard/Deposit';
 import Payments from '../../components/Dashboard/Payments';
 import Plans from '../../components/Dashboard/Plans';
 import Transactions from '../../components/Dashboard/Transactions';
-import { useDispatch, useSelector } from 'react-redux';
-import { remove_user } from '../../store/user/actions';
-import { ApplicationStore } from '../../store';
-import { change_screen } from '../../store/dashboard/actions';
-import { Screen } from '../../store/dashboard/types';
-import ExitModal from '../../components/Dashboard/ExitModal';
+import Sidemenu from '../../components/Sidemenu'
+import { ExitModal } from '../../components/Dashboard/ExitModal';
 
 import {
   BottomNavigationBox,
@@ -26,48 +29,43 @@ import {
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import NavDropdown from 'react-bootstrap/NavDropdown'
-import Sidemenu from '../../components/Sidemenu'
 
 const Dashboard: React.FC = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-
   const currentScreen = useSelector((store: ApplicationStore) => store.dashboard.current_screen);
+  
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
+  const [isExitModalOpen, setIsExitModalOpen] = useState(false);
 
-  const [modalIsOpen, setIsOpen] = useState(false);
-  const [isExiting, setIsExiting] = useState(false);
-
-  //Setting data accounts;
   const changeComponent = useCallback((title: Screen) => {
-    setIsOpen(false);
+    setIsExitModalOpen(false);
     dispatch(change_screen(title));
   }, [dispatch]);
-
-  const handleLogOut = useCallback((accepted: boolean) => {
-    if (accepted) {
-      dispatch(remove_user());
-
-      history.push('/');
-    } else {
-      setIsExiting(false);
-    }
-  }, [dispatch, history]);
-
-  function setModal() {
-    if (modalIsOpen === true)
-      setIsOpen(false);
-    else
-      setIsOpen(true);
-  }
 
   function close() {
     setIsSideMenuOpen(false);
   }
 
+  const handleLogOut = () => {
+    dispatch(remove_user());
+    history.push('/');
+  }
+  const handleOpenExitModal = () => {
+    setIsExitModalOpen(true);
+  }
+  const handleCloseExitModal = () => {
+    setIsExitModalOpen(false);
+  }
+
   return (
     <>
-      { isExiting && <ExitModal setResponse={handleLogOut} />}
+      <ExitModal
+        isOpen={isExitModalOpen}
+        onRequestClose={handleCloseExitModal}
+        onLogOut={handleLogOut}
+      />
+
       <StyleNavbar bg="light" expand="lg">
         <Navbar.Brand href="#home">IBank</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -77,7 +75,13 @@ const Dashboard: React.FC = () => {
             <Nav.Link onClick={() => changeComponent('Pagamentos')} href=""> Pagamentos</Nav.Link>
             <Nav.Link onClick={() => changeComponent('Planos')} href="" > Planos</Nav.Link>
             <Nav.Link onClick={() => changeComponent('Transações')} href=""> Transações</Nav.Link>
-            <Nav.Link style={{ position: "absolute", right: "20px" }} onClick={() => setIsExiting(true)} href=""> Sair<FaArrowRight size={21} onClick={() => setIsExiting(true)} /> </Nav.Link>
+            <Nav.Link 
+              style={{ position: "absolute", right: "20px" }} 
+              onClick={handleOpenExitModal} href=""
+            > 
+              Sair
+              <FaArrowRight size={21} /> 
+            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </StyleNavbar>
@@ -91,13 +95,12 @@ const Dashboard: React.FC = () => {
             <TabName >Operações</TabName>
           </Tab>
           <Tab >
-            <FaArrowRight size={28} onClick={() => setIsExiting(true)} />
+            <FaArrowRight size={28} onClick={handleOpenExitModal} />
             <TabName>Sair</TabName>
           </Tab>
         </TabsContainer>
       </BottomNavigationBox>
       <main>
-        {/* Render component by currentScreen */}
         {currentScreen === 'Depósitos' && <Deposit />}
         {currentScreen === 'Pagamentos' && <Payments func={changeComponent}></Payments>}
         {currentScreen === 'Planos' && <Plans />}

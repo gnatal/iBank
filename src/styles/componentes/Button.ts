@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 const ButtonStandard = styled.button`
   margin: 1rem 0;
@@ -30,6 +30,15 @@ const ButtonStandard = styled.button`
     vertical-align: middle;
     margin: 0 5px;
   }
-`
 
-export default ButtonStandard
+  &.modal-ok {
+    width: 8rem;
+  }
+
+  &.modal-cancel {
+    width: 8rem;
+    background: red;
+  }
+`;
+
+export default ButtonStandard;
