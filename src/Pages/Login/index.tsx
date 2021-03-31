@@ -8,10 +8,9 @@ import * as yup from 'yup';
 import { motion } from 'framer-motion';
 
 import Button from '../../components/Button';
-import Loader from '../../components/Loader';
 import Input from '../../components/Input';
 
-import BackgroundVideo from '../../components/BackgroundVideo';
+import BackgroundLogin from '../../components/BackgroundLogin';
 import LoginArea from '../../styles/componentes/LoginArea';
 
 import api from '../../services/api';
@@ -75,13 +74,13 @@ const Login: React.FC = () => {
       err.errors.forEach((error: string) => {
         toast.error(error);
       })
-    } 
+    }
 
   }, [username, password, history]);
 
   return (
     <>
-      <BackgroundVideo />
+      <BackgroundLogin />
       <LoginArea>
         <motion.div
           transition={{ delay: 0.2, duration: 1 }}
@@ -105,13 +104,13 @@ const Login: React.FC = () => {
             <Input name="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Digite sua senha" type="password" />
             </label>
 
-            {loading ? <Loader /> : <Button
+            <Button
               type="submit"
-              text="Continuar"
+              text={"Continuar"}
               Icon={FaArrowRight}
+              loading={loading}
               className="form-button"
             />
-            }
             <Link className="login-link" to="/recover">Esqueci minha senha</Link>
             <Link className="login-link" to="/">Ainda não sou cliente</Link>
           </Form>

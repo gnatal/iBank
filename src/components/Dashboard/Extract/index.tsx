@@ -2,6 +2,11 @@ import React, { useMemo } from 'react';
 import currentIcon from '../../../assets/svgs/current-icon.svg';
 import creditCardsIcon from '../../../assets/svgs/credit-cards-icon.svg';
 import { Conta } from '../../../types/dash-board';
+import { FormCard } from '../../FormCardBackground';
+import { TitleBox, TransactionBox, CardStyles } from '../../../styles/componentes/Extract';
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 interface ExtractData {
     contaBanco?: Conta,
@@ -44,26 +49,38 @@ const Extract: React.FC<ExtractData> = (props) => {
 
     return (
         <>
-            <div>
-                <div className="title-container">
-                    <img src={currentIcon} alt="current icon" />
-                    <p>Últimos lançamentos</p>
+            <CardStyles >
+                <FormCard className="transactionsbox">
+                    <TitleBox >
+                        <img src={currentIcon} alt="current icon" />
+                        <p className="title">Últimos lançamentos</p>
+                    </TitleBox>
+                    {allLaunchs.length === 0 && 'Nenhum lancamento'}
+                    <Container >
+                        {allLaunchs && allLaunchs.map((launch, index) => {
+                            return (
+                                <TransactionBox key={index}  >
+                                    <Row className={"row-active"}>
+                                        <Col style={{ margin: "2px" }}>{typePlans(launch.planoConta.tipoMovimento)}</Col>
+                                    </Row>
+                                    <Row style={{ margin: "2px", fontStyle: "italic" }}>
+                                        <Col style={{ margin: "2px" }}>{launch.descricao}</Col>
+                                    </Row>
+                                    <Row className={"row-active"}>
+                                        <Col style={{ margin: "2px" }}>{launch.valor.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</Col>
+                                    </Row>
+                                    <Row style={{ margin: "2px" }}>
+                                        <Col style={{ margin: "2px" }}>{launch.data}</Col>
+                                    </Row>
+                                </TransactionBox>
+                            )
+                        })}
+                    </Container>
+                </FormCard>
+                <div className={"bottom-spaces"}>
+
                 </div>
-                {allLaunchs.length === 0 && 'Nenhum lancamento'}
-                {allLaunchs && allLaunchs.map((launch, index) => {
-                    return (
-                        <div key={index}>
-                            <img src={creditCardsIcon} alt="credit cards icon" />
-                            <div className="text-items">
-                                <strong>{typePlans(launch.planoConta.tipoMovimento)}</strong>
-                                <p>{launch.descricao}</p>
-                                <strong>{launch.valor.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</strong>
-                            </div>
-                            <p className="date">{launch.data}</p>
-                        </div>
-                    )
-                })}
-            </div>
+            </CardStyles>
         </>
     )
 }

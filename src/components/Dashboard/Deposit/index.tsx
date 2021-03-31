@@ -131,11 +131,7 @@ const Deposit: React.FC = () => {
         <Input name="description" value={descricao} onChange={e => setDescricao(e.target.value)} type="text" placeholder="Descrição" />
         <Input name="transferValue" value={valor ? valor : ''} onChange={handleChangeValue} type="number" placeholder="Qual o valor de sua transferência?" />
 
-        {loading ? (
-          <Loader style={{ marginTop: 48 }} />
-        ) : (
-          <Button type='submit' text={invoicePayment ? 'Pagar agora' : 'Depositar agora'} Icon={FaArrowRight} />
-        )}
+        <Button type='submit' text={invoicePayment ? 'Pagar agora' : 'Depositar agora'} Icon={FaArrowRight} loading={loading} />
       </Form>
     </DepositBox>
   )

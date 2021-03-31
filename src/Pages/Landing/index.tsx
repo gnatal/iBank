@@ -22,8 +22,10 @@ import SectionCard from './SectionCard';
 import SectionCosts from './SectionCosts';
 import SectionInvite from './SectionInvite';
 import SectionBenefits from './SectionBenefits';
+import { Container, Section, SectionHome } from '../../styles/pages/Lading';
 
 const Landing: React.FC = () => {
+
   const [username, setUsername] = useState('');
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
@@ -147,10 +149,9 @@ const Landing: React.FC = () => {
   return (
     <>
       <Header />
-
-      <div>
-        <div>
-          <div>
+      <Section>
+        <Container>
+          <SectionHome>
             <div>
               <div>
                 <p>Gama Bank é um projeto de nossos alunos.
@@ -158,9 +159,8 @@ const Landing: React.FC = () => {
               </div>
               <button onClick={handleRedirectToLogin}>Acessar <FaArrowRight /></button>
             </div>
-
             <div>
-              <Form ref={formRef} onSubmit={handleSubmit}>
+              <Form ref={formRef} onSubmit={handleSubmit} className="section-home-form-register">
                 <h1> Peça sua conta e cartão de crédito do Gama Bank</h1>
                 <Input name="cpf" maxLength={14} value={cpfMask} onChange={handleSetCpfMask} placeholder="Digite seu CPF" />
                 <Input name="username" value={username} onChange={e => setUsername(e.target.value)} placeholder="Escolha um nome de usuário" />
@@ -170,15 +170,14 @@ const Landing: React.FC = () => {
                 {loading ? <Loader /> : <button type="submit" disabled={!isFilled}>Continuar<FaArrowRight className="ArrowRight" /></button>}
               </Form>
             </div>
-          </div>
-        </div>
-      </div>
+          </SectionHome>
+        </Container>
+      </Section>
 
-      <SectionCard />
-      <SectionCosts />
-      <SectionBenefits />
+      <SectionCard background={'#ccc'} />
+      <SectionCosts background={'#5c6bc0'} />
+      <SectionBenefits background={'#50c87880'} />
       <SectionInvite />
-
     </>
   );
 }

@@ -8,13 +8,13 @@ interface LoaderProps extends HTMLAttributes<HTMLSpanElement> {
 const LoaderComponent = (props: LoaderProps) => {
     return (
         <Loader
-            color="#00ff73"
+            color="#fff"
             height={20}
             secondaryColor="#ffffff"
-            timeout={3000}
+            timeout={0}
             type="Audio"
             visible={true}
-            width={20}
+            width={"80px"}
             style={{ color: "red" }}
             {...props}
         />

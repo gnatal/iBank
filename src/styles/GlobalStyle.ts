@@ -37,6 +37,7 @@ export default createGlobalStyle`
     font-family: 'Lato', sans-serif;
   }
 
+
   ol, ul {
     list-style: none;
   }
@@ -65,6 +66,10 @@ export default createGlobalStyle`
     border: 0;
   }
 
+  strong {
+    font-weight: 800;
+  }
+
   :root{
     --primary-bg-color: #50c878;
     --secondary-bg-color: #83EEA7;
@@ -89,19 +94,22 @@ export default createGlobalStyle`
     width: 100%;
     max-width: 576px;
     background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
-    padding: 2rem;
+    padding: 3rem;
 
+    position: relative;
     border-radius: 0.25rem;
   }
+  .react-modal-close {
+    position: absolute;
+    right: 1.5rem;
+    top: 1.5rem;
+    border: 0;
+    background: transparent;
 
-  /* @media(max-width: 720px) {
-    .react-modal-content {
-      width: 100%;
-      max-width: 576px;
-      background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
-      padding: 2rem;
+    transition: filter 0.2s;
 
-      border-radius: 0.25rem;
+    &:hover {
+      filter: brightness(0.8);
     }
-  } */
+  }
 `;

@@ -1,10 +1,13 @@
 import React from 'react';
 
-const SectionCard: React.FC = () => {
+import { Container, Section, SectionCardStyle } from '../../../styles/pages/Lading';
+import { ISectionProps } from '../../../types/style';
+
+const SectionCard: React.FC<ISectionProps> = ({background}) => {
     return (
-        <section>
-            <div>
-                <div>
+        <Section background={background}>
+            <Container>
+                <SectionCardStyle>
                     <div>
                         <span>Conta digital do Gama Academy</span>
                         <p>Rende mais que a poupança, sem taxa de manutenção nem tarifas escondidas.</p>
@@ -13,9 +16,9 @@ const SectionCard: React.FC = () => {
                         <span>Cartão de Crédito</span>
                         <p>Rende mais que a poupança, sem taxa de manutenção nem tarifas escondidas.</p>
                     </div>
-                </div>
-            </div>
-        </section>
+                </SectionCardStyle>
+            </Container>
+        </Section>
     )
 }
 

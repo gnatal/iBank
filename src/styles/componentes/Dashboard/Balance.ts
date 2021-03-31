@@ -5,9 +5,11 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
 
-  padding: 25px;
+  width: 100%;
 
-  background: var(--secondary-bg-color);
+  /* padding: 25px; */
+
+  /* background: var(--secondary-bg-color); */
 
   header {
     display: flex;
@@ -17,14 +19,11 @@ export const Container = styled.div`
     width: 100%;
     max-width: 750px;
 
-    margin-bottom: 10px;
+    margin: 20px 0;
 
     h1 {
       font-size: 1.5rem;
-    }
-
-    strong {
-      font-weight: 700;
+      font-weight: 500;
     }
   }
 
@@ -47,7 +46,7 @@ export const Container = styled.div`
     height: 12rem;
 
     padding: 20px;
-    background: #fff;
+    background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
 
     border-radius: 0.25rem;
 
@@ -64,6 +63,11 @@ export const Container = styled.div`
   }
 
   @media (max-width: 720px) {
+    header {
+      h1 {
+        font-size: 1.2rem;
+      }
+    }
     .accounts-container {
       justify-content: center;
     }

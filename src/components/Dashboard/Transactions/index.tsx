@@ -10,28 +10,29 @@ import Extract from '../Extract';
 import Balance from '../Balance';
 
 import { Contas } from '../../../types/dash-board';
+import { MonthConatiner, TransactionsContainer } from '../../../styles/componentes/Dashboard/Transactions';
 
 const Transactions: React.FC = () => {
-  const [ contas, setContas ] = useState<Contas>();
-  const [ loaded, setLoaded ] = useState(true);
-  const [ referenceDate, setReferenceDate ] = useState(1);
+  const [contas, setContas] = useState<Contas>();
+  const [loaded, setLoaded] = useState(true);
+  const [referenceDate, setReferenceDate] = useState(1);
 
-  const user = useSelector( (state: ApplicationStore) => state.user );
-  const dashboard = useSelector(( state: ApplicationStore ) => state.dashboard);
+  const user = useSelector((state: ApplicationStore) => state.user);
+  const dashboard = useSelector((state: ApplicationStore) => state.dashboard);
 
   const dispatch = useDispatch();
 
   const formatDate = (date: Date) => {
     const year = date.getFullYear(),
-          month = ('0' + (date.getMonth() + 1)).slice(-2),
-          day = ('0' + date.getDate()).slice(-2);
+      month = ('0' + (date.getMonth() + 1)).slice(-2),
+      day = ('0' + date.getDate()).slice(-2);
 
     return [year, month, day].join('-');
   };
 
   useEffect(() => {
-    if ( contas )
-      dispatch( set_transaction_data({ accounts: contas }) );
+    if (contas)
+      dispatch(set_transaction_data({ accounts: contas }));
   }, [dispatch, contas]);
 
   useEffect( ()=> {
@@ -46,7 +47,7 @@ const Transactions: React.FC = () => {
 
         const date = new Date();
         const dateFim = formatDate(date);
-        const newDate = new Date(date.setMonth(date.getMonth()-referenceDate));
+        const newDate = new Date(date.setMonth(date.getMonth() - referenceDate));
         const dateInicio = formatDate(newDate);
 
         const result = await api.get(`/dashboard?fim=${dateFim}&inicio=${dateInicio}&login=${user?.login}`, {
@@ -65,26 +66,25 @@ const Transactions: React.FC = () => {
     getDashboardValues();
   }, [user?.login, user?.token, dashboard, referenceDate]);
 
-  const updateReference = (event:ChangeEvent<HTMLInputElement>) => {
+  const updateReference = (event: ChangeEvent<HTMLInputElement>) => {
     const value = Number(event.target.value);
-    if (value > 0 && value <= 12) 
+    if (value > 0 && value <= 12)
       setReferenceDate(value);
 
     dispatch(set_transaction_data(undefined));
   };
 
-  if ( loaded ) return (
-    <div>   
+  if (loaded) return (
+    <TransactionsContainer>
       <Balance contaBanco={contas?.contaBanco} contaCredito={contas?.contaCredito} />
 
-      <div>
-        <p>Escolhe a quantidade de <strong>meses</strong> para o filtro: </p>
-        <input  type="number" min={1} max={12} value={referenceDate} onChange={updateReference}/>
-      </div>
+      <MonthConatiner>
+        <p>Escolha a quantidade de <strong>meses</strong> para o filtro: </p>
+        <input type="number" min={1} max={12} value={referenceDate} onChange={updateReference} />
+      </MonthConatiner>
 
-      <Extract contaBanco={contas?.contaBanco} contaCredito={contas?.contaCredito}/>
-      {/* <FiArrowLeft onClick={() => {props.func('')}}/> */}
-    </div>
+      <Extract contaBanco={contas?.contaBanco} contaCredito={contas?.contaCredito} />
+    </TransactionsContainer>
   );
   else return <Loader />
 }
