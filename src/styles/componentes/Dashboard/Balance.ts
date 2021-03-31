@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const Container = styled.div`
   display: flex;
@@ -76,10 +76,10 @@ export const Container = styled.div`
       flex: 0 1 100%;
     }
   }
-`;
+`
 
 interface HideContainerProps {
-  hide: boolean;
+  hide: boolean
 }
 
 export const HideContainer = styled.div<HideContainerProps>`
@@ -110,4 +110,4 @@ export const HideContainer = styled.div<HideContainerProps>`
 
     opacity: ${({ hide }) => (!hide ? 1 : 0)};
   }
-`;
+`

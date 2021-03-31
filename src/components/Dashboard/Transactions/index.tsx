@@ -10,7 +10,9 @@ import Extract from '../Extract';
 import Balance from '../Balance';
 
 import { Contas } from '../../../types/dash-board';
-import { MonthConatiner, TransactionsContainer } from '../../../styles/componentes/Dashboard/Transactions';
+// import { MonthConatiner, TransactionsContainer } from '../../../styles/componentes/Dashboard/Transactions';
+import FilterForm from './FilterForm';
+import { Background } from '../../../styles/componentes/Dashboard/Background';
 
 const Transactions: React.FC = () => {
   const [contas, setContas] = useState<Contas>();
@@ -35,13 +37,13 @@ const Transactions: React.FC = () => {
       dispatch(set_transaction_data({ accounts: contas }));
   }, [dispatch, contas]);
 
-  useEffect( ()=> {
+  useEffect(() => {
     if (dashboard.transactions_data) {
       setContas(dashboard.transactions_data.accounts);
       return;
     }
-
-    const getDashboardValues = async() => {
+    console.log('api fetch')
+    const getDashboardValues = async () => {
       try {
         setLoaded(false);
 
@@ -68,23 +70,19 @@ const Transactions: React.FC = () => {
 
   const updateReference = (event: ChangeEvent<HTMLInputElement>) => {
     const value = Number(event.target.value);
-    if (value > 0 && value <= 12)
+    if (value > 0 && value <= 12) {
       setReferenceDate(value);
+    }
 
     dispatch(set_transaction_data(undefined));
-  };
+  }
 
   if (loaded) return (
-    <TransactionsContainer>
+    <Background>
       <Balance contaBanco={contas?.contaBanco} contaCredito={contas?.contaCredito} />
-
-      <MonthConatiner>
-        <p>Escolha a quantidade de <strong>meses</strong> para o filtro: </p>
-        <input type="number" min={1} max={12} value={referenceDate} onChange={updateReference} />
-      </MonthConatiner>
-
+      <FilterForm referenceDate={referenceDate} updateReference={updateReference} />
       <Extract contaBanco={contas?.contaBanco} contaCredito={contas?.contaCredito} />
-    </TransactionsContainer>
+    </Background>
   );
   else return <Loader />
 }

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 const ButtonStandard = styled.button`
   margin: 1rem 0;
@@ -18,7 +18,7 @@ const ButtonStandard = styled.button`
   &:hover,
   &:focus {
     opacity: 0.8;
-    transform: scale(1.1);
+    transform: scale(1.05);
   }
 
   &:disabled {
@@ -39,6 +39,6 @@ const ButtonStandard = styled.button`
     width: 8rem;
     background: red;
   }
-`;
+`
 
-export default ButtonStandard;
+export default ButtonStandard
