@@ -69,8 +69,9 @@ const Transactions: React.FC = () => {
 
   const updateReference = (event: ChangeEvent<HTMLInputElement>) => {
     const value = Number(event.target.value);
-    if (value > 0 && value <= 12)
+    if (value > 0 && value <= 12) {
       setReferenceDate(value);
+    }
 
     dispatch(set_transaction_data(undefined));
   }

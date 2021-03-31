@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import Navbar from 'react-bootstrap/Navbar'
 
 export const StyleNavbar = styled(Navbar)`
-  @media (max-width: 900px) {
+  @media (max-width: 920px) {
     display: none;
   }
   background: var(--primary-bg-color) !important;
@@ -14,7 +14,7 @@ export const StyleNavbar = styled(Navbar)`
 `
 
 export const BottomNavigationBox = styled.div`
-  @media (min-width: 600px) {
+  @media (min-width: 920px) {
     display: none;
   }
   width: 100vw;

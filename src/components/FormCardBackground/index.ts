@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 
 export const FormCard = styled.div`
-  max-width: 600px;
-  width: 80vw;
+  max-width: 750px;
+  width: 90vw;
   margin: 10px auto;
   position: relative;
   background: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
