@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 const ButtonStandard = styled.button`
-  margin: 1rem 0; 
-  color: #FFF;
+  margin: 1rem 0;
+  color: #fff;
   background-color: var(--primary-bg-color);
   border-radius: 25px;
   border: 0;
@@ -12,25 +12,33 @@ const ButtonStandard = styled.button`
   line-height: 1;
   text-transform: uppercase;
   outline: 0;
-  transition: all .2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 
   cursor: pointer;
   &:hover,
   &:focus {
-    opacity: .8;
+    opacity: 0.8;
     transform: scale(1.1);
   }
 
   &:disabled {
-    opacity: .6;
+    opacity: 0.6;
     cursor: not-allowed;
   }
 
-  .button-icon-posisiton{
+  .button-icon-posisiton {
     vertical-align: middle;
     margin: 0 5px;
   }
 
+  &.modal-ok {
+    width: 8rem;
+  }
+
+  &.modal-cancel {
+    width: 8rem;
+    background: red;
+  }
 `;
 
 export default ButtonStandard;

@@ -1,4 +1,17 @@
 import styled from 'styled-components'
+import Navbar from 'react-bootstrap/Navbar'
+
+export const StyleNavbar = styled(Navbar)`
+  @media (max-width: 900px) {
+    display: none;
+  }
+  background: var(--primary-bg-color) !important;
+  margin-bottom: 10px;
+
+  a {
+    color: #fff !important;
+  }
+`
 
 export const BottomNavigationBox = styled.div`
   @media (min-width: 600px) {

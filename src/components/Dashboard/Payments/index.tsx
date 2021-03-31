@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useCallback, useRef, useState } from 'react';
+import React, { ChangeEvent, useCallback, useRef, useState } from 'react';
 import { Form } from '@unform/web';
 import { FaArrowRight } from 'react-icons/fa'
 import { useDispatch, useSelector } from 'react-redux';
@@ -14,6 +14,8 @@ import { change_screen, set_transaction_data } from '../../../store/dashboard/ac
 import { FormHandles } from '@unform/core';
 import getValidationErrors from '../../../utils/getValidationErrors';
 import Loader from '../../Loader';
+import { FormCard } from '../../FormCardBackground';
+import Button from '../../Button';
 
 interface PaymentsProps {
   func: Function;
@@ -117,9 +119,9 @@ const Payments: React.FC<PaymentsProps> = (props) => {
       const errors = getValidationErrors(err);
       formRef.current?.setErrors(errors);
 
-      if ( err.response && err.response.status === 400 )
+      if (err.response && err.response.status === 400)
         toast.error('Usuário não encontrado!');
-      
+
     } finally {
       setLoading(false);
     }
@@ -140,7 +142,7 @@ const Payments: React.FC<PaymentsProps> = (props) => {
 
   return (
     <>
-      <div>
+      <FormCard>
         <Form ref={formRef} onSubmit={handleSubmit}>
           <p>
             Informe os dados para realizar sua transferência
@@ -154,15 +156,17 @@ const Payments: React.FC<PaymentsProps> = (props) => {
           {loading ? (
             <Loader style={{ marginTop: 59 }} />
           ) : (
-              <button type="submit">
-                <span>Transferir agora</span>
-                <FaArrowRight color="#8c52e5" />
-              </button>
-            )}
+            <Button style={{ width: "100%" }} type='submit' text={'Transferir agora'} Icon={FaArrowRight} />
+
+            // <button type="submit">
+            //   <span>Transferir agora</span>
+            //   <FaArrowRight color="#8c52e5" />
+            // </button>
+          )}
         </Form>
 
 
-      </div>
+      </FormCard>
     </>
   );
 

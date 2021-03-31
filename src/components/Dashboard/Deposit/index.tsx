@@ -13,7 +13,8 @@ import Input from '../../Input'
 import { change_screen, set_transaction_data } from '../../../store/dashboard/actions';
 import getValidationErrors from '../../../utils/getValidationErrors';
 import Loader from '../../Loader';
-import { DepositBox } from '../../../styles/componentes/Deposit'
+import { DepositBox, DepositTitle } from '../../../styles/componentes/Deposit'
+import Button from '../../Button';
 
 const Deposit: React.FC = () => {
 
@@ -90,14 +91,17 @@ const Deposit: React.FC = () => {
 
       toast.success(invoicePayment ? 'Pagamento realizado' : 'Depósito realizado');
       clearForm();
+      setLoading(false);
     }
     catch (err) {
+      setLoading(false);
       toast.error(`Ocorreu algum erro ao tentar realizar o ${invoicePayment ? 'pagamento' : 'depósito'}`);
       const errors = getValidationErrors(err);
       formRef.current?.setErrors(errors);
-    } finally {
-      setLoading(false);
     }
+    // finally {
+    //   setLoading(false);
+    // }
   }, [data, descricao, valor, store?.login, store?.token, dispatch, invoicePayment]);
 
   function clearForm() {
@@ -116,30 +120,18 @@ const Deposit: React.FC = () => {
   return (
     <DepositBox>
       <div className="header-form">
-        <p>
+        <DepositTitle>
           {invoicePayment ? 'Realize o pagamento da sua fatura' : 'Realize o seu depósito'}
-        </p>
-        <button onClick={() => setInvoicePayment(!invoicePayment)}>
-          <span>
-            {invoicePayment ? 'Realizar depósito' : 'Realizar pagamento de fatura'}
-          </span>
-        </button>
+        </DepositTitle>
+        <Button onClick={() => setInvoicePayment(!invoicePayment)} type='submit' text={invoicePayment ? 'Realizar depósito' : 'Realizar pagamento de fatura'} Icon={FaArrowRight} />
+
       </div>
       <Form ref={formRef} onSubmit={handleSubmit}>
         <Input name="date" value={data} onChange={e => setData(e.target.value)} type="date" />
         <Input name="description" value={descricao} onChange={e => setDescricao(e.target.value)} type="text" placeholder="Descrição" />
         <Input name="transferValue" value={valor ? valor : ''} onChange={handleChangeValue} type="number" placeholder="Qual o valor de sua transferência?" />
 
-        {loading ? (
-          <Loader style={{ marginTop: 48 }} />
-        ) : (
-          <button type='submit'>
-            <span>
-              {invoicePayment ? 'Pagar agora' : 'Depositar agora'}
-            </span>
-            <FaArrowRight color="#8c52e5" />
-          </button>
-        )}
+        <Button type='submit' text={invoicePayment ? 'Pagar agora' : 'Depositar agora'} Icon={FaArrowRight} loading={loading} />
       </Form>
     </DepositBox>
   )

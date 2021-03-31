@@ -1,17 +1,19 @@
 import React, { ButtonHTMLAttributes } from 'react';
 import { IconType } from 'react-icons';
 import ButtonStandard from '../../styles/componentes/Button';
+import Loader from '../../components/Loader';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     text: string;
     Icon: IconType;
+    loading?: boolean;
 }
 
-const Button: React.FC<ButtonProps> = ({ text, Icon, ...props }) => {
+const Button: React.FC<ButtonProps> = ({ text, Icon, loading = false, ...props }) => {
     return (
         <ButtonStandard {...props} >
-            <span>{ text }</span>
-            <Icon size={ 21 } color="#fff" className="button-icon-posisiton" />
+            {loading ? <Loader /> : <span>{text}</span>}
+            {!loading ? <Icon size={21} color="#fff" className="button-icon-posisiton" /> : null}
         </ButtonStandard>
     );
 }

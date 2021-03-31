@@ -8,8 +8,6 @@ import * as yup from 'yup';
 import { motion } from 'framer-motion';
 
 import Button from '../../components/Button';
-import Header from '../../components/Header';
-import Loader from '../../components/Loader';
 import Input from '../../components/Input';
 
 import BackgroundLogin from '../../components/BackgroundLogin';
@@ -21,6 +19,7 @@ import getValidationErrors from '../../utils/getValidationErrors';
 
 import { UserResponse } from '../../types/user';
 import { AnyObject } from '../../types/utils';
+import Header from '../../components/Header';
 
 const Login: React.FC = () => {
   const [username, setUsername] = useState('');
@@ -56,10 +55,13 @@ const Login: React.FC = () => {
       localStorage.setItem('@token_user', response.token);
       localStorage.setItem('@user_name', response.usuario.nome);
       updateReduxState();
+      
       toast.success('Seja bem-vindo(a)');
 
+      setLoading(false);
       history.push('/dashboard');
     } catch (err) {
+      setLoading(false);
       const errors = getValidationErrors(err);
       formRef.current?.setErrors(errors);
       if (Object.keys(err).includes('isAxiosError')) {
@@ -73,8 +75,6 @@ const Login: React.FC = () => {
       err.errors.forEach((error: string) => {
         toast.error(error);
       })
-    } finally {
-      setLoading(false);
     }
 
   }, [username, password, history]);
@@ -92,7 +92,7 @@ const Login: React.FC = () => {
           initial="hidden"
           animate="show"
           text-align="center"
-          >
+        >
 
           <Header />
           <Form className="form-login-display" ref={formRef} onSubmit={handleSubmit}>
@@ -105,13 +105,13 @@ const Login: React.FC = () => {
             <Input name="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Digite sua senha" type="password" />
             </label>
 
-            {loading ? <Loader /> : <Button
+            <Button
               type="submit"
-              text="Continuar"
+              text={"Continuar"}
               Icon={FaArrowRight}
+              loading={loading}
               className="form-button"
             />
-            }
             <Link className="login-link" to="/recover">Esqueci minha senha</Link>
             <Link className="login-link" to="/">Ainda não sou cliente</Link>
           </Form>

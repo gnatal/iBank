@@ -1,23 +1,45 @@
-import React, { HTMLAttributes } from 'react';
+import Modal from 'react-modal';
+import { Container } from '../../../styles/componentes/ExitModal';
+import { ButtonModal } from '../../ButtonModal';
+import { motion } from 'framer-motion';
 
-
-interface ExitModalProps extends HTMLAttributes<HTMLDivElement> {
-    setResponse: (accepted: boolean) => void;
+interface ExitModalProps {
+  isOpen: boolean;
+  onRequestClose: () => void;
+  onLogOut: () => void;
 }
 
-const ExitModal: React.FC<ExitModalProps> = ({ setResponse, ...props }) => {
-    return (
-        <div {...props} >
-            <div>
-                <h1>Tem certeza que deseja sair?</h1>
+export const ExitModal = ({ isOpen, onRequestClose, onLogOut }: ExitModalProps) => {
 
-                <div>
-                    <button onClick={() => setResponse(false)} >Cancelar</button>
-                    <button onClick={() => setResponse(true)}  >Tenho</button>
-                </div>
-            </div>
+  return (
+    <Modal 
+      isOpen={isOpen}
+      onRequestClose={onRequestClose}
+      overlayClassName='react-modal-overlay'
+      className='react-modal-content'
+    >
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      >
+
+      <Container>
+        <h1>Tem certeza que deseja sair?</h1>
+        <div>
+          <ButtonModal 
+            text="Cancelar"
+            className="modal-cancel"
+            onClick={onRequestClose}
+          />
+          <ButtonModal 
+            text="Tenho"
+            className="modal-ok"
+            onClick={onLogOut}
+          />
         </div>
-    );
+      </Container>
+      </motion.div>
+    </Modal>
+  )
 }
-
-export default ExitModal;

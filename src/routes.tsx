@@ -10,33 +10,32 @@ import getIsAuth from './services/getIsAuth';
 import ErrorRecover from './Pages/ErrorRecover';
 
 const PrivateRoute: React.FC<RouteProps> = (props) => {
-    const isAuth = getIsAuth();
+  const isAuth = getIsAuth();
 
-    if (isAuth) return <Route {...props} />
-    else return <Redirect to="/" />
+  if (isAuth) return <Route {...props} />
+  else return <Redirect to="/" />
 };
 
 const UnauthRoute: React.FC<RouteProps> = (props) => {
-    const isAuth = getIsAuth();
+  const isAuth = getIsAuth();
 
-    if (!isAuth) return <Route {...props} />
-    else return <Redirect to="/dashboard" />
+  if (!isAuth) return <Route {...props} />
+  else return <Redirect to="/dashboard" />
 };
 
 const Routes: React.FC = () => {
-    return (
-        <BrowserRouter>
-            <Switch>
-                {/* Rotas */}
-                <Route path="/recover" exact component={RecoverPassword} />
-                <PrivateRoute path="/dashboard" exact component={Dashboard} />
-                <Route path="/error" exact component={Error} />
-                <Route path="/error-recovery" exact component={ErrorRecover} />
-                <Route path="/" exact component={Landing} />
-                <UnauthRoute path="/login" component={Login} />
-            </Switch>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <Switch>
+        <Route path="/" exact component={Landing} />
+        <Route path="/recover" exact component={RecoverPassword} />
+        <Route path="/error" exact component={Error} />
+        <Route path="/error-recover" exact component={ErrorRecover} />
+        <PrivateRoute path="/dashboard" exact component={Dashboard}  />
+        <UnauthRoute path="/login" component={Login} />
+      </Switch>
+    </BrowserRouter>
+  );
 }
 
 export default Routes;
