@@ -34,7 +34,7 @@ export const Container = styled.div`
 
 interface HideContainerProps {
   hide: boolean;
-  type: string;
+  value: number | undefined;
 }
 
 export const HideContainer = styled.div<HideContainerProps>`
@@ -57,14 +57,10 @@ export const HideContainer = styled.div<HideContainerProps>`
   }
 
   h3 {
-    font-weight: 600;
+    font-weight: 700;
     font-size: 1.2rem;
 
-    /* color: ${({ type }) => (type === 'banco' ? '#000' : 'var(--blue)')}; */
-
     opacity: 1;
-
-    /* margin-top: 0.25rem; */
 
     transition: opacity 0.8s, z-index 0.8s;
 
@@ -72,6 +68,10 @@ export const HideContainer = styled.div<HideContainerProps>`
 
     &.fatura {
       color: var(--blue);
+    }
+    &.transactions {
+      color: ${({ value }) =>
+        value && value > 0 ? 'var(--primary-bg-color)' : 'var(--red)'};
     }
   }
 `;

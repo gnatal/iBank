@@ -1,48 +1,46 @@
-import React, { ChangeEvent, useCallback, useRef, useState } from 'react';
-import { Form } from '@unform/web';
-import { FaArrowRight } from 'react-icons/fa'
+import { ChangeEvent, useCallback, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { FormHandles } from '@unform/core';
+import { Form } from '@unform/web';
 import { toast } from 'react-toastify';
+import { FaArrowRight } from 'react-icons/fa'
 import * as yup from 'yup';
 
-import { ApplicationStore } from '../../../store';
 import api from '../../../services/api';
-import { Contas, Plano } from '../../../types/dash-board';
-import Input from '../../Input';
-
+import { ApplicationStore } from '../../../store';
 import { change_screen, set_transaction_data } from '../../../store/dashboard/actions';
-import { FormHandles } from '@unform/core';
 import getValidationErrors from '../../../utils/getValidationErrors';
-import Loader from '../../Loader';
-import { FormCard } from '../../FormCardBackground';
+
+import { FormCard } from '../../FormCard';
+import Input from '../../Input';
 import Button from '../../Button';
+
+import { Contas, Plano } from '../../../types/dash-board';
 
 interface PaymentsProps {
   func: Function;
 }
 
 const Payments: React.FC<PaymentsProps> = (props) => {
-
-  const dispatch = useDispatch();
-
   const [destinatario, setDestinatario] = useState('');
   const [data, setData] = useState('');
   const [descricao, setDescricao] = useState('');
   const [valor, setValor] = useState(0);
   const [loading, setLoading] = useState(false);
+
   const formRef = useRef<FormHandles>(null);
+  
+  const dispatch = useDispatch();
 
   const store = useSelector((state: ApplicationStore) => state.user);
 
   const handleSubmit = useCallback(async (dataProps: object) => {
-
     const date = new Date();
     const referenceDate = new Date(date.setDate(date.getDate() - 1));
     const depositDate = new Date(data);
     let stopApplication = false;
 
     if (destinatario.trim().length === 0) {
-      stopApplication = true;
       toast.error('Login do destinatário não pode ser nulo');
       stopApplication = true;
     }
@@ -74,27 +72,28 @@ const Payments: React.FC<PaymentsProps> = (props) => {
         abortEarly: false,
       });
 
-      if (stopApplication) throw new Error('Something went wrong with request');
+      if (stopApplication) throw new Error('Erro ao tentar realizar pagamento');
 
-      const result = await api.get<Contas>(`/dashboard?fim=2021-02-22&inicio=2021-02-22&login=${store?.login}`, {
-        headers: {
-          Authorization: store?.token,
-        }
-      });
+      const [resultConta, resultPlan] = await Promise.all([
+        api.get<Contas>(`/dashboard?fim=2021-02-22&inicio=2021-02-22&login=${store?.login}`, {
+          headers: {
+            Authorization: store?.token,
+          }
+        }),
+        api.get<Plano[]>(`/lancamentos/planos-conta?login=${store?.login}`, {
+          headers: {
+            Authorization: store?.token,
+          }
+        })
+      ])
 
-      const resultPlan = await api.get<Plano[]>(`/lancamentos/planos-conta?login=${store?.login}`, {
-        headers: {
-          Authorization: store?.token,
-        }
-      });
-
-      if (result.data.contaBanco.saldo < valor) {
+      if (resultConta.data.contaBanco.saldo < valor) {
         toast.error('Saldo insuficiente.');
         return;
       }
 
       const { status } = await api.post('/lancamentos', {
-        "conta": result.data.contaBanco.id,
+        "conta": resultConta.data.contaBanco.id,
         "contaDestino": destinatario.trim(),
         "data": data,
         "descricao": descricao,
@@ -107,27 +106,26 @@ const Payments: React.FC<PaymentsProps> = (props) => {
         }
       });
 
-      if (status !== 200) throw new Error('Something went wrong with request');
+      if (status !== 200) throw new Error('Erro ao tentar realizar pagamento');
 
       dispatch(set_transaction_data(undefined))
-      dispatch(change_screen('Transações'));
-
+      
       toast.success('Transferência realizada com sucesso.');
       clearForm();
-    }
-    catch (err) {
+      
+      setLoading(false);
+      dispatch(change_screen('Transações'));
+    } catch (err) {
+      setLoading(false);
       const errors = getValidationErrors(err);
       formRef.current?.setErrors(errors);
 
       if (err.response && err.response.status === 400)
         toast.error('Usuário não encontrado!');
-
-    } finally {
-      setLoading(false);
     }
   }, [destinatario, data, descricao, valor, store?.login, store?.token, dispatch]);
 
-  function clearForm() {
+  const clearForm = () => {
     setDestinatario('');
     setData('');
     setDescricao('');
@@ -143,28 +141,47 @@ const Payments: React.FC<PaymentsProps> = (props) => {
   return (
     <>
       <FormCard>
+        
         <Form ref={formRef} onSubmit={handleSubmit}>
-          <p>
+          <h2>
             Informe os dados para realizar sua transferência
-            </p>
+          </h2>
 
-          <Input name="receiver" value={destinatario} onChange={e => setDestinatario(e.target.value)} type="text" placeholder="Login do destinatário" />
-          <Input name="date" value={data} onChange={e => setData(e.target.value)} type="date" />
-          <Input name="description" value={descricao} onChange={e => setDescricao(e.target.value)} type="text" placeholder="Descrição" />
-          <Input name="transferValue" value={valor ? valor : ''} onChange={handleChangeValue} type="number" placeholder="Qual o valor de sua transferência?" />
+          <Input 
+            name="receiver" 
+            value={destinatario} 
+            onChange={e => setDestinatario(e.target.value)} 
+            type="text" 
+            placeholder="Login do destinatário" 
+          />
+          <Input 
+            name="date" 
+            value={data} 
+            onChange={e => setData(e.target.value)} 
+            type="date" 
+          />
+          <Input 
+            name="description" 
+            value={descricao} 
+            onChange={e => setDescricao(e.target.value)} 
+            type="text" 
+            placeholder="Descrição" 
+          />
+          <Input 
+            name="transferValue" 
+            value={valor ? valor : ''} 
+            onChange={handleChangeValue} type="number" 
+            placeholder="Qual o valor de sua transferência?" 
+          />
 
-          {loading ? (
-            <Loader style={{ marginTop: 59 }} />
-          ) : (
-            <Button style={{ width: "100%" }} type='submit' text={'Transferir agora'} Icon={FaArrowRight} />
+          <Button 
+            type='submit' 
+            text={'Transferir agora'} 
+            Icon={FaArrowRight}
+            loading={loading}
+          />
 
-            // <button type="submit">
-            //   <span>Transferir agora</span>
-            //   <FaArrowRight color="#8c52e5" />
-            // </button>
-          )}
         </Form>
-
 
       </FormCard>
     </>

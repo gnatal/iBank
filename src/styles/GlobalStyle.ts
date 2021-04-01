@@ -76,6 +76,7 @@ export default createGlobalStyle`
     --gray: #868B8E;
     --light-gray: #B9B7BD;
     --blue: #0080F6;
+    --red: #970C10;
   }
 
   .react-modal-overlay {
@@ -96,7 +97,6 @@ export default createGlobalStyle`
   .react-modal-content {
     width: 100%;
     max-width: 576px;
-    /* background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%); */
     background: #FFF;
     padding: 3rem;
 

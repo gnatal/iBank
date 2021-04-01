@@ -1,26 +1,27 @@
-import React, { ChangeEvent, useCallback, useRef, useState } from 'react';
-import { FaArrowRight } from 'react-icons/fa';
-import api from '../../../services/api';
+import { ChangeEvent, useCallback, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { ApplicationStore } from '../../../store';
-import { Contas, Plano } from '../../../types/dash-board';
-import { toast } from 'react-toastify';
-import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
+import { Form } from '@unform/web';
+import { toast } from 'react-toastify';
+import { FaArrowRight } from 'react-icons/fa';
 import * as yup from 'yup';
 
-import Input from '../../Input'
+import api from '../../../services/api';
+import { ApplicationStore } from '../../../store';
 import { change_screen, set_transaction_data } from '../../../store/dashboard/actions';
 import getValidationErrors from '../../../utils/getValidationErrors';
-import Loader from '../../Loader';
-import { DepositTitle } from '../../../styles/componentes/Deposit'
+
+import { FormCard } from '../../FormCard';
+import Input from '../../Input'
 import Button from '../../Button';
-import { FormCard } from '../../FormCardBackground';
+
+import { ButtonModal } from '../../ButtonModal';
+
+import { DepositTitle } from '../../../styles/componentes/Deposit'
+
+import { Contas, Plano } from '../../../types/dash-board';
 
 const Deposit: React.FC = () => {
-
-  const dispatch = useDispatch();
-
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState('');
   const [descricao, setDescricao] = useState('');
@@ -28,7 +29,9 @@ const Deposit: React.FC = () => {
   const [invoicePayment, setInvoicePayment] = useState(false);
   const store = useSelector((state: ApplicationStore) => state.user);
   const formRef = useRef<FormHandles>(null);
-
+  
+  const dispatch = useDispatch();
+  
   const handleSubmit = useCallback(async (dataProps: object) => {
     const date = new Date();
     const referenceDate = new Date(date.setDate(date.getDate() - 1));
@@ -120,19 +123,45 @@ const Deposit: React.FC = () => {
 
   return (
     <FormCard>
-      <div className="header-form">
-        <DepositTitle>
+      <DepositTitle>
+        <h2>
           {invoicePayment ? 'Realize o pagamento da sua fatura' : 'Realize o seu depósito'}
-        </DepositTitle>
-        <Button className="buttonform" onClick={() => setInvoicePayment(!invoicePayment)} type='submit' text={invoicePayment ? 'Realizar depósito' : 'Realizar pagamento de fatura'} Icon={FaArrowRight} />
+        </h2>
+      <ButtonModal
+        type="button"
+        onClick={() => setInvoicePayment(!invoicePayment)} 
+        text={invoicePayment ? 'Realizar depósito' : 'Realizar pagamento de fatura'} 
+      />
+      </DepositTitle>
 
-      </div>
       <Form ref={formRef} onSubmit={handleSubmit}>
-        <Input name="date" value={data} onChange={e => setData(e.target.value)} type="date" />
-        <Input name="description" value={descricao} onChange={e => setDescricao(e.target.value)} type="text" placeholder="Descrição" />
-        <Input name="transferValue" value={valor ? valor : ''} onChange={handleChangeValue} type="number" placeholder="Qual o valor de sua transferência?" />
+        <Input 
+          name="date" 
+          value={data} 
+          onChange={e => setData(e.target.value)} 
+          type="date" 
+        />
+        <Input 
+          name="description" 
+          value={descricao} 
+          onChange={e => setDescricao(e.target.value)} 
+          type="text" 
+          placeholder="Descrição" 
+        />
+        <Input 
+          name="transferValue" 
+          value={valor ? valor : ''} 
+          onChange={handleChangeValue} 
+          type="number" 
+          placeholder="Qual o valor de sua transferência?" 
+        />
 
-        <Button className="buttonform" type='submit' text={invoicePayment ? 'Pagar agora' : 'Depositar agora'} Icon={FaArrowRight} loading={loading} />
+        <Button 
+          type='submit' 
+          text={invoicePayment ? 'Pagar agora' : 'Depositar agora'} 
+          Icon={FaArrowRight}
+          loading={loading}
+        />
       </Form>
     </FormCard>
   )
