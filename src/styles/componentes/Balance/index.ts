@@ -1,13 +1,11 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
 
-  padding: 25px;
-
-  background: var(--secondary-bg-color);
+  width: 100%;
 
   header {
     display: flex;
@@ -17,14 +15,15 @@ export const Container = styled.div`
     width: 100%;
     max-width: 750px;
 
-    margin-bottom: 10px;
+    margin: 20px 0;
 
     h1 {
       font-size: 1.5rem;
+      font-weight: 500;
     }
 
-    strong {
-      font-weight: 700;
+    button {
+      background: transparent;
     }
   }
 
@@ -47,7 +46,7 @@ export const Container = styled.div`
     height: 12rem;
 
     padding: 20px;
-    background: #fff;
+    background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
 
     border-radius: 0.25rem;
 
@@ -64,6 +63,11 @@ export const Container = styled.div`
   }
 
   @media (max-width: 720px) {
+    header {
+      h1 {
+        font-size: 1.2rem;
+      }
+    }
     .accounts-container {
       justify-content: center;
     }
@@ -72,10 +76,10 @@ export const Container = styled.div`
       flex: 0 1 100%;
     }
   }
-`
+`;
 
 interface HideContainerProps {
-  hide: boolean
+  hide: boolean;
 }
 
 export const HideContainer = styled.div<HideContainerProps>`
@@ -106,4 +110,4 @@ export const HideContainer = styled.div<HideContainerProps>`
 
     opacity: ${({ hide }) => (!hide ? 1 : 0)};
   }
-`
+`;

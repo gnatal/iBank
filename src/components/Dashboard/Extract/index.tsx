@@ -21,68 +21,68 @@ enum PlanosConta {
 }
 
 const Extract: React.FC<ExtractData> = (props) => {
-    const allLaunchs = useMemo(() => {
-        if (props.contaBanco?.lancamentos && props.contaCredito?.lancamentos) {
-            const initLaunchs = [...props.contaBanco.lancamentos, ...props.contaCredito.lancamentos];
+  const allLaunchs = useMemo(() => {
+    if (props.contaBanco?.lancamentos && props.contaCredito?.lancamentos) {
+      const initLaunchs = [...props.contaBanco.lancamentos, ...props.contaCredito.lancamentos];
 
-            const orderedLauchs = initLaunchs.slice().sort((a, b) => {
-                return Number(new Date(a.data)) - Number(new Date(b.data));
-            }).reverse();
+      const orderedLauchs = initLaunchs.slice().sort((a, b) => {
+          return Number(new Date(a.data)) - Number(new Date(b.data));
+      }).reverse();
 
-            return orderedLauchs;
-        } else {
-            return [];
-        }
-    }, [props.contaBanco?.lancamentos, props.contaCredito?.lancamentos]);
-
-    function typePlans(typePlan: string) {
-        if (typePlan === 'R') {
-            return PlanosConta.R;
-        } else if (typePlan === 'D') {
-            return PlanosConta.D;
-        } else if (typePlan === 'TC') {
-            return PlanosConta.TC;
-        } else {
-            return PlanosConta.TU;
-        }
+      return orderedLauchs;
+    } else {
+      return [];
     }
+  }, [props.contaBanco?.lancamentos, props.contaCredito?.lancamentos]);
 
-    return (
-        <>
-            <CardStyles >
-                <FormCard className="transactionsbox">
-                    <TitleBox >
-                        <img src={currentIcon} alt="current icon" />
-                        <p className="title">Últimos lançamentos</p>
-                    </TitleBox>
-                    {allLaunchs.length === 0 && 'Nenhum lancamento'}
-                    <Container >
-                        {allLaunchs && allLaunchs.map((launch, index) => {
-                            return (
-                                <TransactionBox key={index}  >
-                                    <Row className={"row-active"}>
-                                        <Col style={{ margin: "2px" }}>{typePlans(launch.planoConta.tipoMovimento)}</Col>
-                                    </Row>
-                                    <Row style={{ margin: "2px", fontStyle: "italic" }}>
-                                        <Col style={{ margin: "2px" }}>{launch.descricao}</Col>
-                                    </Row>
-                                    <Row className={"row-active"}>
-                                        <Col style={{ margin: "2px" }}>{launch.valor.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</Col>
-                                    </Row>
-                                    <Row style={{ margin: "2px" }}>
-                                        <Col style={{ margin: "2px" }}>{launch.data}</Col>
-                                    </Row>
-                                </TransactionBox>
-                            )
-                        })}
-                    </Container>
-                </FormCard>
-                <div className={"bottom-spaces"}>
+  function typePlans(typePlan: string) {
+    if (typePlan === 'R') {
+        return PlanosConta.R;
+    } else if (typePlan === 'D') {
+        return PlanosConta.D;
+    } else if (typePlan === 'TC') {
+        return PlanosConta.TC;
+    } else {
+        return PlanosConta.TU;
+    }
+  }
 
-                </div>
-            </CardStyles>
-        </>
-    )
+  return (
+    <>
+      <CardStyles >
+        <FormCard className="transactionsbox">
+          <TitleBox >
+            <img src={currentIcon} alt="current icon" />
+            <p className="title">Últimos lançamentos</p>
+          </TitleBox>
+          {allLaunchs.length === 0 && 'Nenhum lancamento'}
+          <Container >
+            {allLaunchs && allLaunchs.map((launch, index) => {
+              return (
+                <TransactionBox key={index}  >
+                  <Row className={"row-active"}>
+                    <Col style={{ margin: "2px" }}>{typePlans(launch.planoConta.tipoMovimento)}</Col>
+                  </Row>
+                  <Row style={{ margin: "2px", fontStyle: "italic" }}>
+                    <Col style={{ margin: "2px" }}>{launch.descricao}</Col>
+                  </Row>
+                  <Row className={"row-active"}>
+                    <Col style={{ margin: "2px" }}>{launch.valor.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</Col>
+                  </Row>
+                  <Row style={{ margin: "2px" }}>
+                    <Col style={{ margin: "2px" }}>{launch.data}</Col>
+                  </Row>
+                </TransactionBox>
+              )
+            })}
+          </Container>
+        </FormCard>
+        <div className={"bottom-spaces"}>
+
+        </div>
+      </CardStyles>
+    </>
+  )
 }
 
 export default Extract;

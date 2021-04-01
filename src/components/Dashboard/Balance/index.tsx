@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
 
@@ -6,9 +6,10 @@ import currentIcon from '../../../assets/svgs/current-icon.svg';
 import creditIcon from '../../../assets/svgs/credit-card-icon.svg';
 import { Conta } from '../../../types/dash-board';
 import { ApplicationStore } from '../../../store';
-import { formatMoney } from '../../../utils/formatMoney';
+// import { formatMoney } from '../../../utils/formatMoney';
 
-import { Container, HideContainer } from '../../../styles/componentes/Dashboard/Balance';
+import { Container, HideContainer } from '../../../styles/componentes/Balance';
+import { BalanceCard } from '../../BalanceCard';
 
 interface AccountProps {
   contaBanco?: Conta,
@@ -16,13 +17,14 @@ interface AccountProps {
 }
 
 const Balance: React.FC<AccountProps> = (props) => {
+  const store = useSelector((state: ApplicationStore) => state.user);
+
   const [contaBanco, setContaBanco] = useState<Conta>();
   const [contaCredito, setContaCredito] = useState<Conta>();
   const [totalBanco, setTotalBanco] = useState(0);
   const [totalCredito, setTotalCredito] = useState(0);
   const [user, setUser] = useState('');
   const [hide, setHide] = useState(false);
-  const store = useSelector((state: ApplicationStore) => state.user);
 
   useEffect(() => {
     if (store)
@@ -55,14 +57,30 @@ const Balance: React.FC<AccountProps> = (props) => {
     <Container>
       <header>
         <h1>Olá <strong>{user.split(' ')[0]}</strong>, seja bem-vindo(a)!</h1>
-        {!hide ?
-          <FiEye size={35} onClick={() => setHide(!hide)} /> :
-          <FiEyeOff size={35} onClick={() => setHide(!hide)} />
-        }
+        <button>
+          {!hide ?
+            <FiEye size={35} onClick={() => setHide(!hide)} /> :
+            <FiEyeOff size={35} onClick={() => setHide(!hide)} />
+          }
+        </button>
       </header>
 
       <div className='accounts-container'>
-        <div className='account-card'>
+        <BalanceCard 
+          firstValue={contaBanco?.saldo}
+          secondValue={totalBanco}
+          hide={hide}
+          type="banco"
+        />
+
+        <BalanceCard 
+          firstValue={contaCredito?.saldo}
+          secondValue={totalCredito}
+          hide={hide}
+          type="credito"
+        />
+        
+        {/* <div className='account-card'>
           <div className='title'>
             <img src={currentIcon} alt="current icon" />
             <h2>Conta</h2>
@@ -85,9 +103,9 @@ const Balance: React.FC<AccountProps> = (props) => {
               </h3>
             </HideContainer>
           </div>
-        </div>
+        </div> */}
 
-        <div  className='account-card'>
+        {/* <div  className='account-card'>
           <div className='title'>
             <img src={creditIcon} alt="credit icon" />
             <h2>Conta Crédito</h2>
@@ -110,11 +128,10 @@ const Balance: React.FC<AccountProps> = (props) => {
               </h3>
             </HideContainer>
           </div>
-        </div>
+        </div> */}
 
       </div>
     </Container>
-
   );
 }
 

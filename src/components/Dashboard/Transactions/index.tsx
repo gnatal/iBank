@@ -1,17 +1,16 @@
-import React, { useState, useEffect, ChangeEvent, useCallback } from 'react';
+import { useState, useEffect, ChangeEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import api from '../../../services/api';
 import { ApplicationStore } from '../../../store';
 import { set_transaction_data } from '../../../store/dashboard/actions';
 
-import Loader from '../../Loader';
-import Extract from '../Extract';
 import Balance from '../Balance';
+import FilterForm from './FilterForm';
+import Extract from '../Extract';
 
 import { Contas } from '../../../types/dash-board';
-import FilterForm from './FilterForm';
-import { Background } from '../../../styles/componentes/Dashboard/Background';
+import { PageLoader } from '../../PageLoader';
 
 const Transactions: React.FC = () => {
   const [contas, setContas] = useState<Contas>();
@@ -23,13 +22,13 @@ const Transactions: React.FC = () => {
 
   const dispatch = useDispatch();
 
-  const formatDate = useCallback((date: Date) => {
+  const formatDate = (date: Date) => {
     const year = date.getFullYear(),
       month = ('0' + (date.getMonth() + 1)).slice(-2),
       day = ('0' + date.getDate()).slice(-2);
 
     return [year, month, day].join('-');
-  }, []);
+  };
 
   useEffect(() => {
     if (contas)
@@ -41,7 +40,6 @@ const Transactions: React.FC = () => {
       setContas(dashboard.transactions_data.accounts);
       return;
     }
-    console.log('api fetch')
     const getDashboardValues = async () => {
       try {
         setLoaded(false);
@@ -65,7 +63,7 @@ const Transactions: React.FC = () => {
     };
 
     getDashboardValues();
-  }, [user?.login, user?.token, dashboard, formatDate, referenceDate]);
+  }, [user?.login, user?.token, dashboard, referenceDate]);
 
   const updateReference = (event: ChangeEvent<HTMLInputElement>) => {
     const value = Number(event.target.value);
@@ -76,16 +74,18 @@ const Transactions: React.FC = () => {
     dispatch(set_transaction_data(undefined));
   }
 
-  if (loaded) return (
-    <Background>
-      <Balance contaBanco={contas?.contaBanco} contaCredito={contas?.contaCredito} />
-      <FilterForm referenceDate={referenceDate} updateReference={updateReference} />
-
-      <Extract contaBanco={contas?.contaBanco} contaCredito={contas?.contaCredito} />
-      {/* <FiArrowLeft onClick={() => {props.func('')}}/> */}
-    </Background>
+  return (
+    <>
+    {loaded ? 
+      <>
+        <Balance contaBanco={contas?.contaBanco} contaCredito={contas?.contaCredito} />
+        <FilterForm referenceDate={referenceDate} updateReference={updateReference} />
+        <Extract contaBanco={contas?.contaBanco} contaCredito={contas?.contaCredito} /> 
+      </> :
+      <PageLoader />
+    }
+    </> 
   );
-  else return <Loader />
 }
 
 export default Transactions;

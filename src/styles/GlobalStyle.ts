@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from 'styled-components';
 
 export default createGlobalStyle`
   /* http://meyerweb.com/eric/tools/css/reset/ 
@@ -69,9 +69,16 @@ export default createGlobalStyle`
     border: 0;
   }
 
+  strong {
+    font-weight: 800;
+  }
+
   :root{
     --primary-bg-color: #50c878;
     --secondary-bg-color: #83EEA7;
+    --gray: #868B8E;
+    --light-gray: #B9B7BD;
+    --blue: #0080F6;
   }
 
   .react-modal-overlay {
@@ -93,19 +100,22 @@ export default createGlobalStyle`
     width: 100%;
     max-width: 576px;
     background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
-    padding: 2rem;
+    padding: 3rem;
 
+    position: relative;
     border-radius: 0.25rem;
   }
+  .react-modal-close {
+    position: absolute;
+    right: 1.5rem;
+    top: 1.5rem;
+    border: 0;
+    background: transparent;
 
-  /* @media(max-width: 720px) {
-    .react-modal-content {
-      width: 100%;
-      max-width: 576px;
-      background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
-      padding: 2rem;
+    transition: filter 0.2s;
 
-      border-radius: 0.25rem;
+    &:hover {
+      filter: brightness(0.7);
     }
-  } */
+  }
 `;
