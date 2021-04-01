@@ -25,7 +25,7 @@ Principais links
 Como rodar esse projeto.
 primeiramente clone esse projeto com o git
 
-git clone https://github.com/gnatal/iBank.git
+git clone https://github.com/gnatal/iBank.git <br />
 depois rode <br />
 <i>yarn</i> <br />
 ou 
