@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
@@ -6,10 +6,6 @@ export const Container = styled.div`
   align-items: center;
 
   width: 100%;
-
-  /* padding: 25px; */
-
-  /* background: var(--secondary-bg-color); */
 
   header {
     display: flex;
@@ -24,6 +20,10 @@ export const Container = styled.div`
     h1 {
       font-size: 1.5rem;
       font-weight: 500;
+    }
+
+    button {
+      background: transparent;
     }
   }
 
@@ -76,10 +76,10 @@ export const Container = styled.div`
       flex: 0 1 100%;
     }
   }
-`
+`;
 
 interface HideContainerProps {
-  hide: boolean
+  hide: boolean;
 }
 
 export const HideContainer = styled.div<HideContainerProps>`
@@ -110,4 +110,4 @@ export const HideContainer = styled.div<HideContainerProps>`
 
     opacity: ${({ hide }) => (!hide ? 1 : 0)};
   }
-`
+`;

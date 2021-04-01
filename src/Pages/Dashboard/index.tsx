@@ -2,6 +2,7 @@ import { useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { FaArrowRight } from 'react-icons/fa';
+import { AiOutlineLogout } from 'react-icons/ai';
 
 import { remove_user } from '../../store/user/actions';
 import { ApplicationStore } from '../../store';
@@ -17,6 +18,8 @@ import Transactions from '../../components/Dashboard/Transactions';
 import Sidemenu from '../../components/Sidemenu'
 import { ExitModal } from '../../components/Dashboard/ExitModal';
 
+import logoImg from '../../assets/ibank-logo-white.png';
+
 import {
   BottomNavigationBox,
   TabsContainer,
@@ -29,6 +32,7 @@ import {
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import NavDropdown from 'react-bootstrap/NavDropdown'
+import { Background } from '../../styles/componentes/Dashboard/Background';
 
 const Dashboard: React.FC = () => {
   const history = useHistory();
@@ -67,25 +71,45 @@ const Dashboard: React.FC = () => {
       />
 
       <StyleNavbar bg="light" expand="lg">
-        <Navbar.Brand href="#home">IBank</Navbar.Brand>
+        <Navbar.Brand >
+          <img src={logoImg} alt="Logo" width={100}/>
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link onClick={() => changeComponent('Depósitos')} href="">Depósitos</Nav.Link>
-            <Nav.Link onClick={() => changeComponent('Pagamentos')} href=""> Pagamentos</Nav.Link>
-            <Nav.Link onClick={() => changeComponent('Planos')} href="" > Planos</Nav.Link>
-            <Nav.Link onClick={() => changeComponent('Transações')} href=""> Transações</Nav.Link>
+            <Nav.Link
+              className={currentScreen === 'Depósitos' ? 'active' : ''} 
+              onClick={() => changeComponent('Depósitos')} 
+            >
+              Depósitos
+            </Nav.Link>
+            <Nav.Link
+              className={currentScreen === 'Pagamentos' ? 'active' : ''} 
+              onClick={() => changeComponent('Pagamentos')} 
+            > 
+              Pagamentos
+            </Nav.Link>
+            <Nav.Link 
+              className={currentScreen === 'Planos' ? 'active' : ''} 
+              onClick={() => changeComponent('Planos')}  
+            > 
+              Planos
+            </Nav.Link>
+            <Nav.Link
+              className={currentScreen === 'Transações' ? 'active' : ''} 
+              onClick={() => changeComponent('Transações')} 
+            > 
+              Transações
+            </Nav.Link>
             <Nav.Link
               style={{ position: "absolute", right: "20px" }}
-              onClick={handleOpenExitModal} href=""
+              onClick={handleOpenExitModal}
             >
-              Sair
-              <FaArrowRight size={21} />
+              <AiOutlineLogout size={24} />
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </StyleNavbar>
-
 
       <BottomNavigationBox>
         <Sidemenu isOpen={isSideMenuOpen} close={close} changeComponent={changeComponent} />
@@ -100,12 +124,14 @@ const Dashboard: React.FC = () => {
           </Tab>
         </TabsContainer>
       </BottomNavigationBox>
-      <main>
+
+
+      <Background>
         {currentScreen === 'Depósitos' && <Deposit />}
         {currentScreen === 'Pagamentos' && <Payments func={changeComponent}></Payments>}
         {currentScreen === 'Planos' && <Plans />}
         {currentScreen === 'Transações' && <Transactions></Transactions>}
-      </main>
+      </Background>
 
     </>
   );

@@ -5,14 +5,12 @@ import api from '../../../services/api';
 import { ApplicationStore } from '../../../store';
 import { set_transaction_data } from '../../../store/dashboard/actions';
 
-import Loader from '../../Loader';
-import Extract from '../Extract';
 import Balance from '../Balance';
+import FilterForm from './FilterForm';
+import Extract from '../Extract';
 
 import { Contas } from '../../../types/dash-board';
-// import { MonthConatiner, TransactionsContainer } from '../../../styles/componentes/Dashboard/Transactions';
-import FilterForm from './FilterForm';
-import { Background } from '../../../styles/componentes/Dashboard/Background';
+import { PageLoader } from '../../PageLoader';
 
 const Transactions: React.FC = () => {
   const [contas, setContas] = useState<Contas>();
@@ -42,7 +40,6 @@ const Transactions: React.FC = () => {
       setContas(dashboard.transactions_data.accounts);
       return;
     }
-    console.log('api fetch')
     const getDashboardValues = async () => {
       try {
         setLoaded(false);
@@ -77,14 +74,18 @@ const Transactions: React.FC = () => {
     dispatch(set_transaction_data(undefined));
   }
 
-  if (loaded) return (
-    <Background>
-      <Balance contaBanco={contas?.contaBanco} contaCredito={contas?.contaCredito} />
-      <FilterForm referenceDate={referenceDate} updateReference={updateReference} />
-      <Extract contaBanco={contas?.contaBanco} contaCredito={contas?.contaCredito} />
-    </Background>
+  return (
+    <>
+    {loaded ? 
+      <>
+        <Balance contaBanco={contas?.contaBanco} contaCredito={contas?.contaCredito} />
+        <FilterForm referenceDate={referenceDate} updateReference={updateReference} />
+        <Extract contaBanco={contas?.contaBanco} contaCredito={contas?.contaCredito} /> 
+      </> :
+      <PageLoader />
+    }
+    </> 
   );
-  else return <Loader />
 }
 
 export default Transactions;

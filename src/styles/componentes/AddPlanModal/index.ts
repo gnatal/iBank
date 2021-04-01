@@ -3,15 +3,15 @@ import styled from 'styled-components';
 export const Container = styled.form`
   display: flex;
   flex-direction: column;
+
   h2 {
-    /* color: var(--text-title); */
     font-size: 1.5rem;
     margin-bottom: 2rem;
   }
 
   select,
   textarea {
-    padding: 3px 9px;
+    padding: 10px;
     font-size: 22px;
     background: #fff;
     background: none;
@@ -19,15 +19,8 @@ export const Container = styled.form`
 
   select {
     border-width: 0px 0px 1px;
-    /* border-top-style: initial;
-    border-right-style: initial;
-    border-left-style: initial;
-    border-top-color: initial;
-    border-right-color: initial;
-    border-left-color: initial;
-    border-image: initial; */
     border-bottom-style: solid;
-    border-bottom-color: rgb(68, 68, 68);
+    border-bottom-color: var(--light-gray);
     height: 50px;
 
     margin-bottom: 25px;
@@ -52,8 +45,12 @@ export const TextareaContainer = styled.div`
     resize: none;
     outline: none;
 
+    border-color: var(--light-gray);
     &:focus {
       border-color: var(--primary-bg-color);
+    }
+    &::placeholder {
+      color: var(--gray);
     }
   }
 
@@ -61,8 +58,8 @@ export const TextareaContainer = styled.div`
     position: absolute;
     bottom: 5px;
     right: 5px;
-
     font-size: 12px;
     font-weight: 300;
+    color: var(--gray);
   }
 `;

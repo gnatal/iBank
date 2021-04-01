@@ -1,7 +1,7 @@
 import Modal from 'react-modal';
 import { toast } from 'react-toastify';
 import { MdClose } from 'react-icons/md';
-import { Container, TextareaContainer } from '../../../styles/componentes/Dashboard/AddPlanModal';
+import { Container, TextareaContainer } from '../../../styles/componentes/AddPlanModal';
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { ButtonModal } from '../../ButtonModal';
 
@@ -19,13 +19,15 @@ interface AddPlanModalProps {
 export const AddPlanModal: React.FC<AddPlanModalProps> = ({ isOpen, onRequestClose, onAddPlan }) => {
   const [type, setType] = useState('');
   const [description, setDescription] = useState('');
+  const [ isLoading, setIsLoading ] = useState(false);
 
 
   const handleSubmit = async (event: FormEvent) => {
+    setIsLoading(true);
     event.preventDefault();
-
+    
     if ( type.length === 0 || description.length === 0 ) return toast.error('Preencha todos os campos!');
-
+    
     const data = {
       descricao: description,
       id: 0,
@@ -34,6 +36,7 @@ export const AddPlanModal: React.FC<AddPlanModalProps> = ({ isOpen, onRequestClo
     };
     
     await onAddPlan(data);
+    setIsLoading(false);
     setType('');
     setDescription('');
   }
@@ -81,7 +84,11 @@ export const AddPlanModal: React.FC<AddPlanModalProps> = ({ isOpen, onRequestClo
           </label>
         </TextareaContainer>
 
-        <ButtonModal type="submit" text="Adicionar" />
+        <ButtonModal 
+          type="submit" 
+          text="Adicionar" 
+          loading={isLoading}
+        />
       </Container>
     </Modal>
   )

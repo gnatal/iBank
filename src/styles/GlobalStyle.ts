@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from 'styled-components';
 
 export default createGlobalStyle`
   /* http://meyerweb.com/eric/tools/css/reset/ 
@@ -73,6 +73,9 @@ export default createGlobalStyle`
   :root{
     --primary-bg-color: #50c878;
     --secondary-bg-color: #83EEA7;
+    --gray: #868B8E;
+    --light-gray: #B9B7BD;
+    --blue: #0080F6;
   }
 
   .react-modal-overlay {
@@ -109,7 +112,7 @@ export default createGlobalStyle`
     transition: filter 0.2s;
 
     &:hover {
-      filter: brightness(0.8);
+      filter: brightness(0.7);
     }
   }
 `;
