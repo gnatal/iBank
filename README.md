@@ -14,10 +14,10 @@ Principais links
     <a>  https://drive.google.com/file/d/1QJ5MnaidHOO4iRihoUB6rsvA-E99OIAQ/view </a> 
 </li>
 <li> descrição da API e modelos:
-    <a>  https://accenture-java-desafio.herokuapp.com/swagger-ui.   </a> html#/ 
+    <a>  https://accenture-java-desafio.herokuapp.com/swagger-ui.html#/ 
 </li>
 
-documentação: </a>https://docs.google.com/document/d/16ITVQzFaKzLMtVVhyAq8zNXiu9G-RF1jLZ45lqaa_F8/edit?usp=sharing</a></li>
+<li>documentação: </a>https://docs.google.com/document/d/16ITVQzFaKzLMtVVhyAq8zNXiu9G-RF1jLZ45lqaa_F8/edit?usp=sharing</a></li>
 
 </ul>    
 
