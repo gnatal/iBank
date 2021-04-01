@@ -16,6 +16,8 @@
         <li> Criação de planos </li>
         <li> Extrato das operações </li>
     </ul>
+    você pode testar essa aplicação rapidamente clicando 
+    no nosso link da vercel logo abaixo
 
 </p>
 
