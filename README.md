@@ -1,7 +1,7 @@
 <h1> ## Desafio REACT | GAMA | ACCENTURE </h1>
 
 
-<img src="https://github.com/gnatal/iBank/tree/docs/src/assets/screen-ibank.jpg" />
+![Pagina inicial](https://github.com/gnatal/iBank/tree/docs/src/assets/screen-ibank.jpg)
 
 Principais links
 
