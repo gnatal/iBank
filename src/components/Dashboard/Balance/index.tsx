@@ -2,14 +2,13 @@ import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
 
-import currentIcon from '../../../assets/svgs/current-icon.svg';
-import creditIcon from '../../../assets/svgs/credit-card-icon.svg';
-import { Conta } from '../../../types/dash-board';
 import { ApplicationStore } from '../../../store';
-// import { formatMoney } from '../../../utils/formatMoney';
 
-import { Container, HideContainer } from '../../../styles/componentes/Balance';
 import { BalanceCard } from '../../BalanceCard';
+
+import { Container } from '../../../styles/componentes/Balance';
+
+import { Conta } from '../../../types/dash-board';
 
 interface AccountProps {
   contaBanco?: Conta,
@@ -24,7 +23,12 @@ const Balance: React.FC<AccountProps> = (props) => {
   const [totalBanco, setTotalBanco] = useState(0);
   const [totalCredito, setTotalCredito] = useState(0);
   const [user, setUser] = useState('');
-  const [hide, setHide] = useState(false);
+  const [hide, setHide] = useState(() => {
+    const getHidden = (localStorage.getItem('@balance-hidden'));
+    if (!getHidden) return false;
+    const hidden = JSON.parse(getHidden);
+    return hidden.status;
+  });
 
   useEffect(() => {
     if (store)
@@ -51,7 +55,15 @@ const Balance: React.FC<AccountProps> = (props) => {
         }, 0)
       )
     }
-  }, [contaBanco, contaCredito, props.contaBanco, props.contaCredito])
+  }, [contaBanco, contaCredito, props.contaBanco, props.contaCredito]);
+
+  const handleHideBalance = () => {
+    setHide(!hide);
+    const item = {
+      status: !hide,
+    }
+    localStorage.setItem('@balance-hidden', JSON.stringify(item));
+  }
 
   return (
     <Container>
@@ -59,8 +71,8 @@ const Balance: React.FC<AccountProps> = (props) => {
         <h1>Olá <strong>{user.split(' ')[0]}</strong>, seja bem-vindo(a)!</h1>
         <button>
           {!hide ?
-            <FiEye size={35} onClick={() => setHide(!hide)} /> :
-            <FiEyeOff size={35} onClick={() => setHide(!hide)} />
+            <FiEye size={35} onClick={handleHideBalance} /> :
+            <FiEyeOff size={35} onClick={handleHideBalance} />
           }
         </button>
       </header>
@@ -79,58 +91,8 @@ const Balance: React.FC<AccountProps> = (props) => {
           hide={hide}
           type="credito"
         />
-        
-        {/* <div className='account-card'>
-          <div className='title'>
-            <img src={currentIcon} alt="current icon" />
-            <h2>Conta</h2>
-          </div>
-          <div>
-            <p>Saldo disponivel</p>
-            <HideContainer hide={hide}>
-              <div></div>
-              <h3 title={contaBanco && formatMoney(contaBanco.saldo)}>
-                {contaBanco && formatMoney(contaBanco.saldo)}
-              </h3>
-            </HideContainer>
-          </div>
-          <div>
-            <p>Transações</p>
-            <HideContainer hide={hide}>
-              <div></div>
-              <h3 title={formatMoney(totalBanco)}>
-                {formatMoney(totalBanco)}
-              </h3>
-            </HideContainer>
-          </div>
-        </div> */}
-
-        {/* <div  className='account-card'>
-          <div className='title'>
-            <img src={creditIcon} alt="credit icon" />
-            <h2>Conta Crédito</h2>
-          </div>
-          <div>
-            <p>Fatura atual</p>
-            <HideContainer hide={hide}>
-              <div></div>
-              <h3 title={contaCredito && formatMoney(contaCredito.saldo)}>
-                {contaCredito && formatMoney(contaCredito.saldo)}
-              </h3>
-            </HideContainer>
-          </div>
-          <div>
-            <p>Limite Disponivel</p>
-            <HideContainer hide={hide}>
-              <div></div>
-              <h3 title={formatMoney(totalCredito)}>
-                {formatMoney(totalCredito)}
-              </h3>
-            </HideContainer>
-          </div>
-        </div> */}
-
       </div>
+
     </Container>
   );
 }

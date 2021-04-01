@@ -23,10 +23,12 @@ export const AddPlanModal: React.FC<AddPlanModalProps> = ({ isOpen, onRequestClo
 
 
   const handleSubmit = async (event: FormEvent) => {
-    setIsLoading(true);
     event.preventDefault();
     
-    if ( type.length === 0 || description.length === 0 ) return toast.error('Preencha todos os campos!');
+    if ( type.length === 0 || description.length === 0 ) {
+      return toast.error('Preencha todos os campos!');
+    }
+    setIsLoading(true);
     
     const data = {
       descricao: description,

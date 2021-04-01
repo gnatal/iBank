@@ -23,7 +23,15 @@ export const Container = styled.div`
     }
 
     button {
-      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 8px;
+
+      background: #fff;
+
+      border-radius: 50%;
     }
   }
 
@@ -36,7 +44,7 @@ export const Container = styled.div`
     max-width: 750px;
   }
 
-  .account-card {
+  /* .account-card {
     flex: 0 1 250px;
 
     display: flex;
@@ -51,7 +59,7 @@ export const Container = styled.div`
     border-radius: 0.25rem;
 
     margin: 15px 0;
-  }
+  } */
 
   .title {
     display: flex;
@@ -78,36 +86,36 @@ export const Container = styled.div`
   }
 `;
 
-interface HideContainerProps {
-  hide: boolean;
-}
+// interface HideContainerProps {
+//   hide: boolean;
+// }
 
-export const HideContainer = styled.div<HideContainerProps>`
-  position: relative;
+// export const HideContainer = styled.div<HideContainerProps>`
+//   position: relative;
 
-  line-height: 1.8rem;
+//   line-height: 1.8rem;
 
-  div {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+//   div {
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     bottom: 0;
+//     right: 0;
+//     background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
 
-    opacity: ${({ hide }) => (hide ? 1 : 0)};
+//     opacity: ${({ hide }) => (hide ? 1 : 0)};
 
-    transition: opacity 1s;
-  }
+//     transition: opacity 1s;
+//   }
 
-  h3 {
-    font-weight: 600;
-    font-size: 1.2rem;
+//   h3 {
+//     font-weight: 600;
+//     font-size: 1.2rem;
 
-    opacity: 1;
+//     opacity: 1;
 
-    transition: opacity 1s;
+//     transition: opacity 1s;
 
-    opacity: ${({ hide }) => (!hide ? 1 : 0)};
-  }
-`;
+//     opacity: ${({ hide }) => (!hide ? 1 : 0)};
+//   }
+// `;

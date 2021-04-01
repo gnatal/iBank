@@ -13,7 +13,6 @@ export const Container = styled.form`
   textarea {
     padding: 10px;
     font-size: 22px;
-    background: #fff;
     background: none;
   }
 

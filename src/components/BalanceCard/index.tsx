@@ -24,26 +24,32 @@ export const BalanceCard: React.FC<BalanceCardProps> = ({
       </div>
 
       <div>
-        <p>{type === 'banco' ? 'Saldo disponível' : 'Fatura atual'}</p>
+        <h2>{type === 'banco' ? 'Saldo disponível' : 'Fatura atual'}</h2>
         <HideContainer 
           hide={hide}
           type={type}
         >
           <div></div>
-          <h3 title={formatMoney(firstValue)}>
+          <h3 
+            className={type === 'banco' ? 'saldo' : 'fatura'} 
+            title={formatMoney(firstValue)}
+          >
             {formatMoney(firstValue)}
           </h3>
         </HideContainer>
       </div>
       
       <div>
-        <p>{type === 'banco' ? 'Transações' : 'Limite disponível'}</p>
+        <h2>{type === 'banco' ? 'Transações' : 'Limite disponível'}</h2>
         <HideContainer 
           hide={hide}
           type={type}
         >
           <div></div>
-          <h3 title={formatMoney(secondValue)}>
+          <h3 
+            className={type === 'banco' ? 'transactions' : 'limit'} 
+            title={formatMoney(secondValue)}
+          >
             {formatMoney(secondValue)}
           </h3>
         </HideContainer>

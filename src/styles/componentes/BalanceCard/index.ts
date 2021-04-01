@@ -5,17 +5,17 @@ export const Container = styled.div`
 
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
-
-  /* height: 12rem; */
 
   padding: 20px;
   background: #fff;
-  /* background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%); */
 
   border-radius: 0.75rem;
 
   margin: 15px 0;
+
+  h2 {
+    margin: 0.5rem 0;
+  }
 
   div.balance-card-header {
     display: flex;
@@ -27,7 +27,6 @@ export const Container = styled.div`
 
     img {
       width: 1.8rem;
-
       margin-right: 1rem;
     }
   }
@@ -41,7 +40,7 @@ interface HideContainerProps {
 export const HideContainer = styled.div<HideContainerProps>`
   position: relative;
 
-  line-height: 1.8rem;
+  /* line-height: 2rem; */
 
   div {
     position: absolute;
@@ -51,25 +50,28 @@ export const HideContainer = styled.div<HideContainerProps>`
     right: 0;
     background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
 
-    opacity: ${({ hide }) => (hide ? 1 : 0)};
-
     transition: opacity 0.8s, z-index 0.8s;
 
-    z-index: ${({ hide }) => (hide ? 1 : 0)};
+    opacity: ${({ hide }) => (hide ? 1 : 0)};
+    z-index: ${({ hide }) => (hide ? 1 : -1)};
   }
 
   h3 {
     font-weight: 600;
     font-size: 1.2rem;
 
-    color: ${({ type }) => (type === 'banco' ? '#000' : 'var(--blue)')};
+    /* color: ${({ type }) => (type === 'banco' ? '#000' : 'var(--blue)')}; */
 
     opacity: 1;
 
-    margin-top: 0.25rem;
+    /* margin-top: 0.25rem; */
 
     transition: opacity 0.8s, z-index 0.8s;
 
     opacity: ${({ hide }) => (!hide ? 1 : 0)};
+
+    &.fatura {
+      color: var(--blue);
+    }
   }
 `;
