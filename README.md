@@ -26,8 +26,8 @@ Como rodar esse projeto.
 primeiramente clone esse projeto com o git
 
 git clone https://github.com/gnatal/iBank.git
-depois rode 
-<i>yarn</i> 
+depois rode <br />
+<i>yarn</i> <br />
 ou 
-<i>npm install </i>
+<i>npm install </i> <br />
 para instalar nossas bibliotecas.
