@@ -45,10 +45,6 @@ export default createGlobalStyle`
     quotes: none;
   }
 
-  img{
-    width: 100%;
-  }
-
   blockquote:before, blockquote:after,
   q:before, q:after {
     content: '';
@@ -64,6 +60,9 @@ export default createGlobalStyle`
     font-family: 'Lato', sans-serif;
   }
 
+  img{
+    width: 100%;
+  }
 
   button {
     cursor: pointer;

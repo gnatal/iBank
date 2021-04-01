@@ -34,7 +34,7 @@ const Dashboard: React.FC = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const currentScreen = useSelector((store: ApplicationStore) => store.dashboard.current_screen);
-  
+
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
   const [isExitModalOpen, setIsExitModalOpen] = useState(false);
 
@@ -75,12 +75,12 @@ const Dashboard: React.FC = () => {
             <Nav.Link onClick={() => changeComponent('Pagamentos')} href=""> Pagamentos</Nav.Link>
             <Nav.Link onClick={() => changeComponent('Planos')} href="" > Planos</Nav.Link>
             <Nav.Link onClick={() => changeComponent('Transações')} href=""> Transações</Nav.Link>
-            <Nav.Link 
-              style={{ position: "absolute", right: "20px" }} 
+            <Nav.Link
+              style={{ position: "absolute", right: "20px" }}
               onClick={handleOpenExitModal} href=""
-            > 
+            >
               Sair
-              <FaArrowRight size={21} /> 
+              <FaArrowRight size={21} />
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>

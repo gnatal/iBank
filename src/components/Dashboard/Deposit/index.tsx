@@ -13,8 +13,9 @@ import Input from '../../Input'
 import { change_screen, set_transaction_data } from '../../../store/dashboard/actions';
 import getValidationErrors from '../../../utils/getValidationErrors';
 import Loader from '../../Loader';
-import { DepositBox, DepositTitle } from '../../../styles/componentes/Deposit'
+import { DepositTitle } from '../../../styles/componentes/Deposit'
 import Button from '../../Button';
+import { FormCard } from '../../FormCardBackground';
 
 const Deposit: React.FC = () => {
 
@@ -118,12 +119,12 @@ const Deposit: React.FC = () => {
   }, []);
 
   return (
-    <DepositBox>
+    <FormCard>
       <div className="header-form">
         <DepositTitle>
           {invoicePayment ? 'Realize o pagamento da sua fatura' : 'Realize o seu depósito'}
         </DepositTitle>
-        <Button onClick={() => setInvoicePayment(!invoicePayment)} type='submit' text={invoicePayment ? 'Realizar depósito' : 'Realizar pagamento de fatura'} Icon={FaArrowRight} />
+        <Button className="buttonform" onClick={() => setInvoicePayment(!invoicePayment)} type='submit' text={invoicePayment ? 'Realizar depósito' : 'Realizar pagamento de fatura'} Icon={FaArrowRight} />
 
       </div>
       <Form ref={formRef} onSubmit={handleSubmit}>
@@ -131,9 +132,9 @@ const Deposit: React.FC = () => {
         <Input name="description" value={descricao} onChange={e => setDescricao(e.target.value)} type="text" placeholder="Descrição" />
         <Input name="transferValue" value={valor ? valor : ''} onChange={handleChangeValue} type="number" placeholder="Qual o valor de sua transferência?" />
 
-        <Button type='submit' text={invoicePayment ? 'Pagar agora' : 'Depositar agora'} Icon={FaArrowRight} loading={loading} />
+        <Button className="buttonform" type='submit' text={invoicePayment ? 'Pagar agora' : 'Depositar agora'} Icon={FaArrowRight} loading={loading} />
       </Form>
-    </DepositBox>
+    </FormCard>
   )
 }
 

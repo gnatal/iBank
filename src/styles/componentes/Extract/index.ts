@@ -24,9 +24,9 @@ export const TransactionText = styled.th`
 
 export const CardStyles = styled.div`
   .transactionsbox {
-    height: 50vh;
+    height: 40vh;
     overflow: scroll;
-    @media (min-width: 600px) {
+    @media (min-width: 920px) {
       overflow-y: scroll;
       overflow-x: hidden;
     }
@@ -40,9 +40,6 @@ export const CardStyles = styled.div`
   }
 
   .bottom-spaces {
-    @media (min-width: 600px) {
-      display: none;
-    }
     height: 200px;
     width: 100vw;
   }
