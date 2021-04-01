@@ -17,7 +17,7 @@ Principais links
     <a href="https://accenture-java-desafio.herokuapp.com/swagger-ui.html#/">  https://accenture-java-desafio.herokuapp.com/swagger-ui.html#/ </a>
 </li>
 
-<li>documentação: <a>https://docs.google.com/document/d/16ITVQzFaKzLMtVVhyAq8zNXiu9G-RF1jLZ45lqaa_F8/edit?usp=sharing</a></li>
+<li>documentação: <a href="https://docs.google.com/document/d/16ITVQzFaKzLMtVVhyAq8zNXiu9G-RF1jLZ45lqaa_F8/edit?usp=sharing">https://docs.google.com/document/d/16ITVQzFaKzLMtVVhyAq8zNXiu9G-RF1jLZ45lqaa_F8/edit?usp=sharing</a></li>
 
 </ul>    
 
