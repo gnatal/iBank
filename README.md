@@ -3,6 +3,22 @@
 
 ![screen-ibank](https://github.com/gnatal/iBank/blob/docs/src/assets/screen-ibank.jpg?raw=true)
 
+<h2>Descrição do projeto </h2>
+<p>
+    Esse projeto simula uma aplicação bancária com suas funcionalidades básicas:
+    <ul>
+        <li> Criação de contas </li>
+        <li> Login </li>
+        <li> Recuperação de senha </li>
+        <li> Deposito em conta bancária </li>
+        <li> Pagamento de contas </li>
+        <li> Transferência entre contas </li>
+        <li> Criação de planos </li>
+        <li> Extrato das operações </li>
+    </ul>
+
+</p>
+
 Principais links
 
 <ul>
@@ -47,3 +63,4 @@ ou <br />
 </li>
 
 </ol>
+
