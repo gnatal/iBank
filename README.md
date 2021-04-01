@@ -1,4 +1,4 @@
-<h1> ## Desafio REACT | GAMA | ACCENTURE </h1>
+<h1> ## Desafio REACT | GAMA | ACCENTURE | iBANK</h1>
 
 
 ![screen-ibank](https://github.com/gnatal/iBank/blob/docs/src/assets/screen-ibank.jpg?raw=true)
@@ -26,11 +26,23 @@ Principais links
 
 
 Como rodar esse projeto.
+<ol>
+<li>
 primeiramente clone esse projeto com o git
 
 git clone https://github.com/gnatal/iBank.git <br />
+</li>
+<li>
 depois rode <br />
 <i>yarn</i> <br />
 ou 
 <i>npm install </i> <br />
 para instalar nossas bibliotecas.
+</li>
+
+<li>
+<p> rode o commando yarn start para executar o projeto localmente</p>
+<i>yarn start</i>
+</li>
+
+</ol>
