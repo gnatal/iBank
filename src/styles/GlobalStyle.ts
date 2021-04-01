@@ -70,6 +70,18 @@ export default createGlobalStyle`
     font-weight: 800;
   }
 
+  /* @media(max-width: 1088px){
+		html {
+			font-size: 93.75%;
+		}
+	} */
+
+	@media(max-width: 720px){
+		html {
+			font-size: 87.5%;
+		}
+	}
+
   :root{
     --primary-bg-color: #50c878;
     --secondary-bg-color: #83EEA7;

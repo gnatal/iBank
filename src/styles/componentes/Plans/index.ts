@@ -1,37 +1,42 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
-  flex: 1;
-  width: 100%;
-  max-width: 900px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  margin: 0 auto;
-
-  padding: 1.5rem;
-
-  @media (max-width: 720px) {
-    padding: 0;
-  }
-`;
-
 export const CardsContainer = styled.div`
   width: 100%;
+  max-height: 40rem;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
   gap: 1rem;
 
   padding: 3rem;
 
   background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
 
-  border-radius: 0.25rem;
+  border-radius: 0.5rem;
 
-  @media (max-width: 720px) {
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+  &::-webkit-scrollbar-track {
+    background: #eee;
+    border-radius: 0.75rem;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: var(--primary-bg-color);
+    border-radius: 0.75rem;
+  }
+
+  @media (max-width: 920px) {
     padding: 1.5rem;
+  }
+  @media (max-width: 800px) {
+    padding: 1.5rem 1.5rem 0 1.5rem;
+
+    &::after {
+      content: '';
+      border-bottom: 0.5rem solid transparent;
+    }
   }
 `;
 
@@ -42,9 +47,9 @@ export const PlanCard = styled.div`
 
   border-radius: 0.75rem;
 
-  p + p {
+  /* p + p {
     margin-top: 0.5rem;
-  }
+  } */
 
   .title-card {
     font-size: 1.2rem;
@@ -61,29 +66,21 @@ export const PlanCard = styled.div`
     font-size: 1rem;
     font-weight: 400;
   }
-`;
 
-export const AddPlanCard = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  &:last-child {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-  padding: 1.5rem;
+    cursor: pointer;
 
-  background: #fff;
+    transition: background 0.3s, transform 0.3s, color 0.3s;
 
-  border-radius: 0.75rem;
-
-  cursor: pointer;
-
-  transition: background 0.3s, transform 0.3s, color 0.3s;
-
-  &:focus,
-  &:hover {
-    background: var(--primary-bg-color);
-    color: #fff;
-    transform: scale(1.05);
-  }
-  &:active {
+    &:focus,
+    &:hover {
+      background: var(--primary-bg-color);
+      color: #fff;
+      transform: scale(1.05);
+    }
   }
 `;

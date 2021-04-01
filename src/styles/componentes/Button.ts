@@ -8,7 +8,7 @@ const ButtonStandard = styled.button`
   background-color: var(--primary-bg-color);
   border-radius: 25px;
   border: 0;
-  padding: 15px;
+  padding: 1rem;
   font-weight: bold;
   font-size: 1rem;
   line-height: 1;

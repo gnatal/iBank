@@ -10,7 +10,7 @@ import { set_plans_data } from '../../../store/dashboard/actions';
 
 import { Plano } from '../../../types/dash-board';
 import { AddPlanModal } from '../AddPlanModal';
-import { AddPlanCard, CardsContainer, Container, PlanCard } from '../../../styles/componentes/Plans';
+import { CardsContainer, PlanCard } from '../../../styles/componentes/Plans';
 import { PageLoader } from '../../PageLoader';
 
 type NewPlan = Omit<Plano, 'login'>;
@@ -92,13 +92,7 @@ const Plans: React.FC = () => {
     <>
     {isLoading ? 
       <PageLoader /> :
-      <Container>
-        <AddPlanModal
-          isOpen={isAddPlanModalOpen}
-          onRequestClose={handleCloseAddPlanModal}
-          onAddPlan={handleAddPlan}
-        />
-        
+      <>
         <CardsContainer>
           <>
           {plans?.map( (plan, index) => 
@@ -112,19 +106,23 @@ const Plans: React.FC = () => {
           )}
           </>
 
-          {plans && (
-            <AddPlanCard
+          {/* {plans && ( */}
+            <PlanCard
               onClick={handleOpenAddPlanModal}
             >
               <MdAdd className="icon" size={ 50 } />
-            </AddPlanCard>
-          )}
+            </PlanCard>
+          {/* )} */}
 
         </CardsContainer>
-      </Container>
+      </>
     }
+      <AddPlanModal
+        isOpen={isAddPlanModalOpen}
+        onRequestClose={handleCloseAddPlanModal}
+        onAddPlan={handleAddPlan}
+      />
     </> 
-    
   );
 }
 

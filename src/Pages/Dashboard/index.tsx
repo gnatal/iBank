@@ -63,18 +63,13 @@ const Dashboard: React.FC = () => {
   }
 
   return (
-    <>
-      <ExitModal
-        isOpen={isExitModalOpen}
-        onRequestClose={handleCloseExitModal}
-        onLogOut={handleLogOut}
-      />
-
-      <StyleNavbar bg="light" expand="lg">
+    <Background>
+      <StyleNavbar>
         <Navbar.Brand >
           <img src={logoImg} alt="Logo" width={100}/>
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        {/* <Navbar.Toggle aria-controls="basic-navbar-nav" /> */}
+        {/* <Navbar.Collapse id="basic-navbar-nav"> */}
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
             <Nav.Link
@@ -104,7 +99,7 @@ const Dashboard: React.FC = () => {
             <Nav.Link
               style={{ position: "absolute", right: "20px" }}
               onClick={handleOpenExitModal}
-            >
+            > 
               <AiOutlineLogout size={24} />
             </Nav.Link>
           </Nav>
@@ -113,35 +108,34 @@ const Dashboard: React.FC = () => {
 
       <BottomNavigationBox>
         <Sidemenu isOpen={isSideMenuOpen} close={close} changeComponent={changeComponent} />
-        <TabsContainer>
-          <Tab  >
+        {/* <TabsContainer> */}
+          <Tab>
             <IconImage onClick={() => { setIsSideMenuOpen(!isSideMenuOpen) }} src="/menu-mobile.png" alt="Menu" />
             <TabName >Operações</TabName>
           </Tab>
-          <Tab >
-            <FaArrowRight size={28} onClick={handleOpenExitModal} />
+          <Tab onClick={handleOpenExitModal}>
+            <AiOutlineLogout size={26} />
+            {/* <FaArrowRight size={28} onClick={handleOpenExitModal} /> */}
             <TabName>Sair</TabName>
           </Tab>
-        </TabsContainer>
+        {/* </TabsContainer> */}
       </BottomNavigationBox>
 
 
-      <Background>
+      <main>
         {currentScreen === 'Depósitos' && <Deposit />}
         {currentScreen === 'Pagamentos' && <Payments func={changeComponent}></Payments>}
         {currentScreen === 'Planos' && <Plans />}
         {currentScreen === 'Transações' && <Transactions></Transactions>}
-      </Background>
+      </main>
 
-    </>
+      <ExitModal
+        isOpen={isExitModalOpen}
+        onRequestClose={handleCloseExitModal}
+        onLogOut={handleLogOut}
+      />
+    </Background>
   );
 }
-
-
-
-const NavBarWeb = () => {
-
-}
-
 
 export default Dashboard;
