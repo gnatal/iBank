@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import { MdClose } from 'react-icons/md';
 import { Container, TextareaContainer } from '../../../styles/componentes/AddPlanModal';
 import { ChangeEvent, FormEvent, useState } from 'react';
-import { ButtonModal } from '../../ButtonModal';
+import { ButtonWithoutIcon } from '../../ButtonWithoutIcon';
 
 import { Plano } from '../../../types/dash-board'
 
@@ -86,7 +86,7 @@ export const AddPlanModal: React.FC<AddPlanModalProps> = ({ isOpen, onRequestClo
           </label>
         </TextareaContainer>
 
-        <ButtonModal 
+        <ButtonWithoutIcon 
           type="submit" 
           text="Adicionar" 
           loading={isLoading}

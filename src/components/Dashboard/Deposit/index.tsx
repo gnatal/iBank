@@ -15,7 +15,7 @@ import { FormCard } from '../../FormCard';
 import Input from '../../Input'
 import Button from '../../Button';
 
-import { ButtonModal } from '../../ButtonModal';
+import { ButtonWithoutIcon } from '../../ButtonWithoutIcon';
 
 import { DepositTitle } from '../../../styles/componentes/Deposit'
 
@@ -127,7 +127,7 @@ const Deposit: React.FC = () => {
         <h2>
           {invoicePayment ? 'Realize o pagamento da sua fatura' : 'Realize o seu depósito'}
         </h2>
-      <ButtonModal
+      <ButtonWithoutIcon
         type="button"
         onClick={() => setInvoicePayment(!invoicePayment)} 
         text={invoicePayment ? 'Realizar depósito' : 'Realizar pagamento de fatura'} 

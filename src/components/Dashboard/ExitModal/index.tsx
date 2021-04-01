@@ -1,6 +1,6 @@
 import Modal from 'react-modal';
 import { Container } from '../../../styles/componentes/ExitModal';
-import { ButtonModal } from '../../ButtonModal';
+import { ButtonWithoutIcon } from '../../ButtonWithoutIcon';
 import { motion } from 'framer-motion';
 
 interface ExitModalProps {
@@ -27,12 +27,12 @@ export const ExitModal = ({ isOpen, onRequestClose, onLogOut }: ExitModalProps) 
       <Container>
         <h1>Tem certeza que deseja sair?</h1>
         <div>
-          <ButtonModal 
+          <ButtonWithoutIcon 
             text="Cancelar"
             className="modal-cancel"
             onClick={onRequestClose}
           />
-          <ButtonModal 
+          <ButtonWithoutIcon 
             text="Tenho"
             className="modal-ok"
             onClick={onLogOut}

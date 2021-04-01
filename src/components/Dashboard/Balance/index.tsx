@@ -4,9 +4,9 @@ import { FiEye, FiEyeOff } from 'react-icons/fi';
 
 import { ApplicationStore } from '../../../store';
 
-import { BalanceCard } from '../../BalanceCard';
+import { BalanceCard } from '../BalanceCard';
 
-import { Container } from '../../../styles/componentes/Balance';
+import { Container, CardsContainer } from '../../../styles/componentes/Balance';
 
 import { Conta } from '../../../types/dash-board';
 
@@ -76,8 +76,8 @@ const Balance: React.FC<AccountProps> = (props) => {
           }
         </button>
       </header>
-
-      <div className='accounts-container'>
+      
+      <CardsContainer>
         <BalanceCard 
           firstValue={contaBanco?.saldo}
           secondValue={totalBanco}
@@ -91,7 +91,7 @@ const Balance: React.FC<AccountProps> = (props) => {
           hide={hide}
           type="credito"
         />
-      </div>
+      </CardsContainer>
 
     </Container>
   );
