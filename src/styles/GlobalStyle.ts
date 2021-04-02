@@ -37,7 +37,6 @@ export default createGlobalStyle`
     font-family: 'Lato', sans-serif;
   }
 
-
   ol, ul {
     list-style: none;
   }
@@ -59,6 +58,10 @@ export default createGlobalStyle`
 
   input, textarea, button {
     font-family: 'Lato', sans-serif;
+  }
+
+  img{
+    width: 100%;
   }
 
   button {
@@ -85,6 +88,7 @@ export default createGlobalStyle`
   :root{
     --primary-bg-color: #50c878;
     --secondary-bg-color: #83EEA7;
+    --primary-purple: #4a148c;
     --gray: #868B8E;
     --light-gray: #B9B7BD;
     --blue: #0080F6;

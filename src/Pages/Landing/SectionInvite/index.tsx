@@ -8,15 +8,15 @@ const SectionInvite: React.FC<ISectionProps> = ({background}) => {
         <Section background={background}>
             <Container>
                 <SectionInviteStyle>
-                    <div>
-                        <span>Simplifique a sua vida. Peça seu convite.</span>
-                        <p>GamaAcademy Bank Line S.A. - CNPJ 00.000.000/0000-00</p>
+                    <div className="section-invite-div-content" >
+                        <span className="section-invite-title">Simplifique a sua vida. Peça seu convite.</span>
+                        <p>iBank Accenture 2.0 S.A. - CNPJ 00.000.000/0000-00</p>
 
                         <p>Rua Fictícia, 999 - 00000-000 - São Paulo, SP</p>
                         <p>Este é um projeto de avaliação | GamaAcademy | Accenture | 2021</p>
                     </div>
                     <div>
-                        <img src={ImgCellPhone} alt="Imagem de um celular" />
+                        <img className="section-invite-img-landing1" src={ImgCellPhone} alt="Imagem de um celular" />
                     </div>
                 </SectionInviteStyle>
             </Container>

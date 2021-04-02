@@ -1,10 +1,9 @@
 import styled from 'styled-components';
 
 const ImgLogo = styled.img`
-    width: 100%;
-    max-width: 250px;
+    max-width: 150px;
     transition: all .2s ease-in-out;
-    margin: 1rem 0;
+    margin: 0rem 0;
     
     cursor: pointer;
     &:hover{
