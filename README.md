@@ -6,9 +6,9 @@
 
 <h2>## Participantes do projeto ##</h2>
 <ul>
-    <li>Guilherme Natal: <a href="https://github.com/gnatal/">https://github.com/gnatal/</a></li>
-    <li>Fernando Lopes: <a href="https://github.com/fernandolopes-38">https://github.com/fernandolopes-38</a></li>
-    <li> Eweverton Augusto:<a href="https://github.com/ewerton-augusto">https://github.com/ewerton-augusto</a></li>
+    <li>[Guilherme Natal](https://github.com/gnatal/)
+    <li>[Fernando Lopes](https://github.com/fernandolopes-38)
+    <li>[Ewerton Augusto](https://github.com/ewerton-augusto)
 
 </ul>
 
@@ -39,26 +39,23 @@
     ##  Principais links ##
 </h2>
 
-
 <ul>
-<li> Vercel:
-    <a href="https://i-bank.vercel.app//"> https://i-bank-4ahdec6mo-gnatal.vercel.app/ </a> 
+<li>
+    [iBank na Vercel](https://i-bank-4ahdec6mo-gnatal.vercel.app)
 </li>
-<li> Notion: 
-    <a href="https://www.notion.so/b4ca588a761a40439a36d93a448ee9c3?v=5a72c168c26c4fbbaad2a0bd9ec11dde"> https://www.notion.so/b4ca588a761a40439a36d93a448ee9c3?v=5a72c168c26c4fbbaad2a0bd9ec11dde 
-    </a>
+<li> 
+    [Notion](https://www.notion.so/b4ca588a761a40439a36d93a448ee9c3?v=5a72c168c26c4fbbaad2a0bd9ec11dde)
 </li>
-<li> Arquivo Insominia:
-    <a href="https://drive.google.com/file/d/1QJ5MnaidHOO4iRihoUB6rsvA-E99OIAQ/view"> https://drive.google.com/file/d/1QJ5MnaidHOO4iRihoUB6rsvA-E99OIAQ/view </a> 
+<li>
+    [Arquivo Insominia](https://drive.google.com/file/d/1QJ5MnaidHOO4iRihoUB6rsvA-E99OIAQ/view)
 </li>
-<li> Descrição da API e modelos:
-    <a href="https://accenture-java-desafio.herokuapp.com/swagger-ui.html#/">  https://accenture-java-desafio.herokuapp.com/swagger-ui.html#/ </a>
+<li> 
+    [Descrição da API e modelos](https://accenture-java-desafio.herokuapp.com/swagger-ui.html#/)
 </li>
-
-<li>Documentação: <a href="https://docs.google.com/document/d/16ITVQzFaKzLMtVVhyAq8zNXiu9G-RF1jLZ45lqaa_F8/edit?usp=sharing">https://docs.google.com/document/d/16ITVQzFaKzLMtVVhyAq8zNXiu9G-RF1jLZ45lqaa_F8/edit?usp=sharing</a></li>
-
+<li>
+    [Documentação](https://docs.google.com/document/d/16ITVQzFaKzLMtVVhyAq8zNXiu9G-RF1jLZ45lqaa_F8/edit?usp=sharing)
+</li>
 </ul>    
-
 
 <h2>
     ##  Como rodar esse projeto. ##
