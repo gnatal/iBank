@@ -9,11 +9,11 @@ export const Container = styled.div`
   justify-content: space-between;
 
   padding: 20px;
-  background: #fff;
+  margin: 1rem 0;
 
   border-radius: 0.75rem;
-
-  margin: 15px 0;
+  background: #fff;
+  box-shadow: 0px 0px 10px rgba(10, 10, 10, 0.2);
 
   @media (max-width: 720px) {
     flex: 1 1 100%;

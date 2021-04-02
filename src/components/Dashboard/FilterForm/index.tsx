@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { MonthConatiner } from '../../../styles/componentes/Transactions';
+import { MonthConatiner } from '../../../styles/componentes/FilterForm';
 
 interface IProps {
   referenceDate: number;

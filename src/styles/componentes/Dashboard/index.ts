@@ -13,6 +13,10 @@ export const StyleNavbar = styled(Navbar)`
     align-items: center;
   }
 
+  img {
+    width: 8rem;
+  }
+
   a {
     color: #fff !important;
     margin: 0 0.5rem;

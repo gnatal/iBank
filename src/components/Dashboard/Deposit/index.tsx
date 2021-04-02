@@ -12,6 +12,7 @@ import { change_screen, set_transaction_data } from '../../../store/dashboard/ac
 import getValidationErrors from '../../../utils/getValidationErrors';
 
 import { FormCard } from '../../FormCard';
+import { Animation } from '../../Animation';
 import Input from '../../Input'
 import Button from '../../Button';
 
@@ -21,12 +22,16 @@ import { DepositTitle } from '../../../styles/componentes/Deposit'
 
 import { Contas, Plano } from '../../../types/dash-board';
 
+import depositAnimation from '../../../assets/animation/deposit.json';
+
 const Deposit: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState('');
   const [descricao, setDescricao] = useState('');
   const [valor, setValor] = useState(0);
   const [invoicePayment, setInvoicePayment] = useState(false);
+  const [direction, setDirection] = useState(true);
+
   const store = useSelector((state: ApplicationStore) => state.user);
   const formRef = useRef<FormHandles>(null);
   
@@ -63,24 +68,25 @@ const Deposit: React.FC = () => {
 
       if (stopApplication) throw new Error('Something went wrong with request');
 
-      const result = await api.get<Contas>(`/dashboard?fim=2021-02-22&inicio=2021-02-22&login=${store?.login}`, {
-        headers: {
-          Authorization: store?.token,
-        }
-      });
-
-      const resultPlan = await api.get<Plano[]>(`/lancamentos/planos-conta?login=${store?.login}`, {
-        headers: {
-          Authorization: store?.token,
-        }
-      });
+      const [resultConta, resultPlan] = await Promise.all([
+        api.get<Contas>(`/dashboard?fim=2021-02-22&inicio=2021-02-22&login=${store?.login}`, {
+          headers: {
+            Authorization: store?.token,
+          }
+        }),
+        api.get<Plano[]>(`/lancamentos/planos-conta?login=${store?.login}`, {
+          headers: {
+            Authorization: store?.token,
+          }
+        })
+      ])
 
       const { status } = await api.post('/lancamentos', {
-        "conta": result.data.contaBanco.id,
+        "conta": resultConta.data.contaBanco.id,
         "data": filteredData,
         "descricao": descricao.trim(),
         "login": store?.login,
-        "planoConta": invoicePayment ? resultPlan.data[2].id : resultPlan.data[0].id,
+        "planoConta": invoicePayment ? resultPlan.data[1].id : resultPlan.data[0].id,
         "valor": valor,
       }, {
         headers: {
@@ -88,7 +94,7 @@ const Deposit: React.FC = () => {
         }
       });
 
-      if (status !== 200) throw new Error('Something went wrong with request');
+      if (status !== 200) throw new Error('Erro ao realizar ação');
 
       dispatch(set_transaction_data(undefined));
       dispatch(change_screen('transactions'));
@@ -121,15 +127,26 @@ const Deposit: React.FC = () => {
     else setValor(numberToAdd);
   }, []);
 
+  const handleTypeChange = () => {
+    setInvoicePayment(!invoicePayment);
+    setDirection(!direction);
+  }
+
   return (
     <FormCard>
+      {loading && 
+      <Animation
+        data={depositAnimation}
+        direction={direction}
+      />
+      }
       <DepositTitle>
         <h2>
           {invoicePayment ? 'Realize o pagamento da sua fatura' : 'Realize o seu depósito'}
         </h2>
       <ButtonWithoutIcon
         type="button"
-        onClick={() => setInvoicePayment(!invoicePayment)} 
+        onClick={handleTypeChange} 
         text={invoicePayment ? 'Realizar depósito' : 'Realizar pagamento de fatura'} 
       />
       </DepositTitle>

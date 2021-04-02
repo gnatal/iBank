@@ -8,7 +8,7 @@ export const MonthConatiner = styled.div`
 
   width: 100%;
 
-  margin: 20px;
+  margin-bottom: 1rem;
 
   h2 {
     font-size: 1.2rem;

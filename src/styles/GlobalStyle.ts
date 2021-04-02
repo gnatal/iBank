@@ -93,6 +93,7 @@ export default createGlobalStyle`
     --light-gray: #B9B7BD;
     --blue: #0080F6;
     --red: #970C10;
+    -green: #72C64B;
   }
 
   .react-modal-overlay {

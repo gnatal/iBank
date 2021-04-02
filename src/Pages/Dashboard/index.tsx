@@ -65,7 +65,7 @@ const Dashboard: React.FC = () => {
   return (
     <Background>
       <StyleNavbar>
-        <Navbar.Brand >
+        <Navbar.Brand>
           <img src={logoImg} alt="Logo" width={100}/>
         </Navbar.Brand>
         {/* <Navbar.Toggle aria-controls="basic-navbar-nav" /> */}
