@@ -42,7 +42,7 @@
 
 <ul>
 <li> Vercel:
-    <a href="https://i-bank-4ahdec6mo-gnatal.vercel.app/"> https://i-bank-4ahdec6mo-gnatal.vercel.app/ </a> 
+    <a href="https://i-bank.vercel.app//"> https://i-bank-4ahdec6mo-gnatal.vercel.app/ </a> 
 </li>
 <li> Notion: 
     <a href="https://www.notion.so/b4ca588a761a40439a36d93a448ee9c3?v=5a72c168c26c4fbbaad2a0bd9ec11dde"> https://www.notion.so/b4ca588a761a40439a36d93a448ee9c3?v=5a72c168c26c4fbbaad2a0bd9ec11dde 
