@@ -1,89 +1,86 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
-  flex: 1;
-  width: 100%;
-  max-width: 900px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  margin: 0 auto;
-
-  padding: 1.5rem;
-
-  @media (max-width: 720px) {
-    padding: 0;
-  }
-`;
-
 export const CardsContainer = styled.div`
   width: 100%;
+  max-height: 40rem;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1rem;
 
-  padding: 3rem;
+  padding: 2rem;
 
   background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
 
-  border-radius: 0.25rem;
+  border-radius: 0.5rem;
 
-  @media (max-width: 720px) {
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+  &::-webkit-scrollbar-track {
+    background: #eee;
+    border-radius: 0.75rem;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: var(--primary-bg-color);
+    border-radius: 0.75rem;
+  }
+
+  @media (max-width: 920px) {
     padding: 1.5rem;
+  }
+  @media (max-width: 878px) {
+    padding-bottom: 0;
+
+    &::after {
+      content: '';
+      border-bottom: 0.5rem solid transparent;
+    }
   }
 `;
 
 export const PlanCard = styled.div`
+  height: 7rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
   padding: 1.5rem;
 
   background: #fff;
-
   border-radius: 0.75rem;
 
-  p + p {
-    margin-top: 0.5rem;
+  h2 {
+    font-weight: 700;
+    font-size: 1.15rem;
   }
 
-  .title-card {
-    font-size: 1.2rem;
-    font-weight: 600;
+  h3 {
+    font-size: 1rem;
   }
 
-  .login {
+  em {
     font-size: 0.9rem;
-    font-weight: 400;
+    font-style: italic;
     color: var(--light-gray);
   }
 
-  .type-movement {
-    font-size: 1rem;
-    font-weight: 400;
-  }
-`;
+  box-shadow: 0px 0px 10px rgba(10, 10, 10, 0.2);
 
-export const AddPlanCard = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  &:last-child {
+    align-items: center;
+    justify-content: center;
 
-  padding: 1.5rem;
+    cursor: pointer;
 
-  background: #fff;
+    transition: background 0.3s, transform 0.3s, color 0.3s;
 
-  border-radius: 0.75rem;
-
-  cursor: pointer;
-
-  transition: background 0.3s, transform 0.3s, color 0.3s;
-
-  &:focus,
-  &:hover {
-    background: var(--primary-bg-color);
-    color: #fff;
-    transform: scale(1.05);
-  }
-  &:active {
+    &:focus,
+    &:hover {
+      background: var(--primary-bg-color);
+      color: #fff;
+      transform: scale(1.05);
+    }
   }
 `;

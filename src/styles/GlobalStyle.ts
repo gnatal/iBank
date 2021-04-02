@@ -70,12 +70,25 @@ export default createGlobalStyle`
     font-weight: 800;
   }
 
+  /* @media(max-width: 1088px){
+		html {
+			font-size: 93.75%;
+		}
+	} */
+
+	@media(max-width: 720px){
+		html {
+			font-size: 87.5%;
+		}
+	}
+
   :root{
     --primary-bg-color: #50c878;
     --secondary-bg-color: #83EEA7;
     --gray: #868B8E;
     --light-gray: #B9B7BD;
     --blue: #0080F6;
+    --red: #970C10;
   }
 
   .react-modal-overlay {
@@ -96,7 +109,7 @@ export default createGlobalStyle`
   .react-modal-content {
     width: 100%;
     max-width: 576px;
-    background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+    background: #FFF;
     padding: 3rem;
 
     position: relative;

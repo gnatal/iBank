@@ -1,22 +1,19 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
-// export const DepositBox = styled.div`
-//   max-width: 600px;
-//   width: 80vw;
-//   margin: 10px auto;
-//   position: relative;
-//   background: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
-//   padding: 20px;
-//   border-radius: 20px;
+export const DepositTitle = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-//   color: #222;
-// `
+  h2 {
+    flex: 1;
+  }
 
-export const DepositTitle = styled.span`
-  margin: 10px auto;
-  width: 80%;
-  display: block;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  font-weight: bold;
-`
+  button {
+    width: 19rem;
+  }
+
+  @media (max-width: 920px) {
+    flex-direction: column;
+  }
+`;

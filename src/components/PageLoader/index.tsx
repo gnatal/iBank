@@ -5,7 +5,7 @@ export const PageLoader = () => {
   return (
     <LoaderContainer>
       <Loader
-        color="#FFF"
+        color="#50c878"
         type="Audio"
         height={250}
         width={250}

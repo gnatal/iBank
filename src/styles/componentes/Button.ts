@@ -1,12 +1,14 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 const ButtonStandard = styled.button`
+  width: 100%;
+
   margin: 1rem 0;
   color: #fff;
   background-color: var(--primary-bg-color);
   border-radius: 25px;
   border: 0;
-  padding: 15px;
+  padding: 1rem;
   font-weight: bold;
   font-size: 1rem;
   line-height: 1;
@@ -39,6 +41,6 @@ const ButtonStandard = styled.button`
     width: 8rem;
     background: red;
   }
-`
+`;
 
-export default ButtonStandard
+export default ButtonStandard;

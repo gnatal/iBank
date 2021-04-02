@@ -1,27 +1,31 @@
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
+
 import currentIcon from '../../../assets/svgs/current-icon.svg';
 import creditCardsIcon from '../../../assets/svgs/credit-cards-icon.svg';
-import { Conta } from '../../../types/dash-board';
+
 import { FormCard } from '../../FormCardBackground';
-import { TitleBox, TransactionBox, CardStyles } from '../../../styles/componentes/Extract';
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import { TitleBox, TransactionBox, CardStyles } from '../../../styles/componentes/Extract';
+
+import { Conta } from '../../../types/dash-board';
 
 interface ExtractData {
-    contaBanco?: Conta,
-    contaCredito?: Conta,
+  contaBanco?: Conta,
+  contaCredito?: Conta,
 }
 
 enum PlanosConta {
-    R = 'Receitas',
-    D = 'Despesas',
-    TC = 'Transferência entre contas',
-    TU = 'Transferência entre usuários'
+  R = 'Receitas',
+  D = 'Despesas',
+  TC = 'Transferência entre contas',
+  TU = 'Transferência entre usuários'
 }
 
 const Extract: React.FC<ExtractData> = (props) => {
   const allLaunchs = useMemo(() => {
+
     if (props.contaBanco?.lancamentos && props.contaCredito?.lancamentos) {
       const initLaunchs = [...props.contaBanco.lancamentos, ...props.contaCredito.lancamentos];
 
@@ -35,27 +39,23 @@ const Extract: React.FC<ExtractData> = (props) => {
     }
   }, [props.contaBanco?.lancamentos, props.contaCredito?.lancamentos]);
 
-  function typePlans(typePlan: string) {
-    if (typePlan === 'R') {
-        return PlanosConta.R;
-    } else if (typePlan === 'D') {
-        return PlanosConta.D;
-    } else if (typePlan === 'TC') {
-        return PlanosConta.TC;
-    } else {
-        return PlanosConta.TU;
-    }
+  const typePlans = (typePlan: string) => {
+    if (typePlan === 'R') return PlanosConta.R;
+    else if (typePlan === 'D') return PlanosConta.D;
+    else if (typePlan === 'TC') return PlanosConta.TC;
+    else return PlanosConta.TU;
   }
 
   return (
     <>
-      <CardStyles >
+      <CardStyles>
         <FormCard className="transactionsbox">
           <TitleBox >
             <img src={currentIcon} alt="current icon" />
             <p className="title">Últimos lançamentos</p>
           </TitleBox>
           {allLaunchs.length === 0 && 'Nenhum lancamento'}
+          
           <Container >
             {allLaunchs && allLaunchs.map((launch, index) => {
               return (
@@ -76,6 +76,7 @@ const Extract: React.FC<ExtractData> = (props) => {
               )
             })}
           </Container>
+
         </FormCard>
         <div className={"bottom-spaces"}>
 

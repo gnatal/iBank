@@ -63,48 +63,43 @@ const Dashboard: React.FC = () => {
   }
 
   return (
-    <>
-      <ExitModal
-        isOpen={isExitModalOpen}
-        onRequestClose={handleCloseExitModal}
-        onLogOut={handleLogOut}
-      />
-
-      <StyleNavbar bg="light" expand="lg">
+    <Background>
+      <StyleNavbar>
         <Navbar.Brand >
           <img src={logoImg} alt="Logo" width={100}/>
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        {/* <Navbar.Toggle aria-controls="basic-navbar-nav" /> */}
+        {/* <Navbar.Collapse id="basic-navbar-nav"> */}
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
             <Nav.Link
-              className={currentScreen === 'Depósitos' ? 'active' : ''} 
-              onClick={() => changeComponent('Depósitos')} 
+              className={currentScreen === 'deposits' ? 'active' : ''} 
+              onClick={() => changeComponent('deposits')} 
             >
               Depósitos
             </Nav.Link>
             <Nav.Link
-              className={currentScreen === 'Pagamentos' ? 'active' : ''} 
-              onClick={() => changeComponent('Pagamentos')} 
+              className={currentScreen === 'payments' ? 'active' : ''} 
+              onClick={() => changeComponent('payments')} 
             > 
               Pagamentos
             </Nav.Link>
             <Nav.Link 
-              className={currentScreen === 'Planos' ? 'active' : ''} 
-              onClick={() => changeComponent('Planos')}  
+              className={currentScreen === 'plans' ? 'active' : ''} 
+              onClick={() => changeComponent('plans')}  
             > 
               Planos
             </Nav.Link>
             <Nav.Link
-              className={currentScreen === 'Transações' ? 'active' : ''} 
-              onClick={() => changeComponent('Transações')} 
+              className={currentScreen === 'transactions' ? 'active' : ''} 
+              onClick={() => changeComponent('transactions')} 
             > 
               Transações
             </Nav.Link>
             <Nav.Link
               style={{ position: "absolute", right: "20px" }}
               onClick={handleOpenExitModal}
-            >
+            > 
               <AiOutlineLogout size={24} />
             </Nav.Link>
           </Nav>
@@ -113,35 +108,34 @@ const Dashboard: React.FC = () => {
 
       <BottomNavigationBox>
         <Sidemenu isOpen={isSideMenuOpen} close={close} changeComponent={changeComponent} />
-        <TabsContainer>
-          <Tab  >
+        {/* <TabsContainer> */}
+          <Tab>
             <IconImage onClick={() => { setIsSideMenuOpen(!isSideMenuOpen) }} src="/menu-mobile.png" alt="Menu" />
             <TabName >Operações</TabName>
           </Tab>
-          <Tab >
-            <FaArrowRight size={28} onClick={handleOpenExitModal} />
+          <Tab onClick={handleOpenExitModal}>
+            <AiOutlineLogout size={26} />
+            {/* <FaArrowRight size={28} onClick={handleOpenExitModal} /> */}
             <TabName>Sair</TabName>
           </Tab>
-        </TabsContainer>
+        {/* </TabsContainer> */}
       </BottomNavigationBox>
 
 
-      <Background>
-        {currentScreen === 'Depósitos' && <Deposit />}
-        {currentScreen === 'Pagamentos' && <Payments func={changeComponent}></Payments>}
-        {currentScreen === 'Planos' && <Plans />}
-        {currentScreen === 'Transações' && <Transactions></Transactions>}
-      </Background>
+      <main>
+        {currentScreen === 'deposits' && <Deposit />}
+        {currentScreen === 'payments' && <Payments func={changeComponent}></Payments>}
+        {currentScreen === 'plans' && <Plans />}
+        {currentScreen === 'transactions' && <Transactions></Transactions>}
+      </main>
 
-    </>
+      <ExitModal
+        isOpen={isExitModalOpen}
+        onRequestClose={handleCloseExitModal}
+        onLogOut={handleLogOut}
+      />
+    </Background>
   );
 }
-
-
-
-const NavBarWeb = () => {
-
-}
-
 
 export default Dashboard;

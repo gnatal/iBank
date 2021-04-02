@@ -6,7 +6,7 @@ import { ApplicationStore } from '../../../store';
 import { set_transaction_data } from '../../../store/dashboard/actions';
 
 import Balance from '../Balance';
-import FilterForm from './FilterForm';
+import FilterForm from '../FilterForm';
 import Extract from '../Extract';
 
 import { Contas } from '../../../types/dash-board';
@@ -76,14 +76,19 @@ const Transactions: React.FC = () => {
 
   return (
     <>
-    {loaded ? 
+      {!loaded && <PageLoader />}
+      <Balance contaBanco={contas?.contaBanco} contaCredito={contas?.contaCredito} />
+      <FilterForm referenceDate={referenceDate} updateReference={updateReference} />
+      <Extract contaBanco={contas?.contaBanco} contaCredito={contas?.contaCredito} /> 
+    {/* {loaded ? 
       <>
+        {!loaded && <PageLoader />}
         <Balance contaBanco={contas?.contaBanco} contaCredito={contas?.contaCredito} />
         <FilterForm referenceDate={referenceDate} updateReference={updateReference} />
         <Extract contaBanco={contas?.contaBanco} contaCredito={contas?.contaCredito} /> 
       </> :
       <PageLoader />
-    }
+    } */}
     </> 
   );
 }

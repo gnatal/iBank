@@ -10,10 +10,17 @@ import { set_plans_data } from '../../../store/dashboard/actions';
 
 import { Plano } from '../../../types/dash-board';
 import { AddPlanModal } from '../AddPlanModal';
-import { AddPlanCard, CardsContainer, Container, PlanCard } from '../../../styles/componentes/Plans';
+import { CardsContainer, PlanCard } from '../../../styles/componentes/Plans';
 import { PageLoader } from '../../PageLoader';
 
 type NewPlan = Omit<Plano, 'login'>;
+
+enum PlanosConta {
+  R = 'Receitas',
+  D = 'Despesas',
+  TC = 'Transferência entre contas',
+  TU = 'Transferência entre usuários'
+}
 
 const Plans: React.FC = () => {
   const store = useSelector( (state: ApplicationStore) => state.user );
@@ -86,45 +93,43 @@ const Plans: React.FC = () => {
       });
     }
   }
-  
+
+  const typePlans = (typePlan: string) => {
+    if (typePlan === 'R') return PlanosConta.R;
+    else if (typePlan === 'D') return PlanosConta.D;
+    else if (typePlan === 'TC') return PlanosConta.TC;
+    else return PlanosConta.TU;
+  }
 
   return (
     <>
     {isLoading ? 
       <PageLoader /> :
-      <Container>
-        <AddPlanModal
-          isOpen={isAddPlanModalOpen}
-          onRequestClose={handleCloseAddPlanModal}
-          onAddPlan={handleAddPlan}
-        />
-        
+      <>
         <CardsContainer>
           <>
           {plans?.map( (plan, index) => 
             <PlanCard key={ index }>
-              <p className="title-card">{plan.descricao}</p>
-              <p className="login">{plan.login}</p>
-              <p className="type-movement">
-                Movimentação tipo: <span>{plan.tipoMovimento}</span>
-              </p>
+              <h2>{plan.descricao}</h2>
+              <em>{plan.login}</em>
+              <h3>
+                {typePlans(plan.tipoMovimento)}
+              </h3>
             </PlanCard>
           )}
+          <PlanCard onClick={handleOpenAddPlanModal} >
+            <MdAdd className="icon" size={ 50 } />
+          </PlanCard>
           </>
-
-          {plans && (
-            <AddPlanCard
-              onClick={handleOpenAddPlanModal}
-            >
-              <MdAdd className="icon" size={ 50 } />
-            </AddPlanCard>
-          )}
-
         </CardsContainer>
-      </Container>
+      </>
     }
+      <AddPlanModal
+        isOpen={isAddPlanModalOpen}
+        onRequestClose={handleCloseAddPlanModal}
+        onAddPlan={handleAddPlan}
+      />
     </> 
-    
   );
 }
 

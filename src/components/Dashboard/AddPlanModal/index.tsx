@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import { MdClose } from 'react-icons/md';
 import { Container, TextareaContainer } from '../../../styles/componentes/AddPlanModal';
 import { ChangeEvent, FormEvent, useState } from 'react';
-import { ButtonModal } from '../../ButtonModal';
+import { ButtonWithoutIcon } from '../../ButtonWithoutIcon';
 
 import { Plano } from '../../../types/dash-board'
 
@@ -23,10 +23,12 @@ export const AddPlanModal: React.FC<AddPlanModalProps> = ({ isOpen, onRequestClo
 
 
   const handleSubmit = async (event: FormEvent) => {
-    setIsLoading(true);
     event.preventDefault();
     
-    if ( type.length === 0 || description.length === 0 ) return toast.error('Preencha todos os campos!');
+    if ( type.length === 0 || description.length === 0 ) {
+      return toast.error('Preencha todos os campos!');
+    }
+    setIsLoading(true);
     
     const data = {
       descricao: description,
@@ -84,7 +86,7 @@ export const AddPlanModal: React.FC<AddPlanModalProps> = ({ isOpen, onRequestClo
           </label>
         </TextareaContainer>
 
-        <ButtonModal 
+        <ButtonWithoutIcon 
           type="submit" 
           text="Adicionar" 
           loading={isLoading}

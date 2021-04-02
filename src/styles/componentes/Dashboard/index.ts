@@ -5,7 +5,7 @@ export const StyleNavbar = styled(Navbar)`
   @media (max-width: 920px) {
     display: none;
   }
-  height: 6vh;
+  height: 65px;
   background: var(--primary-bg-color) !important;
   margin-bottom: 0px;
 
@@ -15,7 +15,7 @@ export const StyleNavbar = styled(Navbar)`
 
   a {
     color: #fff !important;
-
+    margin: 0 0.5rem;
     transition: all 0.2s;
 
     &.active {
@@ -35,20 +35,25 @@ export const StyleNavbar = styled(Navbar)`
 `;
 
 export const BottomNavigationBox = styled.div`
+  /* height: 10vh; */
+  position: fixed;
+  bottom: 0;
+
+  width: 100%;
+  display: flex;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0.5rem 0;
+  background: var(--primary-bg-color);
+  box-sizing: border-box;
+  z-index: 100;
+
   @media (min-width: 920px) {
     display: none;
   }
-  width: 100vw;
-  height: 10vh;
-  position: fixed;
-  bottom: 0px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: var(--primary-bg-color);
-  padding: 5px 0;
-  z-index: 100;
-  /* border-top: 1vh solid #573b61; */
 `;
 
 export const TabsContainer = styled.div`
@@ -59,12 +64,15 @@ export const TabsContainer = styled.div`
 
 export const Tab = styled.div`
   width: 50%;
-  height: 100%;
+  /* height: 100%; */
+
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
   color: #fff;
+
+  cursor: pointer;
 `;
 
 export const TabName = styled.span`

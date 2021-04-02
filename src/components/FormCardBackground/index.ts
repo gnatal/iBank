@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const FormCard = styled.div`
   max-width: 750px;
@@ -18,4 +18,4 @@ export const FormCard = styled.div`
       width: 100%;
     }
   }
-`
+`;
