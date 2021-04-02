@@ -1,5 +1,9 @@
 <h1> ## Desafio REACT | GAMA | ACCENTURE | iBANK</h1>
 
+
+
+![screen-ibank](https://github.com/gnatal/iBank/blob/docs/src/assets/screen-ibank.jpg?raw=true)
+
 <h2>## Participantes do projeto ##</h2>
 <ul>
     <li>Guilherme Natal: <a href="https://github.com/gnatal/">https://github.com/gnatal/</a></li>
@@ -11,8 +15,6 @@
 <h3>Instrutor</h3>
     <li> Douglas Moraes:<a href="https://github.com/mrdouglasmorais">https://github.com/mrdouglasmorais</a></li>
 
-
-![screen-ibank](https://github.com/gnatal/iBank/blob/docs/src/assets/screen-ibank.jpg?raw=true)
 
 <h2>Descrição do projeto </h2>
 <p>
