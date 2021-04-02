@@ -12,17 +12,21 @@ import { maskCPF, removeMaskCPF } from '../../utils/mask';
 import Header from '../../components/Header';
 import Input from '../../components/Input';
 import Loader from '../../components/Loader';
+import LogoWhite from '../../components/LogoWhite';
 
 import { toast } from 'react-toastify';
 import { AnyObject } from '../../types/utils';
 import { UserResponse } from '../../types/user';
 import updateReduxState from '../../services/updateReduxState';
 
+import SectionAccount from './SectionAccount';
 import SectionCard from './SectionCard';
 import SectionCosts from './SectionCosts';
 import SectionInvite from './SectionInvite';
 import SectionBenefits from './SectionBenefits';
-import { Container, Section, SectionHome } from '../../styles/pages/Lading';
+import Footer from './Footer';
+
+import { HeaderTop, Container, Section, SectionHome, BackgroundLanding1 } from '../../styles/pages/Lading';
 
 const Landing: React.FC = () => {
 
@@ -35,7 +39,6 @@ const Landing: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const history = useHistory();
   const formRef = useRef<FormHandles>(null);
-
   const [isFilled, setIsFilled] = useState(false);
 
   // Atualiza a mascara do CPF
@@ -148,36 +151,51 @@ const Landing: React.FC = () => {
 
   return (
     <>
-      <Header />
+      <HeaderTop>
+        <LogoWhite />
+      </HeaderTop>
       <Section>
-        <Container>
-          <SectionHome>
-            <div>
+        <BackgroundLanding1
+          transition={{ delay: 0.2, duration: 1 }}
+          variants={{
+            show: { opacity: 1, y: '0' },
+            hidden: { opacity: 0, y: '80%' },
+          }}
+          initial="hidden"
+          animate="show"
+          text-align="center">
+          <Container>
+            <SectionHome>
               <div>
-                <p>Gama Bank é um projeto de nossos alunos.
-                <span> Já tem conta?</span></p>
+                <div>
+                  <p className="section-home-content">
+                    <span>iBank é um projeto dos participantes da Accenture 2.0.</span>
+                    <span className="section-home-content-account" > Já tem conta?</span>
+                  </p>
+                </div>
+                <button className="section-home-button-main" onClick={handleRedirectToLogin}>Acessar <FaArrowRight /></button>
               </div>
-              <button onClick={handleRedirectToLogin}>Acessar <FaArrowRight /></button>
-            </div>
-            <div>
-              <Form ref={formRef} onSubmit={handleSubmit} className="section-home-form-register">
-                <h1> Peça sua conta e cartão de crédito do Gama Bank</h1>
-                <Input name="cpf" maxLength={14} value={cpfMask} onChange={handleSetCpfMask} placeholder="Digite seu CPF" />
-                <Input name="username" value={username} onChange={e => setUsername(e.target.value)} placeholder="Escolha um nome de usuário" />
-                <Input name="name" value={name} onChange={e => setName(e.target.value)} placeholder="Nome completo" />
-                <Input name="password" value={password} type="password" onChange={e => setPassword(e.target.value)} placeholder="Digite sua senha" />
-                <Input name="confirmPassword" value={confirmPassword} type="password" onChange={e => setConfirmPassword(e.target.value)} placeholder="Confirme sua senha" />
-                {loading ? <Loader /> : <button type="submit" disabled={!isFilled}>Continuar<FaArrowRight className="ArrowRight" /></button>}
-              </Form>
-            </div>
-          </SectionHome>
-        </Container>
+              <div>
+                <Form ref={formRef} onSubmit={handleSubmit} className="section-home-form-register">
+                  <h1> Peça sua conta e cartão de crédito do Gama Bank</h1>
+                  <Input name="cpf" maxLength={14} value={cpfMask} onChange={handleSetCpfMask} placeholder="Digite seu CPF" />
+                  <Input name="username" value={username} onChange={e => setUsername(e.target.value)} placeholder="Escolha um nome de usuário" />
+                  <Input name="name" value={name} onChange={e => setName(e.target.value)} placeholder="Nome completo" />
+                  <Input name="password" value={password} type="password" onChange={e => setPassword(e.target.value)} placeholder="Digite sua senha" />
+                  <Input name="confirmPassword" value={confirmPassword} type="password" onChange={e => setConfirmPassword(e.target.value)} placeholder="Confirme sua senha" />
+                  {loading ? <Loader /> : <button type="submit" disabled={!isFilled} className="section-home-button-form">Continuar<FaArrowRight className="ArrowRight" /></button>}
+                </Form>
+              </div>
+            </SectionHome>
+          </Container>
+        </BackgroundLanding1>
       </Section>
-
-      <SectionCard background={'#ccc'} />
+      <SectionAccount background={'var(--primary-purple)'} />
+      <SectionCard />
       <SectionCosts background={'#5c6bc0'} />
-      <SectionBenefits background={'#50c87880'} />
+      <SectionBenefits background={'#50c878bb'} />
       <SectionInvite />
+      <Footer background={'#333'} heightSize={'25vh'} />
     </>
   );
 }
