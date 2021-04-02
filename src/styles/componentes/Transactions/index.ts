@@ -1,38 +1,53 @@
 import styled from 'styled-components';
 
-export const TransactionsContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  height: 95%;
-  width: 100%;
-  max-width: 800px;
-
-  margin: 0 auto;
-
-  @media screen and (max-width: 900px) {
-    width: 90%;
-    height: 100%;
-  }
-`;
-
 export const MonthConatiner = styled.div`
   display: flex;
   /* color: white; */
   align-items: center;
-  justify-content: flex-end;
-  margin: 40px 0 20px 0;
+  justify-content: space-between;
 
-  input {
-    background: transparent;
-    border-radius: 2px;
-    border: 1px solid var(--secondary-bg-color);
-    /* color: white; */
-    height: 24px;
-    padding: 2px;
-    width: 40px;
-    margin-left: 10px;
-    font-size: 14px;
+  width: 100%;
+
+  margin: 20px;
+
+  h2 {
+    font-size: 1.2rem;
+    flex: 1;
+  }
+
+  div {
+    display: flex;
+    align-items: center;
+
+    input {
+      background: #fff;
+      border-radius: 2px;
+      border: 1px solid var(--primary-bg-color);
+      /* color: white; */
+      height: 24px;
+      padding: 2px;
+      width: 40px;
+      margin-left: 10px;
+      font-size: 14px;
+    }
+  }
+
+  @media (max-width: 720px) {
+    flex-direction: column;
+
+    div {
+      margin-top: 1rem;
+    }
+  }
+
+  @media (max-width: 450px) {
+    div {
+      margin-top: 1rem;
+      flex-direction: column;
+
+      input {
+        margin-top: 0.5rem;
+      }
+    }
   }
 `;

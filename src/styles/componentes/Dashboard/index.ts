@@ -5,7 +5,7 @@ export const StyleNavbar = styled(Navbar)`
   @media (max-width: 920px) {
     display: none;
   }
-  /* height: 8vh; */
+  height: 65px;
   background: var(--primary-bg-color) !important;
   margin-bottom: 0px;
 

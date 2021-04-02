@@ -24,7 +24,7 @@ export const BalanceCard: React.FC<BalanceCardProps> = ({
       </div>
 
       <div className="flex-column">
-        <h2>{type === 'banco' ? 'Saldo disponível' : 'Fatura atual'}</h2>
+        <h2>{type === 'banco' ? 'Saldo atual disponível' : 'Fatura atual'}</h2>
         <HideContainer 
           hide={hide}
           value={firstValue}
@@ -40,7 +40,7 @@ export const BalanceCard: React.FC<BalanceCardProps> = ({
       </div>
       
       <div className="flex-row">
-        <h2>{type === 'banco' ? 'Transações' : 'Limite disponível'}</h2>
+        <h2>{type === 'banco' ? 'Transações do mês' : 'Limite disponível'}</h2>
         <HideContainer 
           hide={hide}
           value={secondValue}

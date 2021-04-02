@@ -6,7 +6,7 @@ import { ApplicationStore } from '../../../store';
 import { set_transaction_data } from '../../../store/dashboard/actions';
 
 import Balance from '../Balance';
-import FilterForm from './FilterForm';
+import FilterForm from '../FilterForm';
 import Extract from '../Extract';
 
 import { Contas } from '../../../types/dash-board';

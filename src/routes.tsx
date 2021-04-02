@@ -1,4 +1,4 @@
-import React from 'react';
+import { toast } from 'react-toastify';
 import { BrowserRouter, Switch, Route, RouteProps, Redirect } from 'react-router-dom';
 import Dashboard from './Pages/Dashboard';
 
@@ -13,7 +13,10 @@ const PrivateRoute: React.FC<RouteProps> = (props) => {
   const isAuth = getIsAuth();
 
   if (isAuth) return <Route {...props} />
-  else return <Redirect to="/" />
+  else {
+    toast.error('sessão expirada');
+    return <Redirect to="/" />
+  }
 };
 
 const UnauthRoute: React.FC<RouteProps> = (props) => {

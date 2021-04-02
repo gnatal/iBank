@@ -91,7 +91,7 @@ const Deposit: React.FC = () => {
       if (status !== 200) throw new Error('Something went wrong with request');
 
       dispatch(set_transaction_data(undefined));
-      dispatch(change_screen('Transações'));
+      dispatch(change_screen('transactions'));
 
       toast.success(invoicePayment ? 'Pagamento realizado' : 'Depósito realizado');
       clearForm();

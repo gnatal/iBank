@@ -73,26 +73,26 @@ const Dashboard: React.FC = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
             <Nav.Link
-              className={currentScreen === 'Depósitos' ? 'active' : ''} 
-              onClick={() => changeComponent('Depósitos')} 
+              className={currentScreen === 'deposits' ? 'active' : ''} 
+              onClick={() => changeComponent('deposits')} 
             >
               Depósitos
             </Nav.Link>
             <Nav.Link
-              className={currentScreen === 'Pagamentos' ? 'active' : ''} 
-              onClick={() => changeComponent('Pagamentos')} 
+              className={currentScreen === 'payments' ? 'active' : ''} 
+              onClick={() => changeComponent('payments')} 
             > 
               Pagamentos
             </Nav.Link>
             <Nav.Link 
-              className={currentScreen === 'Planos' ? 'active' : ''} 
-              onClick={() => changeComponent('Planos')}  
+              className={currentScreen === 'plans' ? 'active' : ''} 
+              onClick={() => changeComponent('plans')}  
             > 
               Planos
             </Nav.Link>
             <Nav.Link
-              className={currentScreen === 'Transações' ? 'active' : ''} 
-              onClick={() => changeComponent('Transações')} 
+              className={currentScreen === 'transactions' ? 'active' : ''} 
+              onClick={() => changeComponent('transactions')} 
             > 
               Transações
             </Nav.Link>
@@ -123,10 +123,10 @@ const Dashboard: React.FC = () => {
 
 
       <main>
-        {currentScreen === 'Depósitos' && <Deposit />}
-        {currentScreen === 'Pagamentos' && <Payments func={changeComponent}></Payments>}
-        {currentScreen === 'Planos' && <Plans />}
-        {currentScreen === 'Transações' && <Transactions></Transactions>}
+        {currentScreen === 'deposits' && <Deposit />}
+        {currentScreen === 'payments' && <Payments func={changeComponent}></Payments>}
+        {currentScreen === 'plans' && <Plans />}
+        {currentScreen === 'transactions' && <Transactions></Transactions>}
       </main>
 
       <ExitModal

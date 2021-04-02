@@ -114,7 +114,7 @@ const Payments: React.FC<PaymentsProps> = (props) => {
       clearForm();
       
       setLoading(false);
-      dispatch(change_screen('Transações'));
+      dispatch(change_screen('transactions'));
     } catch (err) {
       setLoading(false);
       const errors = getValidationErrors(err);

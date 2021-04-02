@@ -1,5 +1,4 @@
 import jwt from 'jsonwebtoken';
-// import { toast } from 'react-toastify';
 import { TokenPayload } from '../types/user';
 
 export const checkIsAuth = () => {
@@ -16,7 +15,6 @@ export const checkIsAuth = () => {
     localStorage.removeItem('@token_user');
     localStorage.removeItem('@user_name');
 
-    // toast.error('Sessão expirada');
     window.location.reload();
     return false;
   }

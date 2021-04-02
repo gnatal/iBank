@@ -110,9 +110,9 @@ const Plans: React.FC = () => {
           <>
           {plans?.map( (plan, index) => 
             <PlanCard key={ index }>
-              <h2 className="title-card">{plan.descricao}</h2>
-              <em className="login">{plan.login}</em>
-              <h3 className="type-movement">
+              <h2>{plan.descricao}</h2>
+              <em>{plan.login}</em>
+              <h3>
                 {typePlans(plan.tipoMovimento)}
               </h3>
             </PlanCard>
