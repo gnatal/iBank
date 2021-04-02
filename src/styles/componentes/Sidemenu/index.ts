@@ -1,21 +1,21 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 interface IProps {
-  isOpen: boolean
+  isOpen: boolean;
 }
 
 export const SidemenuBox = styled.div`
   width: 100vw;
+  /* height: 94vh; */
   display: ${(props: IProps) => (props.isOpen ? 'block' : 'none')};
-  height: 90vh;
   background: var(--primary-bg-color);
   transition: all 0.3s;
   position: fixed;
-  overflow-y: scroll;
+  overflow-y: hidden;
   top: 0;
   bottom: 0;
   z-index: 1000;
-`
+`;
 
 export const SidemenuButton = styled.button`
   margin: 5px 0px;
@@ -27,4 +27,4 @@ export const SidemenuButton = styled.button`
   text-align: center;
   background: transparent;
   color: #fff;
-`
+`;

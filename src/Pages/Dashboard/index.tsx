@@ -108,17 +108,14 @@ const Dashboard: React.FC = () => {
 
       <BottomNavigationBox>
         <Sidemenu isOpen={isSideMenuOpen} close={close} changeComponent={changeComponent} />
-        {/* <TabsContainer> */}
           <Tab>
             <IconImage onClick={() => { setIsSideMenuOpen(!isSideMenuOpen) }} src="/menu-mobile.png" alt="Menu" />
-            <TabName >Operações</TabName>
+            <TabName>Operações</TabName>
           </Tab>
           <Tab onClick={handleOpenExitModal}>
             <AiOutlineLogout size={26} />
-            {/* <FaArrowRight size={28} onClick={handleOpenExitModal} /> */}
             <TabName>Sair</TabName>
           </Tab>
-        {/* </TabsContainer> */}
       </BottomNavigationBox>
 
 
