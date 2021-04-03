@@ -68,7 +68,7 @@ const Balance: React.FC<AccountProps> = (props) => {
   return (
     <Container>
       <header>
-        <h1>Olá <strong>{user.split(' ')[0]}</strong>, seja bem-vindo(a)!</h1>
+        <h1>Olá <strong className="text-capitalize">{user.split(' ')[0]}</strong>, seja bem-vindo(a)!</h1>
         <button>
           {!hide ?
             <FiEye size={35} onClick={handleHideBalance} /> :

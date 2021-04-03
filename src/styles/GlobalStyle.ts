@@ -120,6 +120,7 @@ export default createGlobalStyle`
     position: relative;
     border-radius: 0.25rem;
   }
+
   .react-modal-close {
     position: absolute;
     right: 1.5rem;
@@ -133,4 +134,13 @@ export default createGlobalStyle`
       filter: brightness(0.7);
     }
   }
+
+  .text-capitalize{
+    text-transform: capitalize;
+  }
+
+  .text-uppercase{
+    text-transform: uppercase;
+  }
+
 `;

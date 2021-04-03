@@ -12,6 +12,7 @@ import { FaArrowRight } from 'react-icons/fa';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 import Loader from '../../components/Loader';
+import Header from '../../components/Header';
 
 import { Container } from '../../styles/pages/RecoverPassword';
 
@@ -109,7 +110,7 @@ const RecoverPassword: React.FC = () => {
         toast.error('Ocorreu algum erro!');
         history.push('/error-recover');
       }
-    } 
+    }
     // finally {
     //   setLoading(false);
     // }
@@ -138,23 +139,20 @@ const RecoverPassword: React.FC = () => {
             />}
           </Form>
         ) : (
-            <Form ref={formUsernameRef} onSubmit={handleSubmitUsername} >
-              <header>
-                <h2>Esqueci minha senha</h2>
-                <p>Confirme seu nome de usuário e escolha uma nova senha</p>
-              </header>
-
-              <div>
-                <Input name="username" value={username} onChange={e => setUsername(e.target.value)} placeholder="Confirme seu nome de usuário" autoFocus />
-              </div>
-
-              {loading ? <Loader /> : <Button
-                text="Prosseguir"
-                Icon={FaArrowRight}
-                type="submit"
-              />}
-            </Form>
-          )}
+          <Form ref={formUsernameRef} onSubmit={handleSubmitUsername} >
+            <Header />
+            <div>
+              <h2>Esqueci minha senha</h2>
+              <p>Confirme seu nome de usuário e escolha uma nova senha</p>
+            </div>
+            <Input name="username" value={username} onChange={e => setUsername(e.target.value)} placeholder="Confirme seu nome de usuário" autoFocus />
+            {loading ? <Loader /> : <Button
+              text="Prosseguir"
+              Icon={FaArrowRight}
+              type="submit"
+            />}
+          </Form>
+        )}
       </Container>
     </>
   );
