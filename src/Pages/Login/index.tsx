@@ -98,11 +98,22 @@ const Login: React.FC = () => {
           <Form className="form-login-display" ref={formRef} onSubmit={handleSubmit}>
             <label>
               Usuário:
-            <Input name="username" value={username} onChange={e => setUsername(e.target.value)} placeholder="Digite seu usuário" autoFocus />
+            <Input 
+              name="username" 
+              value={username} 
+              onChange={e => setUsername(e.target.value)} 
+              placeholder="Digite seu usuário" autoFocus 
+            />
             </label>
             <label>
               Senha:
-            <Input name="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Digite sua senha" type="password" />
+            <Input 
+              name="password" 
+              value={password} 
+              onChange={e => setPassword(e.target.value)} 
+              placeholder="Digite sua senha" 
+              type="password" 
+            />
             </label>
 
             <Button

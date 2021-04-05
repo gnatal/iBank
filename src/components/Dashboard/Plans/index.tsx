@@ -108,8 +108,8 @@ const Plans: React.FC = () => {
       <>
         <CardsContainer>
           <>
-          {plans?.map( (plan, index) => 
-            <PlanCard key={ index }>
+          {plans?.map(plan=> 
+            <PlanCard key={ plan.id }>
               <h2>{plan.descricao}</h2>
               <em>{plan.login}</em>
               <h3>
