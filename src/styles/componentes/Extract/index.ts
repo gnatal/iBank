@@ -12,7 +12,6 @@ export const TransactionsContainer = styled.div`
   flex-direction: column;
 
   width: 100%;
-  max-height: 45vh;
   max-height: 20rem;
 
   overflow: auto;
@@ -38,15 +37,18 @@ export const TransactionsContainer = styled.div`
   }
 
   &::-webkit-scrollbar {
-    width: 4px;
+    width: 8px;
+    border: 1px solid lightgray;
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
   }
   &::-webkit-scrollbar-track {
-    background: #eee;
-    border-radius: 0.75rem;
   }
   &::-webkit-scrollbar-thumb {
+    width: 100%;
     background: var(--primary-bg-color);
-    border-radius: 0.75rem;
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
   }
 `;
 
@@ -55,6 +57,8 @@ interface TransactionsCardProps {
 }
 export const TransactionsCard = styled.div<TransactionsCardProps>`
   display: flex;
+  align-items: center;
+  justify-content: space-between;
 
   padding-bottom: 0.5rem;
   border-bottom: 1px solid var(--light-gray);
@@ -92,61 +96,17 @@ export const TransactionsCard = styled.div<TransactionsCardProps>`
   }
 `;
 
+export const MainContent = styled.div`
+  display: flex;
+`;
+
+export const DateContainer = styled.div`
+  font-size: 1rem;
+  color: var(--light-gray);
+`;
+
 export const IconContainer = styled.div`
   font-size: 2rem;
   color: var(--light-gray);
   margin-right: 1rem;
-`;
-
-export const TitleBox = styled.div`
-  display: flex;
-  margin: 10px;
-
-  .title {
-    margin-left: 10px;
-    line-height: 38px;
-  }
-`;
-
-export const TransactionBox = styled.div`
-  box-shadow: 0px 0px 20px rgba(10, 10, 10, 0.2);
-  border-radius: 10px;
-  padding: 10px;
-  margin: 10px;
-`;
-
-export const TransactionText = styled.th`
-  font-size: 0.8rem;
-  font-weight: bold;
-`;
-
-export const CardStyles = styled.div`
-  .transactionsbox {
-    height: 50vh;
-    overflow: scroll;
-    @media (min-width: 600px) {
-      overflow-y: scroll;
-      overflow-x: hidden;
-    }
-  }
-
-  .transactionsbox::-webkit-scrollbar {
-    @media (min-width: 600px) {
-      width: 8px;
-      border-left: 1px solid lightblue;
-    }
-  }
-
-  .bottom-spaces {
-    @media (min-width: 600px) {
-      display: none;
-    }
-    height: 200px;
-    width: 100vw;
-  }
-
-  .row-active {
-    margin: 2px;
-    font-weight: bold;
-  }
 `;

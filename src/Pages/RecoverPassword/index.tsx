@@ -11,7 +11,6 @@ import { FaArrowRight } from 'react-icons/fa';
 
 import Button from '../../components/Button';
 import Input from '../../components/Input';
-import Loader from '../../components/Loader';
 import Header from '../../components/Header';
 
 import { Container } from '../../styles/pages/RecoverPassword';
@@ -46,21 +45,22 @@ const RecoverPassword: React.FC = () => {
       });
 
       if (status === 200 || status === 201) {
+        setLoading(false);
         setTemporaryPassword(data);
         setIsValidUsername(true);
       } else {
-        history.push('/error-recover');
+        setLoading(false);
+        history.push('/error');
       }
     } catch (err) {
+      setLoading(false);
       const errors = getValidationErrors(err);
       formUsernameRef.current?.setErrors(errors);
       console.log(err);
       toast.error('Preencha com um usuário válido!');
       if (Object.keys(err).includes('isAxiosError')) {
-        history.push('/error-recover');
+        history.push('/error');
       }
-    } finally {
-      setLoading(false);
     }
   }, [username, history]);
 
@@ -80,6 +80,7 @@ const RecoverPassword: React.FC = () => {
       });
 
       if (password !== confirmPassword) {
+        setLoading(false);
         toast.error('As senhas devem ser iguais');
         return;
       }
@@ -94,7 +95,7 @@ const RecoverPassword: React.FC = () => {
         toast.success('Senha alterada com sucesso');
         history.push('/login');
       } else {
-        history.push('/error-recover');
+        history.push('/error');
       }
     } catch (err) {
       setLoading(false);
@@ -108,12 +109,12 @@ const RecoverPassword: React.FC = () => {
       }
       if (Object.keys(err).includes('isAxiosError')) {
         toast.error('Ocorreu algum erro!');
-        history.push('/error-recover');
+        history.push('/error');
       }
     }
-    // finally {
-    //   setLoading(false);
-    // }
+    finally {
+      setLoading(false);
+    }
 
   }, [username, password, confirmPassword, temporaryPassword, history]);
 
@@ -122,21 +123,33 @@ const RecoverPassword: React.FC = () => {
       <Container>
         {isValidUsername ? (
           <Form ref={formPasswordRef} onSubmit={handleSubmitNewPassword}>
-            <header>
+            <Header />
+            <div>
               <h2>Esqueci minha senha</h2>
               <p>Confirme seu nome de usuário e escolha uma nova senha</p>
-            </header>
-
-            <div className="has-animation">
-              <Input name="password" type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Digite sua nova senha" autoFocus />
-              <Input name="confirmPassword" type="password" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} placeholder="Confirme sua nova senha" />
             </div>
 
-            {loading ? <Loader /> : <Button
+            <Input 
+              name="password" 
+              type="password" 
+              value={password} 
+              onChange={e => setPassword(e.target.value)} 
+              placeholder="Digite sua nova senha" autoFocus 
+            />
+            <Input 
+              name="confirmPassword" 
+              type="password" 
+              value={confirmPassword} 
+              onChange={e => setConfirmPassword(e.target.value)} 
+              placeholder="Confirme sua nova senha" 
+            />
+
+            <Button
               text="Enviar"
               Icon={FaArrowRight}
               type="submit"
-            />}
+              loading={loading}
+            />
           </Form>
         ) : (
           <Form ref={formUsernameRef} onSubmit={handleSubmitUsername} >
@@ -145,12 +158,20 @@ const RecoverPassword: React.FC = () => {
               <h2>Esqueci minha senha</h2>
               <p>Confirme seu nome de usuário e escolha uma nova senha</p>
             </div>
-            <Input name="username" value={username} onChange={e => setUsername(e.target.value)} placeholder="Confirme seu nome de usuário" autoFocus />
-            {loading ? <Loader /> : <Button
+
+            <Input 
+              name="username" 
+              value={username} 
+              onChange={e => setUsername(e.target.value)} 
+              placeholder="Confirme seu nome de usuário" autoFocus
+            />
+           
+            <Button
               text="Prosseguir"
               Icon={FaArrowRight}
               type="submit"
-            />}
+              loading={loading}
+            />
           </Form>
         )}
       </Container>

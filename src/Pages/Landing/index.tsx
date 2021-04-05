@@ -9,9 +9,7 @@ import getIsAuth from '../../services/getIsAuth';
 import getValidationErrors from '../../utils/getValidationErrors';
 import { maskCPF, removeMaskCPF } from '../../utils/mask';
 
-import Header from '../../components/Header';
 import Input from '../../components/Input';
-import Loader from '../../components/Loader';
 import LogoWhite from '../../components/LogoWhite';
 
 import { toast } from 'react-toastify';
@@ -27,6 +25,7 @@ import SectionBenefits from './SectionBenefits';
 import Footer from './Footer';
 
 import { HeaderTop, Container, Section, SectionHome, BackgroundLanding1 } from '../../styles/pages/Lading';
+import Button from '../../components/Button';
 
 const Landing: React.FC = () => {
 
@@ -178,12 +177,44 @@ const Landing: React.FC = () => {
               <div>
                 <Form ref={formRef} onSubmit={handleSubmit} className="section-home-form-register">
                   <h1> Peça sua conta e cartão de crédito do Gama Bank</h1>
-                  <Input name="cpf" maxLength={14} value={cpfMask} onChange={handleSetCpfMask} placeholder="Digite seu CPF" />
-                  <Input name="username" value={username} onChange={e => setUsername(e.target.value)} placeholder="Escolha um nome de usuário" />
-                  <Input name="name" value={name} onChange={e => setName(e.target.value)} placeholder="Nome completo" />
-                  <Input name="password" value={password} type="password" onChange={e => setPassword(e.target.value)} placeholder="Digite sua senha" />
-                  <Input name="confirmPassword" value={confirmPassword} type="password" onChange={e => setConfirmPassword(e.target.value)} placeholder="Confirme sua senha" />
-                  {loading ? <Loader /> : <button type="submit" disabled={!isFilled} className="section-home-button-form">Continuar<FaArrowRight className="ArrowRight" /></button>}
+                  <Input 
+                    name="cpf" 
+                    maxLength={14} 
+                    value={cpfMask} 
+                    onChange={handleSetCpfMask} 
+                    placeholder="Digite seu CPF"
+                    />
+                  <Input 
+                    name="username" 
+                    value={username} 
+                    onChange={e => setUsername(e.target.value)} 
+                    placeholder="Escolha um nome de usuário"
+                    />
+                  <Input 
+                    name="name" value={name} 
+                    onChange={e => setName(e.target.value)} 
+                    placeholder="Nome completo"
+                    />
+                  <Input 
+                    name="password" value={password} type="password" 
+                    onChange={e => setPassword(e.target.value)} 
+                    placeholder="Digite sua senha"
+                    />
+                  <Input 
+                    name="confirmPassword" value={confirmPassword} type="password" 
+                    onChange={e => setConfirmPassword(e.target.value)} 
+                    placeholder="Confirme sua senha"
+                    />
+
+                  <Button
+                    text="Continuar"
+                    Icon={FaArrowRight}
+                    type="submit"
+                    loading={loading}
+                    disabled={!isFilled} 
+                    style={{ backgroundColor: '#4a148c', height: '3rem'}}
+                  />
+                  
                 </Form>
               </div>
             </SectionHome>

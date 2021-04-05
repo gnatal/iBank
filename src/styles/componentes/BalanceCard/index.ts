@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-
   flex: 0 1 20rem;
   height: 11rem;
 
@@ -75,10 +74,9 @@ export const HideContainer = styled.div<HideContainerProps>`
     right: 0;
     background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
 
-    transition: opacity 1s, z-index 1s;
+    transition: opacity 1s;
 
     opacity: ${({ hide }) => (hide ? 1 : 0)};
-    z-index: ${({ hide }) => (hide ? 1 : -1)};
   }
 
   h3 {
@@ -87,7 +85,7 @@ export const HideContainer = styled.div<HideContainerProps>`
 
     opacity: 1;
 
-    transition: opacity 1s, z-index 1s;
+    transition: opacity 1s;
 
     opacity: ${({ hide }) => (!hide ? 1 : 0)};
 

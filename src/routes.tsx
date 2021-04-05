@@ -5,9 +5,8 @@ import Dashboard from './Pages/Dashboard';
 import Landing from './Pages/Landing';
 import Login from './Pages/Login';
 import RecoverPassword from './Pages/RecoverPassword';
-import Error from './Pages/Error';
 import getIsAuth from './services/getIsAuth';
-import ErrorRecover from './Pages/ErrorRecover';
+import Error from './Pages/Error';
 
 const PrivateRoute: React.FC<RouteProps> = (props) => {
   const isAuth = getIsAuth();
@@ -33,7 +32,6 @@ const Routes: React.FC = () => {
         <Route path="/" exact component={Landing} />
         <Route path="/recover" exact component={RecoverPassword} />
         <Route path="/error" exact component={Error} />
-        <Route path="/error-recover" exact component={ErrorRecover} />
         <PrivateRoute path="/dashboard" exact component={Dashboard}  />
         <UnauthRoute path="/login" component={Login} />
       </Switch>

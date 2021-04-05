@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const MonthConatiner = styled.div`
   display: flex;
-  /* color: white; */
   align-items: center;
   justify-content: space-between;
 
@@ -23,7 +22,6 @@ export const MonthConatiner = styled.div`
       background: #fff;
       border-radius: 2px;
       border: 1px solid var(--primary-bg-color);
-      /* color: white; */
       height: 24px;
       padding: 2px;
       width: 40px;

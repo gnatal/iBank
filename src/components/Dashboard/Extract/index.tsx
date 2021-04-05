@@ -1,29 +1,22 @@
 import { useMemo } from 'react';
 
 import currentIcon from '../../../assets/svgs/current-icon.svg';
-import creditCardsIcon from '../../../assets/svgs/credit-cards-icon.svg';
-
-import { FormCard } from '../../FormCardBackground';
-// import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
 
 import { 
-  TitleBox, 
-  TransactionBox, 
-  CardStyles, 
   Container,
   TransactionsContainer,  
   TransactionsCard,
-  IconContainer
+  IconContainer,
+  DateContainer,
+  MainContent
 } from '../../../styles/componentes/Extract';
 
 import { GiPayMoney, GiReceiveMoney } from 'react-icons/gi';
-import { GrTransaction } from 'react-icons/gr';
 import { BiTransferAlt } from 'react-icons/bi';
 
 import { Conta } from '../../../types/dash-board';
 import { formatMoney } from '../../../utils/formatMoney';
+import { formatDate } from '../../../utils/formatDate';
 
 interface ExtractData {
   contaBanco?: Conta,
@@ -79,58 +72,30 @@ const Extract: React.FC<ExtractData> = (props) => {
           <h2>Últimos lançamentos</h2>
         </header>
 
-        {allLaunchs.map(launch => 
-          <TransactionsCard
-            key={launch.id}
-            type={launch.planoConta.tipoMovimento}
-          >
-            <IconContainer>
-              {getIcon(launch.planoConta.tipoMovimento)}
-            </IconContainer>
-            <div className="content">
-              <h3>{typePlans(launch.planoConta.tipoMovimento)}</h3>
-              <em className="login">{launch.descricao}</em>
-              <h2>{formatMoney(launch.valor)}</h2>
-            </div>
-          </TransactionsCard>
-        )}
+        {allLaunchs.length > 0 ? 
+          allLaunchs.map(launch => 
+            <TransactionsCard
+              key={launch.id}
+              type={launch.planoConta.tipoMovimento}
+            >
+              <MainContent>
+                <IconContainer>
+                  {getIcon(launch.planoConta.tipoMovimento)}
+                </IconContainer>
+                <div className="content">
+                  <h3>{typePlans(launch.planoConta.tipoMovimento)}</h3>
+                  <em className="login">{launch.descricao}</em>
+                  <h2>{formatMoney(launch.valor)}</h2>
+                </div>
+              </MainContent>
+              <DateContainer>
+                <h3>{formatDate(launch.data)}</h3>
+              </DateContainer>
+            </TransactionsCard>
+          ) : <h1>Nenhum lancamento</h1>
+        }
       </TransactionsContainer>
     </Container>
-
-      {/* <CardStyles>
-        <FormCard className="transactionsbox">
-          <TitleBox >
-            <img src={currentIcon} alt="current icon" />
-            <p className="title">Últimos lançamentos</p>
-          </TitleBox>
-          {allLaunchs.length === 0 && 'Nenhum lancamento'}
-          
-          <Container >
-            {allLaunchs && allLaunchs.map((launch, index) => {
-              return (
-                <TransactionBox key={index}  >
-                  <Row className={"row-active"}>
-                    <Col style={{ margin: "2px" }}>{typePlans(launch.planoConta.tipoMovimento)}</Col>
-                  </Row>
-                  <Row style={{ margin: "2px", fontStyle: "italic" }}>
-                    <Col style={{ margin: "2px" }}>{launch.descricao}</Col>
-                  </Row>
-                  <Row className={"row-active"}>
-                    <Col style={{ margin: "2px" }}>{launch.valor.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</Col>
-                  </Row>
-                  <Row style={{ margin: "2px" }}>
-                    <Col style={{ margin: "2px" }}>{launch.data}</Col>
-                  </Row>
-                </TransactionBox>
-              )
-            })}
-          </Container>
-
-        </FormCard>
-        <div className={"bottom-spaces"}>
-
-        </div>
-      </CardStyles> */}
     </>
   )
 }

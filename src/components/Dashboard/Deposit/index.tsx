@@ -95,13 +95,13 @@ const Deposit: React.FC = () => {
       });
 
       if (status !== 200) throw new Error('Erro ao realizar ação');
+      clearForm();
+      setLoading(false);
 
       dispatch(set_transaction_data(undefined));
       dispatch(change_screen('transactions'));
 
       toast.success(invoicePayment ? 'Pagamento realizado' : 'Depósito realizado');
-      clearForm();
-      setLoading(false);
     }
     catch (err) {
       setLoading(false);
@@ -109,9 +109,6 @@ const Deposit: React.FC = () => {
       const errors = getValidationErrors(err);
       formRef.current?.setErrors(errors);
     }
-    // finally {
-    //   setLoading(false);
-    // }
   }, [data, descricao, valor, store?.login, store?.token, dispatch, invoicePayment]);
 
   function clearForm() {

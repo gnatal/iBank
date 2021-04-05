@@ -1,27 +1,32 @@
-import React, { useCallback } from 'react';
-import { FiAlertTriangle } from 'react-icons/fi';
+import { useCallback } from 'react';
 import { FaArrowLeft } from 'react-icons/fa';
-import { useHistory } from 'react-router-dom';
-
+import { FaRegSadTear } from 'react-icons/fa';
+import { useHistory } from 'react-router';
 
 import Button from '../../components/Button';
-import Header from '../../components/Header';
+
+import { Container } from '../../styles/pages/Error';
 
 const Error: React.FC = () => {
-    const history = useHistory();
+  const history = useHistory();
 
-    const handleGoBack = useCallback(() => {
-        history.push('/')
-    }, [history]);
+  const handleClick = useCallback(() => {
+    history.goBack();
+  },[history]);
 
-    return (
-        <>
-            <Header />
-            <FiAlertTriangle className="icon" size={102} />
-            <h3>Oops, algo deu errado!</h3>
-            <Button text="Voltar" Icon={FaArrowLeft} onClick={handleGoBack} />
-        </>
-    );
+  return (
+    <Container>
+      <div>
+        <FaRegSadTear className="icon" size={102} />
+        <h3>Oops, algo deu errado! Confime seus dados e tente novamente!</h3>
+        <Button
+          onClick={handleClick}
+          text="Voltar"
+          Icon={FaArrowLeft}
+        />
+      </div>
+    </Container>
+  );
 }
 
 export default Error;

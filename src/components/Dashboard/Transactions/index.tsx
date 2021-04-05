@@ -80,15 +80,6 @@ const Transactions: React.FC = () => {
       <Balance contaBanco={contas?.contaBanco} contaCredito={contas?.contaCredito} />
       <FilterForm referenceDate={referenceDate} updateReference={updateReference} />
       <Extract contaBanco={contas?.contaBanco} contaCredito={contas?.contaCredito} /> 
-    {/* {loaded ? 
-      <>
-        {!loaded && <PageLoader />}
-        <Balance contaBanco={contas?.contaBanco} contaCredito={contas?.contaCredito} />
-        <FilterForm referenceDate={referenceDate} updateReference={updateReference} />
-        <Extract contaBanco={contas?.contaBanco} contaCredito={contas?.contaCredito} /> 
-      </> :
-      <PageLoader />
-    } */}
     </> 
   );
 }

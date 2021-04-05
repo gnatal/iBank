@@ -1,7 +1,6 @@
 import { useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { FaArrowRight } from 'react-icons/fa';
 import { AiOutlineLogout } from 'react-icons/ai';
 
 import { remove_user } from '../../store/user/actions';
@@ -9,47 +8,27 @@ import { ApplicationStore } from '../../store';
 import { change_screen } from '../../store/dashboard/actions';
 import { Screen } from '../../store/dashboard/types';
 
-import CardMenu from '../../components/Dashboard/CardMenu';
-import CardMenuMobile from '../../components/Dashboard/CardMenuMobile';
 import Deposit from '../../components/Dashboard/Deposit';
 import Payments from '../../components/Dashboard/Payments';
 import Plans from '../../components/Dashboard/Plans';
 import Transactions from '../../components/Dashboard/Transactions';
-import Sidemenu from '../../components/Sidemenu'
 import { ExitModal } from '../../components/Dashboard/ExitModal';
 
-import logoImg from '../../assets/ibank-logo-white.png';
-
-import {
-  BottomNavigationBox,
-  TabsContainer,
-  Tab,
-  TabName,
-  IconImage,
-  StyleNavbar
-} from '../../styles/componentes/Dashboard'
-
-import Navbar from 'react-bootstrap/Navbar'
-import Nav from 'react-bootstrap/Nav'
-import NavDropdown from 'react-bootstrap/NavDropdown'
-import { Background } from '../../styles/componentes/Dashboard/Background';
+import LogoWhite from './../../components/LogoWhite/index';
+import { Background, Header, NavSection } from '../../styles/pages/Dashboard';
 
 const Dashboard: React.FC = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const currentScreen = useSelector((store: ApplicationStore) => store.dashboard.current_screen);
 
-  const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(true);
   const [isExitModalOpen, setIsExitModalOpen] = useState(false);
 
   const changeComponent = useCallback((title: Screen) => {
-    setIsExitModalOpen(false);
+    setIsMenuOpen(false);
     dispatch(change_screen(title));
   }, [dispatch]);
-
-  function close() {
-    setIsSideMenuOpen(false);
-  }
 
   const handleLogOut = () => {
     dispatch(remove_user());
@@ -62,65 +41,57 @@ const Dashboard: React.FC = () => {
     setIsExitModalOpen(false);
   }
 
+  const handleMenuOpen = () => {
+    setIsMenuOpen(!isMenuOpen);
+  }
+
   return (
     <Background>
-      <StyleNavbar>
-        <Navbar.Brand>
-          <img src={logoImg} alt="Logo" width={100}/>
-        </Navbar.Brand>
-        {/* <Navbar.Toggle aria-controls="basic-navbar-nav" /> */}
-        {/* <Navbar.Collapse id="basic-navbar-nav"> */}
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="mr-auto">
+      <Header>
+        <LogoWhite />
 
-          <Nav.Link
+        <NavSection isOpen={isMenuOpen} className={isMenuOpen ? 'on' : ''}>
+          <div className="menu-toggle" onClick={handleMenuOpen}>
+            <div className="one"></div>
+            <div className="two"></div>
+            <div className="three"></div>
+          </div>
+
+          <div className="navbar">
+            <button
               className={currentScreen === 'transactions' ? 'active' : ''} 
               onClick={() => changeComponent('transactions')} 
             > 
               Transações
-            </Nav.Link>
+            </button>
 
-            <Nav.Link
+            <button
               className={currentScreen === 'deposits' ? 'active' : ''} 
               onClick={() => changeComponent('deposits')} 
             >
               Depósitos
-            </Nav.Link>
-            <Nav.Link
+            </button>
+            <button
               className={currentScreen === 'payments' ? 'active' : ''} 
               onClick={() => changeComponent('payments')} 
             > 
               Pagamentos
-            </Nav.Link>
-            <Nav.Link 
+            </button>
+            <button 
               className={currentScreen === 'plans' ? 'active' : ''} 
               onClick={() => changeComponent('plans')}  
             > 
               Planos
-            </Nav.Link>
+            </button>
 
-
-            <Nav.Link
-              style={{ position: "absolute", right: "20px" }}
+            <button
               onClick={handleOpenExitModal}
             > 
-              <AiOutlineLogout size={24} />
-            </Nav.Link>
-          </Nav>
-        </Navbar.Collapse>
-      </StyleNavbar>
-
-      <BottomNavigationBox>
-        <Sidemenu isOpen={isSideMenuOpen} close={close} changeComponent={changeComponent} />
-          <Tab>
-            <IconImage onClick={() => { setIsSideMenuOpen(!isSideMenuOpen) }} src="/menu-mobile.png" alt="Menu" />
-            <TabName>Operações</TabName>
-          </Tab>
-          <Tab onClick={handleOpenExitModal}>
-            <AiOutlineLogout size={26} />
-            <TabName>Sair</TabName>
-          </Tab>
-      </BottomNavigationBox>
+              <AiOutlineLogout size={isMenuOpen ? 38 : 30} />
+            </button>
+          </div>
+        </NavSection>
+      </Header>
 
       <main>
         {currentScreen === 'deposits' && <Deposit />}

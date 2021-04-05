@@ -73,11 +73,11 @@ export default createGlobalStyle`
     font-weight: 800;
   }
 
-  /* @media(max-width: 1088px){
+  @media(max-width: 1088px){
 		html {
 			font-size: 93.75%;
 		}
-	} */
+	}
 
 	@media(max-width: 720px){
 		html {
@@ -93,7 +93,8 @@ export default createGlobalStyle`
     --light-gray: #B9B7BD;
     --blue: #0080F6;
     --red: #970C10;
-    -green: #72C64B;
+    --error-red: #D02222;
+    --green: #72C64B;
   }
 
   .react-modal-overlay {
@@ -109,6 +110,7 @@ export default createGlobalStyle`
     align-items: center;
     justify-content: center;
     padding: 0.75rem;
+    z-index: 20;
   }
 
   .react-modal-content {
@@ -119,6 +121,8 @@ export default createGlobalStyle`
 
     position: relative;
     border-radius: 0.25rem;
+
+    
   }
 
   .react-modal-close {

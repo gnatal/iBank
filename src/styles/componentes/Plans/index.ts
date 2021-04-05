@@ -11,23 +11,24 @@ export const CardsContainer = styled.div`
   overflow: auto;
 
   &::-webkit-scrollbar {
-    width: 4px;
+    width: 8px;
+    border: 1px solid lightgray;
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
   }
-
   &::-webkit-scrollbar-track {
-    background: #eee;
-    border-radius: 0.75rem;
   }
-
   &::-webkit-scrollbar-thumb {
+    width: 100%;
     background: var(--primary-bg-color);
-    border-radius: 0.75rem;
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
   }
 
   @media (max-width: 920px) {
     padding: 1.5rem;
   }
-  
+
   @media (max-width: 878px) {
     padding-bottom: 0;
 

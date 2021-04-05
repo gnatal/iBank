@@ -3,7 +3,7 @@ import { useField } from '@unform/core';
 import { FiAlertCircle } from 'react-icons/fi';
 import Tooltip from '../Tooltip';
 
-import InputStandard from '../../styles/componentes/Input';
+import { Container, InputStandard } from '../../styles/componentes/Input';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
@@ -12,22 +12,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 const Input: React.FC<InputProps> = ({ name, ...props }) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const { fieldName, defaultValue, error, registerField } = useField(name);
-  const [isFocused, setIsFocused] = useState(false);
-  const [isFilled, setIsFilled] = useState(false);
-
-  const handleInputFocus = useCallback(() => {
-    setIsFocused(true);
-  }, [])
-
-  const handleInputBlur = useCallback(() => {
-    setIsFocused(false);
-    if (inputRef.current?.value) {
-      setIsFilled(true);
-    } else {
-      setIsFilled(false);
-    }
-  }, []);
-
+  
   useEffect(() => {
     registerField({
       name: fieldName,
@@ -37,10 +22,8 @@ const Input: React.FC<InputProps> = ({ name, ...props }) => {
   }, [fieldName, registerField]);
 
   return (
-    <>
+    <Container>
       <InputStandard
-        onFocus={handleInputFocus}
-        onBlur={handleInputBlur}
         defaultValue={defaultValue}
         ref={inputRef} {...props}
       />
@@ -50,7 +33,7 @@ const Input: React.FC<InputProps> = ({ name, ...props }) => {
           <FiAlertCircle color="#f42121" size={20} />
         </Tooltip>
       )}
-    </>
+    </Container>
   );
 }
 

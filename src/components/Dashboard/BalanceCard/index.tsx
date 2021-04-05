@@ -29,10 +29,10 @@ export const BalanceCard: React.FC<BalanceCardProps> = ({
           hide={hide}
           value={firstValue}
         >
-          <div></div>
+          <div title={hide ? '' : formatMoney(firstValue)}></div>
           <h3
             className={type === 'banco' ? 'saldo' : 'fatura'} 
-            title={formatMoney(firstValue)}
+            title={hide ? '' : formatMoney(firstValue)}
           >
             {formatMoney(firstValue)}
           </h3>
@@ -45,10 +45,10 @@ export const BalanceCard: React.FC<BalanceCardProps> = ({
           hide={hide}
           value={secondValue}
         >
-          <div></div>
+          <div title={hide ? '' : formatMoney(secondValue)}></div>
           <h3 
             className={type === 'banco' ? 'transactions' : 'limit'} 
-            title={formatMoney(secondValue)}
+            title={hide ? '' : formatMoney(secondValue)}
           >
             {formatMoney(secondValue)}
           </h3>

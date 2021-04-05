@@ -8,12 +8,18 @@ export const Container = styled.div`
   height: 100vh;
   padding: 1.5rem;
 
-  background: #f5f5f5;
+  background-image: linear-gradient(
+    to top,
+    #c4c5c7 0%,
+    #dcdddf 52%,
+    #ebebeb 100%
+  );
   box-sizing: border-box;
 
   div {
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: space-between;
 
     height: 420px;
@@ -22,11 +28,11 @@ export const Container = styled.div`
 
     background: white;
     padding: 3rem 2rem;
-    border-radius: 0.25rem;
+    border-radius: 0.5rem;
 
     text-align: center;
 
-    background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+    background: #fff;
 
     box-sizing: border-box;
 
@@ -35,15 +41,6 @@ export const Container = styled.div`
       font-weight: 600;
 
       margin-bottom: 0.5rem;
-    }
-
-    button {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
-      padding-left: 2rem;
-      padding-right: 2rem;
     }
   }
 `;

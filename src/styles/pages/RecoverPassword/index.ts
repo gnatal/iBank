@@ -9,7 +9,12 @@ export const Container = styled.div`
   padding: 1.5rem;
 
   background: #fff;
-  background-image: linear-gradient(to top, #c4c5c7 0%, #dcdddf 52%, #ebebeb 100%);
+  background-image: linear-gradient(
+    to top,
+    #c4c5c7 0%,
+    #dcdddf 52%,
+    #ebebeb 100%
+  );
   box-sizing: border-box;
 
   form {

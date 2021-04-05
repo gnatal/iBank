@@ -1,7 +1,12 @@
 import styled from 'styled-components';
 
-const InputStandard = styled.input`
-  padding: 0.8rem;
+export const Container = styled.div`
+  width: 100%;
+  position: relative;
+`;
+
+export const InputStandard = styled.input`
+  padding: 0.8rem 2rem;
   margin: 5px 0;
   width: 100%;
 
@@ -15,9 +20,7 @@ const InputStandard = styled.input`
     box-shadow: 0 0 1px 1px var(--primary-bg-color);
   }
 
-  @media (max-width: 400px){
+  @media (max-width: 400px) {
     padding: 0.6rem;
   }
 `;
-
-export default InputStandard;

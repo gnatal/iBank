@@ -2,6 +2,9 @@ import styled from 'styled-components';
 
 const ButtonStandard = styled.button`
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   margin: 1rem 0;
   color: #fff;
@@ -24,8 +27,12 @@ const ButtonStandard = styled.button`
   }
 
   &:disabled {
-    opacity: 0.6;
+    opacity: 0.7;
     cursor: not-allowed;
+
+    &:hover {
+      transform: scale(1);
+    }
   }
 
   .button-icon-posisiton {
