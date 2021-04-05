@@ -22,7 +22,7 @@ const Dashboard: React.FC = () => {
   const dispatch = useDispatch();
   const currentScreen = useSelector((store: ApplicationStore) => store.dashboard.current_screen);
 
-  const [isMenuOpen, setIsMenuOpen] = useState(true);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isExitModalOpen, setIsExitModalOpen] = useState(false);
 
   const changeComponent = useCallback((title: Screen) => {
