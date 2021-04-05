@@ -1,7 +1,7 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const Background = styled.div`
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
 
   display: flex;
@@ -26,7 +26,7 @@ export const Background = styled.div`
     margin: 0 auto;
     padding: 1rem 1.5rem;
   }
-`;
+`
 
 export const Header = styled.header`
   display: flex;
@@ -39,10 +39,10 @@ export const Header = styled.header`
   img {
     margin-right: 1.5rem;
   }
-`;
+`
 
 interface NavSectionProps {
-  isOpen: boolean;
+  isOpen: boolean
 }
 
 export const NavSection = styled.div<NavSectionProps>`
@@ -172,4 +172,4 @@ export const NavSection = styled.div<NavSectionProps>`
       }
     }
   }
-`;
+`

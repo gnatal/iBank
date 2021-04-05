@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const Container = styled.div`
   display: flex;
@@ -6,7 +6,7 @@ export const Container = styled.div`
   align-items: center;
 
   width: 100%;
-`;
+`
 export const TransactionsContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -50,10 +50,10 @@ export const TransactionsContainer = styled.div`
     border-top-right-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
   }
-`;
+`
 
 interface TransactionsCardProps {
-  type: string;
+  type: string
 }
 export const TransactionsCard = styled.div<TransactionsCardProps>`
   display: flex;
@@ -94,19 +94,19 @@ export const TransactionsCard = styled.div<TransactionsCardProps>`
   & + div {
     margin-top: 1rem;
   }
-`;
+`
 
 export const MainContent = styled.div`
   display: flex;
-`;
+`
 
 export const DateContainer = styled.div`
   font-size: 1rem;
   color: var(--light-gray);
-`;
+`
 
 export const IconContainer = styled.div`
   font-size: 2rem;
   color: var(--light-gray);
   margin-right: 1rem;
-`;
+`
