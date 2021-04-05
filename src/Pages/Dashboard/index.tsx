@@ -72,6 +72,14 @@ const Dashboard: React.FC = () => {
         {/* <Navbar.Collapse id="basic-navbar-nav"> */}
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
+
+          <Nav.Link
+              className={currentScreen === 'transactions' ? 'active' : ''} 
+              onClick={() => changeComponent('transactions')} 
+            > 
+              Transações
+            </Nav.Link>
+
             <Nav.Link
               className={currentScreen === 'deposits' ? 'active' : ''} 
               onClick={() => changeComponent('deposits')} 
@@ -90,12 +98,8 @@ const Dashboard: React.FC = () => {
             > 
               Planos
             </Nav.Link>
-            <Nav.Link
-              className={currentScreen === 'transactions' ? 'active' : ''} 
-              onClick={() => changeComponent('transactions')} 
-            > 
-              Transações
-            </Nav.Link>
+
+
             <Nav.Link
               style={{ position: "absolute", right: "20px" }}
               onClick={handleOpenExitModal}
@@ -117,7 +121,6 @@ const Dashboard: React.FC = () => {
             <TabName>Sair</TabName>
           </Tab>
       </BottomNavigationBox>
-
 
       <main>
         {currentScreen === 'deposits' && <Deposit />}

@@ -4,7 +4,6 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
   width: 100%;
 
   header {
@@ -13,7 +12,6 @@ export const Container = styled.div`
     justify-content: space-between;
 
     width: 100%;
-
     margin-bottom: 1.2rem;
 
     h1 {
@@ -39,6 +37,5 @@ export const CardsContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-
   width: 100%;
 `;

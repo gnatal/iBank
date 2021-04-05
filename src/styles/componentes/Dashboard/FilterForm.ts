@@ -12,7 +12,5 @@ export const FilterFormStyle = styled.div`
       text-align: left;
     }
   }
-
-  .buttonform {
-  }
+  
 `

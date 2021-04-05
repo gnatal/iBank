@@ -6,22 +6,19 @@ export const CardsContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1rem;
-
   padding: 2rem;
-
-  background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
-
   border-radius: 0.5rem;
-
   overflow: auto;
 
   &::-webkit-scrollbar {
     width: 4px;
   }
+
   &::-webkit-scrollbar-track {
     background: #eee;
     border-radius: 0.75rem;
   }
+
   &::-webkit-scrollbar-thumb {
     background: var(--primary-bg-color);
     border-radius: 0.75rem;
@@ -30,6 +27,7 @@ export const CardsContainer = styled.div`
   @media (max-width: 920px) {
     padding: 1.5rem;
   }
+  
   @media (max-width: 878px) {
     padding-bottom: 0;
 
